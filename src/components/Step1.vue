@@ -1,182 +1,402 @@
 <template>
-    <form @submit.prevent="submitStep">
-        <div class="row  ">
-
-            <div class="col-12  mb-2">
-                <label for="maison" class="formLabel mb-5">Quelle profession souhaitez-vous assurer ?</label>
-               <div class="row g-3 g-md-4">
-                <div class="col-12 col-md-4 mt-0">
-                    <div class="btn-group formIconContainer" role="group" aria-label="Basic radio toggle button group">
-                        <input type="radio" class="btn-check profession" name="profession" value="ARTISAN_ENTREPRISE_BATIMENT"
-                            id="ARTISAN_ENTREPRISE_BATIMENT" autocomplete="off" v-model="data.profession">
-                        <label class="btn btn-outline-primary iconLabel" for="ARTISAN_ENTREPRISE_BATIMENT">
-                            <div class="text-end checkedLabel">
-                                <img src="../assets/icons/checkedicon.svg" width="15" height="15" alt="checked">
-                            </div>
-                            <div class=""><img src="../assets/icons/worker.svg"  style="width: 80px;" alt="ARTISAN_ENTREPRISE_BATIMENT"></div>
-                            <div>Artisan entreprise du batiment</div>
-                        </label>
-                    </div>
+    <div class="container">
+      <div class="custom-card py-0">
+        <div class="card-body">
+          <h4 class="text-center mb-4 text-primary"></h4>
+          <form @submit.prevent="submitStep">
+            <!-- Section: Soins courants -->
+            <div class="mb-4">
+              <label for="soins_generaux_sante" class="form-label fw-bold">Soins courants :<em class="text-danger">*</em>
+                <i class="ms-1 fa fa-info-circle" title="médecine générale, pharmacie, examens, radios, etc."></i>
+              </label>
+              <div class="btn-group-custom">
+                <button
+                  type="button"
+                  class="btn-custom"
+                  :class="{ active: selected.soins === 'Minimum' }"
+                  @click="selected.soins = 'Minimum'"
+                >
+                  Minimum
+                </button>
+                <button
+                  type="button"
+                  class="btn-custom"
+                  :class="{ active: selected.soins === 'Moyen' }"
+                  @click="selected.soins = 'Moyen'"
+                >
+                  Moyen
+                </button>
+                <button
+                  type="button"
+                  class="btn-custom"
+                  :class="{ active: selected.soins === 'Fort' }"
+                  @click="selected.soins = 'Fort'"
+                >
+                  Fort
+                </button>
+                <button
+                  type="button"
+                  class="btn-custom"
+                  :class="{ active: selected.soins === 'Avancé' }"
+                  @click="selected.soins = 'Avancé'"
+                >
+                  Avancé
+                </button>
+              </div>
+                <div v-if="$v.soins.$error" class="text-danger text-center">
+                    Veuillez sélectionner une option.
                 </div>
-                <div class="col-12 col-md-4 mt-0">
-                    <div class="btn-group formIconContainer" role="group" aria-label="Basic radio toggle button group">
-                        <input type="radio" class="btn-check profession" name="profession"
-                            value="PROFESSION_INTELLECTUELLE_BATIMENT" id="PROFESSION_INTELLECTUELLE_BATIMENT" autocomplete="off" v-model="data.profession">
-                        <label class="btn btn-outline-primary iconLabel" for="PROFESSION_INTELLECTUELLE_BATIMENT">
-                            <div class="text-end checkedLabel"><img src="../assets/icons/checkedicon.svg" width="15"
-                                    height="15" alt="checked"></div>
-                            <div class=""><img src="../assets/icons/engineer.svg"  style="width: 80px;" alt="PROFESSION_INTELLECTUELLE_BATIMENT"></div>
-                            <div>Profession Intellectuelle du batiment</div>
-                        </label>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 mt-0">
-                    <div class="btn-group formIconContainer" role="group" aria-label="Basic radio toggle button group">
-                        <input type="radio" class="btn-check profession" name="profession" value="ACTIVITE_PISCINISTE"
-                            id="ACTIVITE_PISCINISTE" autocomplete="off" v-model="data.profession">
-                        <label class="btn btn-outline-primary iconLabel" for="ACTIVITE_PISCINISTE">
-                            <div class="text-end checkedLabel"><img src="../assets/icons/checkedicon.svg" width="15"
-                                    height="15" alt="checked"></div>
-                            <div class=""><img src="../assets/icons/pool.svg" style="width: 80px;" alt="ACTIVITE_PISCINISTE"></div>
-                            <div>Activite de pisciniste</div>
-                        </label>
-                    </div>
-                </div>
-                </div>
-                <div  class="col-12 mt-0">
-                    <ErrorComponent v-if="$v.profession.$error" :errors="$v.profession.$errors" />
-                </div>
-            </div >
-            <div class="col-12 ">
-                <label class="formLabel my-3"> Numéro de SIREN : </label>
-                <input type="text"  v-model="data.siren" class="form-control ">
-                <ErrorComponent v-if="$v.siren.$error" :errors="$v.siren.$errors" />
-            </div >
-   
-
-            <div class="col-12">
-                <button v-if="loader" type="button" class="navBtn nextBtn mt-4 d-flex justify-content-center align-items-center">
-                                <vue-spinner size="30" color="white" />
-                            </button>
-
-                <button v-else type="submit" class="navBtn firstBtn mt-4">Votre devis en 2 minutes</button>
             </div>
-        </div>
+            <!-- Section: Optique -->
+            <div class="mb-4">
+              <label class="form-label fw-bold">Optique :<em class="text-danger">*</em>
+                <i class="ms-1 fa fa-info-circle" title="lentilles, lunettes, chirurgie réfractive, etc."></i></label>
+              <div class="btn-group-custom">
+                <button
+                  type="button"
+                  class="btn-custom"
+                  :class="{ active: selected.optique === 'Minimum' }"
+                  @click="selected.optique = 'Minimum'"
+                >
+                  Minimum
+                </button>
+                <button
+                  type="button"
+                  class="btn-custom"
+                  :class="{ active: selected.optique === 'Moyen' }"
+                  @click="selected.optique = 'Moyen'"
+                >
+                  Moyen
+                </button>
+                <button
+                  type="button"
+                  class="btn-custom"
+                  :class="{ active: selected.optique === 'Fort' }"
+                  @click="selected.optique = 'Fort'"
+                >
+                  Fort
+                </button>
+                <button
+                  type="button"
+                  class="btn-custom"
+                  :class="{ active: selected.optique === 'Avancé' }"
+                  @click="selected.optique = 'Avancé'"
+                >
+                  Avancé
+                </button>
+              </div>
+                <div v-if="$v.optique.$error" class="text-danger text-center">
+                    Veuillez sélectionner une option.
+                </div>
+            </div>
   
-
-    </form>
+            <!-- Section: Dentaire -->
+            <div class="mb-4">
+              <label class="form-label fw-bold">Dentaire :<em class="text-danger">*</em>
+                <i class="ms-1 fa fa-info-circle" title="dentiste, prothèses, soins, etc."></i></label>
+              <div class="btn-group-custom">
+                <button
+                  type="button"
+                  class="btn-custom"
+                  :class="{ active: selected.dentaire === 'Minimum' }"
+                  @click="selected.dentaire = 'Minimum'"
+                >
+                  Minimum
+                </button>
+                <button
+                  type="button"
+                  class="btn-custom"
+                  :class="{ active: selected.dentaire === 'Moyen' }"
+                  @click="selected.dentaire = 'Moyen'"
+                >
+                  Moyen
+                </button>
+                <button
+                  type="button"
+                  class="btn-custom"
+                  :class="{ active: selected.dentaire === 'Fort' }"
+                  @click="selected.dentaire = 'Fort'"
+                >
+                  Fort
+                </button>
+                <button
+                  type="button"
+                  class="btn-custom"
+                  :class="{ active: selected.dentaire === 'Avancé' }"
+                  @click="selected.dentaire = 'Avancé'"
+                >
+                  Avancé
+                </button>
+              </div>
+                <div v-if="$v.dentaire.$error" class="text-danger text-center">
+                    Veuillez sélectionner une option.
+                </div>
+            </div>
+  
+            <!-- Section: Hospitalisation -->
+            <div class="mb-4">
+              <label class="form-label fw-bold">Hospitalisation :<em class="text-danger">*</em>
+                <i class="ms-1 fa fa-info-circle" title="frais de séjour, frais de transport, chirurgie, etc."></i></label>
+              <div class="btn-group-custom">
+                <button
+                  type="button"
+                  class="btn-custom"
+                  :class="{ active: selected.hospitalisation === 'Minimum' }"
+                  @click="selected.hospitalisation = 'Minimum'"
+                >
+                  Minimum
+                </button>
+                <button
+                  type="button"
+                  class="btn-custom"
+                  :class="{ active: selected.hospitalisation === 'Moyen' }"
+                  @click="selected.hospitalisation = 'Moyen'"
+                >
+                  Moyen
+                </button>
+                <button
+                  type="button"
+                  class="btn-custom"
+                  :class="{ active: selected.hospitalisation === 'Fort' }"
+                  @click="selected.hospitalisation = 'Fort'"
+                >
+                  Fort
+                </button>
+                <button
+                  type="button"
+                  class="btn-custom"
+                  :class="{ active: selected.hospitalisation === 'Avancé' }"
+                  @click="selected.hospitalisation = 'Avancé'"
+                >
+                  Avancé
+                </button>
+              </div>
+                <div v-if="$v.hospitalisation.$error" class="text-danger text-center">
+                    Veuillez sélectionner une option.
+                </div>
+            </div>
+  
+            <!-- Section: AIDES AUDITIVES -->
+            <div class="mb-4">
+              <label class="form-label fw-bold">AIDES AUDITIVES :<em class="text-danger">*</em>
+                <i class="ms-1 fa fa-info-circle" title="équipement"></i></label>
+              <div class="btn-group-custom">
+                <button
+                  type="button"
+                  class="btn-custom"
+                  :class="{ active: selected.aides_auditives === 'Minimum' }"
+                  @click="selected.aides_auditives = 'Minimum'"
+                >
+                  Minimum
+                </button>
+                <button
+                  type="button"
+                  class="btn-custom"
+                  :class="{ active: selected.aides_auditives === 'Moyen' }"
+                  @click="selected.aides_auditives = 'Moyen'"
+                >
+                  Moyen
+                </button>
+                <button
+                  type="button"
+                  class="btn-custom"
+                  :class="{ active: selected.aides_auditives === 'Fort' }"
+                  @click="selected.aides_auditives = 'Fort'"
+                >
+                  Fort
+                </button>
+                <button
+                  type="button"
+                  class="btn-custom"
+                  :class="{ active: selected.aides_auditives === 'Avancé' }"
+                  @click="selected.aides_auditives = 'Avancé'"
+                >
+                  Avancé
+                </button>
+              </div>
+                <div v-if="$v.aides_auditives.$error" class="text-danger text-center">
+                    Veuillez sélectionner une option.
+                </div>
+            </div>
+  
+            <!-- Section: Médecines douces -->
+            <div class="mb-4">
+              <label class="form-label fw-bold">Médecines douces :<em class="text-danger">*</em>
+                <i class="ms-1 fa fa-info-circle" title="ostéopathe, chiropracteur, acupuncteur …"></i></label>
+              <div class="btn-group-custom">
+                <button
+                  type="button"
+                  class="btn-custom"
+                  :class="{ active: selected.medecines_douces === 'Minimum' }"
+                  @click="selected.medecines_douces = 'Minimum'"
+                >
+                  Minimum
+                </button>
+                <button
+                  type="button"
+                  class="btn-custom"
+                  :class="{ active: selected.medecines_douces === 'Moyen' }"
+                  @click="selected.medecines_douces = 'Moyen'"
+                >
+                  Moyen
+                </button>
+                <button
+                  type="button"
+                  class="btn-custom"
+                  :class="{ active: selected.medecines_douces === 'Fort' }"
+                  @click="selected.medecines_douces = 'Fort'"
+                >
+                  Fort
+                </button>
+                <button
+                  type="button"
+                  class="btn-custom"
+                  :class="{ active: selected.medecines_douces === 'Avancé' }"
+                  @click="selected.medecines_douces = 'Avancé'"
+                >
+                  Avancé
+                </button>
+              </div>
+                <div v-if="$v.medecines_douces.$error" class="text-danger text-center">
+                    Veuillez sélectionner une option.
+                </div>
+            </div>
+  
+            <button type="submit" class="btn btn-primary w-100 mt-3 btn-lg shadow">Suivant</button>
+          </form>
+        </div>
+        <div class="card-header text-center">
+            <img src="../assets/media/espace-securise.png" width="150" alt="" srcset="">
+        </div>
+      </div>
+    </div>
 </template>
-
+  
 <script setup>
-import { useFormStore } from '@/stores/useFormStore';
-import { reactive, ref } from 'vue';
-import useVuelidate from '@vuelidate/core';
-import { required, email } from '@vuelidate/validators';
-import axios from 'axios';
-import {VueSpinner} from 'vue3-spinners';
-
-const formStore = useFormStore();
-const loader= ref(false)
-
-const types = ["Auto Entrepreneur","Nom Propre","SARL","SA","SAS,SASU..." ];
-
-
-
-const data = reactive({
-    profession: formStore.formData.step1.profession || "",
-    siren: formStore.formData.step1.siren || "",
-
-});
-
-
-const rules = {
-        profession: { required },
-        siren: { required },
+    import { useFormStore } from '@/stores/useFormStore';
+    import { reactive, watch } from 'vue';
+    import useVuelidate from '@vuelidate/core';
+    import { required } from '@vuelidate/validators';
+    
+    const formStore = useFormStore();
+    
+    const selected = reactive({
+        soins: formStore.formData.step1.soins || "",
+        optique: formStore.formData.step1.optique || "",
+        dentaire: formStore.formData.step1.dentaire || "",
+        hospitalisation: formStore.formData.step1.hospitalisation || "",
+        aides_auditives: formStore.formData.step1.aides_auditives || "",
+        medecines_douces: formStore.formData.step1.medecines_douces || "",
+    
+    });
+    
+    const rules = {
+        soins: { required },
+        optique: { required },
+        dentaire: { required },
+        hospitalisation: { required },
+        aides_auditives: { required },
+        medecines_douces: { required },
     };
+    
+    const $v = useVuelidate(rules, selected);
 
-const $v = useVuelidate(rules, data);
+    watch(selected, (newValues) => {
+        Object.assign(selected, newValues);
+    });
 
-async function submitStep() {
-
-   
-    $v.value.$touch(); // Mark all fields as touched
-    if (!$v.value.$invalid) {
-        //if(data.siren != formStore.formData.step1.siren){
-
-        if(true){
-            loader.value =true;
-            await axios.get('https://api.insee.fr/api-sirene/3.11/siret?q=siren:'+data.siren,{
-            headers: {
-            'X-INSEE-Api-Key-Integration': `28774ea5-fd7e-442a-b74e-a5fd7ec42af9`, // Add token to header
-            }})
-            .then(response => {
-                if (response.status === 200) {
-
-                    const etablissement = response.data.etablissements[0];
-                    let adresse = etablissement.adresseEtablissement.numeroVoieEtablissement;
-
-                    if(etablissement.adresseEtablissement.typeVoieEtablissement != null  ){
-                        adresse += " "+ etablissement.adresseEtablissement.typeVoieEtablissement;
-                    }
-
-                    if(etablissement.adresseEtablissement.libelleVoieEtablissement != null ){
-                        adresse += " "+ etablissement.adresseEtablissement.libelleVoieEtablissement
-                    }
-                    if(etablissement.adresseEtablissement.complementAdresseEtablissement != null ){
-                        adresse += "  "+ etablissement.adresseEtablissement.complementAdresseEtablissement
-                    }
-          
-                    const infosStep2 = {
-                        nom_entreprise: etablissement.uniteLegale.denominationUniteLegale, //
-                        type: formStore.formData.step2.type || "",
-                        adresse: adresse,
-                        code_postal:  etablissement.adresseEtablissement.codePostalEtablissement,//
-                        ville:  etablissement.adresseEtablissement.libelleCommuneEtablissement,//
-                        mobile: formStore.formData.step2.mobile || "",
-                        mail: formStore.formData.step2.mail || "",
-                        nombre_salaries: formStore.formData.step2.nombre_salaries || "",
-                        chiffre_affaires: formStore.formData.step2.chiffre_affaires || "",
-                        date_creation: etablissement.dateCreationEtablissement,//
-                        nom_dirigeant: formStore.formData.step2.nom_dirigeant || "",
-                        date_naissance: formStore.formData.step2.date_naissance || "",
-                    }
-                    formStore.updateStepData('step2', infosStep2)
-                    // update before you go
-            
-                }
-            }).catch(({response}) => {
-            }).finally(() => {
-                loader.value =false;
-            });
+    async function submitStep() {
+        $v.value.$touch();
+        if (!$v.value.$invalid) {
+            console.log('Form submitted successfully!');
+            formStore.updateStepData('step1', selected);
+            formStore.nextStep();
         }
-        formStore.updateStepData('step1', data);
-        formStore.nextStep();
- 
     }
-}
 </script>
+
 <style scoped>
-@media (max-width: 768px) {
-    .firstBtn  {
-        font-size: medium;
-    }
-}
 
-.formIconContainer{
-    height: 100%;
-}
-.customCloseBtn {
-    background: var(--color1);
-    border: 0;
-    padding: 14px 50px;
-    font-size: 16px;
-    border-radius: 9px;
-    color: #fff;
-}
-
-.contenu {
+  /* Custom Card Design */
+  .custom-card {
+    border-radius: 15px;
+    padding: 2rem;
+    overflow: hidden;
+  }
+  
+  .card-header {
     display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-</style>
+    align-content: center;
+    justify-content: center;
+    padding: 1rem 1rem 0rem 1rem;
+  }
+  
+  /* Custom Button Group */
+  .btn-group-custom {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap; /* Pour les petits écrans */
+  }
+  
+  .btn-custom {
+    flex: 1;
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    color: #495057;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .btn-custom:hover {
+    background-color: #007bff;
+    color: white;
+    transform: scale(1.05);
+  }
+  
+  .btn-custom.active {
+    background-color: #007bff;
+    color: white;
+    box-shadow: 0 3px 8px rgba(0, 123, 255, 0.3);
+  }
+  
+  /* Typography */
+  h4 {
+    font-weight: 700;
+  }
+  
+  label {
+    font-size: 1rem;
+  }
+  
+  button:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .custom-card {
+      padding: 1.5rem;
+    }
+  
+    .btn-custom {
+      padding: 8px; /* Réduction des marges pour petits écrans */
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    h4 {
+      font-size: 1.2rem; /* Taille réduite pour le titre */
+    }
+  
+    .btn-custom {
+      font-size: 0.8rem; /* Taille des boutons réduite */
+    }
+  }
+  </style>

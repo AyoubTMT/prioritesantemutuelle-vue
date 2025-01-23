@@ -175,7 +175,8 @@ function updateCurrentStep(step) {
 
 .stepper {
     animation: fadeIn .5s;
-    background: white !important;
+    /* background: white !important; */
+    background: linear-gradient(145deg, #ffffff, #f6d7b8);
     border: 1px solid #e5e5e5;
     border-radius: .85rem;
     animation-name: fadeInLeft;
