@@ -19,7 +19,7 @@
                             :class="['step', { active: isActiveStep(index + 1) }]">
                             {{ step }}
                         </div> -->
-                            <div :class="['step', { active: formStore.currentStep == 1 || formStore.currentStep == 2,stepHover: formStore.currentStep > 2 }]"  @click="updateCurrentStep(2)">Entreprise</div>
+                            <div :class="['step', { active: formStore.currentStep == 1 || formStore.currentStep == 2,stepHover: formStore.currentStep > 2 }]"  @click="updateCurrentStep(2)">Vos besoins</div>
                             <div :class="['step', { active: formStore.currentStep == 3 || formStore.currentStep == 4 , stepHover: formStore.currentStep > 4 }]" @click="updateCurrentStep(4)" >Recueil du besoin</div>
                             <div :class="['step', { active: formStore.currentStep == 5 , stepHover: formStore.currentStep > 5}]" @click="updateCurrentStep(5)">Activité</div>
                             <div :class="['step', { active: formStore.currentStep == 6  }]" >Finalisation</div>
@@ -72,14 +72,14 @@ if (formStore.currentStep > 7) {
 }
 
 const stepMap = {
-    1: 'Entreprise',
-    2: 'Entreprise',
+    1: 'Vos besoins',
+    2: 'Vos besoins',
     3: 'Recueil du besoin',
     4: 'Recueil du besoin',
     5: 'Activité',
     6: 'Finalisation',
 };
-const steps = ref(['Entreprise', 'Recueil du besoin', 'Activité', 'Finalisation']);
+const steps = ref(['Vos besoins', 'Recueil du besoin', 'Activité', 'Finalisation']);
 
 const isActiveStep = (stepIndex) => {
     const activeStep = stepMap[formStore.currentStep];
