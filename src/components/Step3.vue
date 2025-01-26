@@ -136,12 +136,12 @@ const router = useRouter();
 // Form Data
 const formData = reactive({
   familyStatus: formStore.formData.step3.familyStatus || "",
-  insureSpouse: formStore.formData.step3.insureSpouse || null,
+  insureSpouse: formStore.formData.step3.insureSpouse || false,
   spouseBirthdate: formStore.formData.step3.spouseBirthdate || "",
   childrenCount: formStore.formData.step3.childrenCount || 0,
   phone: formStore.formData.step3.phone || "",
 });
-
+console.log(formData);
 // Constants
 const familyStatuses = ["Marié(e)", "Célibataire", "Divorcé(e)", "Veuf/ve"];
 const maxChildren = [0, 1, 2, 3];

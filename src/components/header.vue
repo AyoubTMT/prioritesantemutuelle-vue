@@ -51,7 +51,6 @@
                 <div class="contact">
                     <img src="../assets/images/assistance.png" class="assistanceImg img-fluid" style="
                             border-radius: 50%;
-                            width: 170px;
                             margin-top: 18px;
                         ">
                     <h3>Besoin d'aide ?

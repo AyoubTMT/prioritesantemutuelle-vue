@@ -251,13 +251,13 @@ span.underligned {
   color: var(--bs-progress-bar-color);
   text-align: center;
   white-space: nowrap;
-  background-color: #E1000F;
+  /* background-color: #E1000F; */
   transition: var(--bs-progress-bar-transition);
 }
 
 .progressMobile {
   border-radius: 50px;
-  background: #E1000F !important;
+  /* background: #E1000F !important; */
 }
 
 .progressMobile,
@@ -536,7 +536,7 @@ button.pusletooltip {
 }
 .progressMobile {
   border-radius: 50px;
-  background: #E1000F !important;
+  /* background: #E1000F !important; */
 }
 .progressMobile, .progress {
   height: 4px !important;

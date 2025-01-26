@@ -28,32 +28,32 @@
               <button
                 type="button"
                 class="btn-custom"
-                :class="{ active: selected.soins === 'Minimum' }"
-                @click="selected.soins = 'Minimum'"
+                :class="{ active: selected.soins === 'S1' }"
+                @click="selected.soins = 'S1'"
               >
                 Minimum<br>♥
               </button>
               <button
                 type="button"
                 class="btn-custom"
-                :class="{ active: selected.soins === 'Moyen' }"
-                @click="selected.soins = 'Moyen'"
+                :class="{ active: selected.soins === 'S2' }"
+                @click="selected.soins = 'S2'"
               >
                 Moyen<br>♥♥
               </button>
               <button
                 type="button"
                 class="btn-custom"
-                :class="{ active: selected.soins === 'Fort' }"
-                @click="selected.soins = 'Fort'"
+                :class="{ active: selected.soins === 'S3' }"
+                @click="selected.soins = 'S3'"
               >
                 Fort<br>♥♥♥
               </button>
               <button
                 type="button"
                 class="btn-custom"
-                :class="{ active: selected.soins === 'Avancé' }"
-                @click="selected.soins = 'Avancé'"
+                :class="{ active: selected.soins === 'S4' }"
+                @click="selected.soins = 'S4'"
               >
                 Avancé<br>♥♥♥♥
               </button>
@@ -70,32 +70,32 @@
               <button
                 type="button"
                 class="btn-custom"
-                :class="{ active: selected.optique === 'Minimum' }"
-                @click="selected.optique = 'Minimum'"
+                :class="{ active: selected.optique === 'O1' }"
+                @click="selected.optique = 'O1'"
               >
                 Minimum<br>♥
               </button>
               <button
                 type="button"
                 class="btn-custom"
-                :class="{ active: selected.optique === 'Moyen' }"
-                @click="selected.optique = 'Moyen'"
+                :class="{ active: selected.optique === 'O2' }"
+                @click="selected.optique = 'O2'"
               >
                 Moyen<br>♥♥
               </button>
               <button
                 type="button"
                 class="btn-custom"
-                :class="{ active: selected.optique === 'Fort' }"
-                @click="selected.optique = 'Fort'"
+                :class="{ active: selected.optique === 'O3' }"
+                @click="selected.optique = 'O3'"
               >
                 Fort<br>♥♥♥
               </button>
               <button
                 type="button"
                 class="btn-custom"
-                :class="{ active: selected.optique === 'Avancé' }"
-                @click="selected.optique = 'Avancé'"
+                :class="{ active: selected.optique === 'O4' }"
+                @click="selected.optique = 'O4'"
               >
                 Avancé<br>♥♥♥♥
               </button>
@@ -113,32 +113,32 @@
               <button
                 type="button"
                 class="btn-custom"
-                :class="{ active: selected.dentaire === 'Minimum' }"
-                @click="selected.dentaire = 'Minimum'"
+                :class="{ active: selected.dentaire === 'D1' }"
+                @click="selected.dentaire = 'D1'"
               >
                 Minimum<br>♥
               </button>
               <button
                 type="button"
                 class="btn-custom"
-                :class="{ active: selected.dentaire === 'Moyen' }"
-                @click="selected.dentaire = 'Moyen'"
+                :class="{ active: selected.dentaire === 'D2' }"
+                @click="selected.dentaire = 'D2'"
               >
                 Moyen<br>♥♥
               </button>
               <button
                 type="button"
                 class="btn-custom"
-                :class="{ active: selected.dentaire === 'Fort' }"
-                @click="selected.dentaire = 'Fort'"
+                :class="{ active: selected.dentaire === 'D3' }"
+                @click="selected.dentaire = 'D3'"
               >
                 Fort<br>♥♥♥
               </button>
               <button
                 type="button"
                 class="btn-custom"
-                :class="{ active: selected.dentaire === 'Avancé' }"
-                @click="selected.dentaire = 'Avancé'"
+                :class="{ active: selected.dentaire === 'D4' }"
+                @click="selected.dentaire = 'D4'"
               >
                 Avancé<br>♥♥♥♥
               </button>
@@ -156,32 +156,32 @@
               <button
                 type="button"
                 class="btn-custom"
-                :class="{ active: selected.hospitalisation === 'Minimum' }"
-                @click="selected.hospitalisation = 'Minimum'"
+                :class="{ active: selected.hospitalisation === 'H1' }"
+                @click="selected.hospitalisation = 'H1'"
               >
                 Minimum<br>♥
               </button>
               <button
                 type="button"
                 class="btn-custom"
-                :class="{ active: selected.hospitalisation === 'Moyen' }"
-                @click="selected.hospitalisation = 'Moyen'"
+                :class="{ active: selected.hospitalisation === 'H2' }"
+                @click="selected.hospitalisation = 'H2'"
               >
                 Moyen<br>♥♥
               </button>
               <button
                 type="button"
                 class="btn-custom"
-                :class="{ active: selected.hospitalisation === 'Fort' }"
-                @click="selected.hospitalisation = 'Fort'"
+                :class="{ active: selected.hospitalisation === 'H3' }"
+                @click="selected.hospitalisation = 'H3'"
               >
                 Fort<br>♥♥♥
               </button>
               <button
                 type="button"
                 class="btn-custom"
-                :class="{ active: selected.hospitalisation === 'Avancé' }"
-                @click="selected.hospitalisation = 'Avancé'"
+                :class="{ active: selected.hospitalisation === 'H4' }"
+                @click="selected.hospitalisation = 'H4'"
               >
                 Avancé<br>♥♥♥♥
               </button>
@@ -199,32 +199,32 @@
               <button
                 type="button"
                 class="btn-custom"
-                :class="{ active: selected.aides_auditives === 'Minimum' }"
-                @click="selected.aides_auditives = 'Minimum'"
+                :class="{ active: selected.aides_auditives === 'A1' }"
+                @click="selected.aides_auditives = 'A1'"
               >
                 Minimum<br>♥
               </button>
               <button
                 type="button"
                 class="btn-custom"
-                :class="{ active: selected.aides_auditives === 'Moyen' }"
-                @click="selected.aides_auditives = 'Moyen'"
+                :class="{ active: selected.aides_auditives === 'A2' }"
+                @click="selected.aides_auditives = 'A2'"
               >
                 Moyen<br>♥♥
               </button>
               <button
                 type="button"
                 class="btn-custom"
-                :class="{ active: selected.aides_auditives === 'Fort' }"
-                @click="selected.aides_auditives = 'Fort'"
+                :class="{ active: selected.aides_auditives === 'A3' }"
+                @click="selected.aides_auditives = 'A3'"
               >
                 Fort<br>♥♥♥
               </button>
               <button
                 type="button"
                 class="btn-custom"
-                :class="{ active: selected.aides_auditives === 'Avancé' }"
-                @click="selected.aides_auditives = 'Avancé'"
+                :class="{ active: selected.aides_auditives === 'A4' }"
+                @click="selected.aides_auditives = 'A4'"
               >
                 Avancé<br>♥♥♥♥
               </button>
@@ -242,32 +242,32 @@
               <button
                 type="button"
                 class="btn-custom"
-                :class="{ active: selected.medecines_douces === 'Minimum' }"
-                @click="selected.medecines_douces = 'Minimum'"
+                :class="{ active: selected.medecines_douces === 'G1' }"
+                @click="selected.medecines_douces = 'G1'"
               >
                 Minimum<br>♥
               </button>
               <button
                 type="button"
                 class="btn-custom"
-                :class="{ active: selected.medecines_douces === 'Moyen' }"
-                @click="selected.medecines_douces = 'Moyen'"
+                :class="{ active: selected.medecines_douces === 'G2' }"
+                @click="selected.medecines_douces = 'G2'"
               >
                 Moyen<br>♥♥
               </button>
               <button
                 type="button"
                 class="btn-custom"
-                :class="{ active: selected.medecines_douces === 'Fort' }"
-                @click="selected.medecines_douces = 'Fort'"
+                :class="{ active: selected.medecines_douces === 'G3' }"
+                @click="selected.medecines_douces = 'G3'"
               >
                 Fort<br>♥♥♥
               </button>
               <button
                 type="button"
                 class="btn-custom"
-                :class="{ active: selected.medecines_douces === 'Avancé' }"
-                @click="selected.medecines_douces = 'Avancé'"
+                :class="{ active: selected.medecines_douces === 'G4' }"
+                @click="selected.medecines_douces = 'G4'"
               >
                 Avancé<br>♥♥♥♥
               </button>

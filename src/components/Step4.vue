@@ -8,7 +8,7 @@
         </span>
       </div>
       <h2 class="step-title">
-        <i class="bi bi-check-circle-fill"></i> Finalisez et <span>soumettez votre demande</span> 🎉
+        <i class="bi bi-check-circle-fill"></i> Finalisez et <span>voir mon offre exclusive</span> 🎉
       </h2>
       <div class="step-indicator d-flex justify-content-center gap-1">
         <span class="step-bar"></span>
@@ -118,6 +118,7 @@ import { required, email, minLength } from "@vuelidate/validators";
 import { useRouter } from "vue-router";
 import { useFormStore } from "@/stores/useFormStore";
 import {VueSpinner} from 'vue3-spinners';
+import axios from 'axios';
 
 const formStore = useFormStore();
 const router = useRouter();
@@ -130,7 +131,7 @@ const formData = reactive({
   firstName: formStore.formData.step4.firstName || "",
   email: formStore.formData.step4.email || "",
   postalCode: formStore.formData.step4.postalCode || "",
-  gdprConsent: formStore.formData.step4.gdprConsent || false,
+  gdprConsent: formStore.formData.step4.gdprConsent || "",
 });
 
 // Validation Rules
@@ -149,21 +150,7 @@ async function submitStep() {
   $v.value.$touch();
   if (!$v.value.$invalid) {
     formStore.updateStepData("step4", formData);
-    loader.value =true;
-    console.log(JSON.stringify(data));
-    try {
-        // const response = await sendEmail();
-        // if (response?.status === 200) {
-           formStore.nextStep();
-        //   router.push('/devis/merci');
-        // }
-        loader.value =false;
-
-    } catch (error) {
-        console.error('Error devis:', error);
-        loader.value =false;
-
-    }
+    formStore.nextStep();
   }
 }
 
