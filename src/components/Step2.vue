@@ -1,180 +1,219 @@
 <template>
-    <form @submit.prevent="submitStep">
-        <div class="row  ">
-
-  
-            <div class="col-12 col-md-6">
-                <label class="formLabel ">Nom de l'établissement</label>
-                <input type="text" v-model="data.nom_entreprise" class="form-control">
-                <ErrorComponent v-if="$v.nom_entreprise.$error" :errors="$v.nom_entreprise.$errors" />
-
-            </div>
-            <div class="col-12 col-md-6">
-
-                <label for="etages" class="formLabel ">Type</label>
-                <select class="form-select"  v-model="data.type" >
-                    <option v-for="(libelle, valeur) in types" :key="valeur" :value="libelle">
-                        {{ libelle }}
-                    </option>
-                </select>
-                <ErrorComponent v-if="$v.type.$error" :errors="$v.type.$errors" />
-
-            </div>
-
-            <div class="col-12 ">
-                <label class="formLabel ">Adresse</label>
-                <input type="text" v-model="data.adresse" class="form-control">
-                <ErrorComponent v-if="$v.adresse.$error" :errors="$v.adresse.$errors" />
-
-            </div>
-            <div class="col-12 col-md-6">
-                <label class="formLabel ">Code Postal</label>
-                <input type="text" v-model="data.code_postal" class="form-control">
-                <ErrorComponent v-if="$v.code_postal.$error" :errors="$v.code_postal.$errors" />
-
-            </div>
-            <div class="col-12 col-md-6">
-                <label class="formLabel ">Ville</label>
-                <input type="text" v-model="data.ville" class="form-control">
-                <ErrorComponent v-if="$v.ville.$error" :errors="$v.ville.$errors" />
-
-            </div>
-            <div class="col-12 col-md-6">
-                <label class="formLabel ">Mobile</label>
-                <input type="text" v-model="data.mobile" class="form-control">
-                <ErrorComponent v-if="$v.mobile.$error" :errors="$v.mobile.$errors" />
-
-            </div>
-            <div class="col-12 col-md-6">
-                <label class="formLabel ">Mail</label>
-                <input type="text" v-model="data.mail" class="form-control">
-                <ErrorComponent v-if="$v.mail.$error" :errors="$v.mail.$errors" />
-            </div>
-            <div class="col-12 col-md-6">
-                <label class="formLabel ">Nombre de Salariés + patron</label>
-                <input type="number" v-model="data.nombre_salaries" class="form-control">
-                <ErrorComponent v-if="$v.nombre_salaries.$error" :errors="$v.nombre_salaries.$errors" />
-
-            </div>
-            <div class="col-12 col-md-6">
-                <label class="formLabel ">    Chiffre d'affaires
-                </label>
-                <input type="number"  v-model="data.chiffre_affaires" class="form-control">
-                <ErrorComponent v-if="$v.chiffre_affaires.$error" :errors="$v.chiffre_affaires.$errors" />
-
-            </div>
-            <div class="col-12 ">
-                <label class="formLabel ">   Date de création
-                </label>
-                <input type="date" v-model="data.date_creation" class="form-control">
-                <ErrorComponent v-if="$v.date_creation.$error" :errors="$v.date_creation.$errors" />
-
-            </div>
-            <div class="col-12 col-md-6">
-                <label class="formLabel ">  Nom & prénom du dirigeant
-                </label>
-                <input type="text" v-model="data.nom_dirigeant" class="form-control">
-                <ErrorComponent v-if="$v.nom_dirigeant.$error" :errors="$v.nom_dirigeant.$errors" />
-
-            </div>
-            <div class="col-12 col-md-6">
-                <label class="formLabel ">   Date de naissance
-                </label>
-                <input type="date" v-model="data.date_naissance" class="form-control">
-                <ErrorComponent v-if="$v.date_naissance.$error" :errors="$v.date_naissance.$errors" />
-
-            </div>
-
-      
-
-            <div class="col-12 mt-0">
-                <div class="container-fluid p-0">
-                    <div class="row align-items-center">
-                        <div class="col-12">
-                            <button type="submit"
-                                class="navBtn nextBtn mt-4 d-flex justify-content-center align-items-center">Étape suivante <img
-                                    src="../assets/icons/arrow-next.svg" alt="suivant" class="ms-3 img-fluid"></button>
-                        </div>
-                        <div class="col-12 text-center">
-                            <!-- <a class="backLink" onclick="goBack()"><img src="../assets/icons/back-arrow.svg" alt="back" class="img-fluid me-3"> Retour</a> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="custom-card py-0 px-0">
+    <div class="card-header">
+      <h2 class="mb-3 fw-bold">Votre profil</h2>
+      <p class="text-muted">
+        Merci de choisir les options correspondant à votre profil.
+      </p>
+    </div>
+    <div class="card-body">
+      <form @submit.prevent="submitStep">
+        <!-- Date of Birth -->
+        <div class="mb-4">
+          <label for="dob" class="form-label fw-semibold">Date de naissance :</label>
+          <input
+            type="date"
+            id="dob"
+            class="form-control rounded-pill shadow-sm"
+            v-model="formData.birthdate"
+          />
+          <small v-if="$v.birthdate.$error" class="text-danger">
+            Date de naissance requise.
+          </small>
         </div>
-  
 
-    </form>
+        <!-- Gender Selection -->
+        <div class="mb-4">
+          <label class="form-label fw-semibold d-block">Genre :</label>
+          <div class="d-flex justify-content-center gap-3">
+            <button
+              type="button"
+              :class="[
+                'btn rounded-pill px-4 d-flex align-items-center gap-2',
+                formData.gender === 'Monsieur' ? 'btn-primary' : 'btn-outline-secondary'
+              ]"
+              @click="selectGender('Monsieur')"
+              :aria-pressed="formData.gender === 'Monsieur'"
+            >
+              <i class="fa fa-male"></i> Monsieur
+            </button>
+            <button
+              type="button"
+              :class="[
+                'btn rounded-pill px-4 d-flex align-items-center gap-2',
+                formData.gender === 'Madame' ? 'btn-primary' : 'btn-outline-secondary'
+              ]"
+              @click="selectGender('Madame')"
+              :aria-pressed="formData.gender === 'Madame'"
+            >
+              <i class="fa fa-female"></i> Madame
+            </button>
+          </div>
+          <small v-if="$v.gender.$error" class="text-danger">
+            Veuillez sélectionner un genre.
+          </small>
+        </div>
+
+        <!-- Profession -->
+        <div class="mb-4">
+          <label for="profession" class="form-label fw-semibold">Spécialité médicale :</label>
+          <select
+            id="profession"
+            v-model="formData.profession"
+            class="form-select rounded-pill shadow-sm"
+            @blur="$v.profession.$touch()"
+          >
+            <option selected disabled value="">Choisissez une spécialité médicale</option>
+            <option>Médecin généraliste</option>
+            <option>Chirurgien</option>
+            <option>Cardiologue</option>
+            <option>Dermatologue</option>
+            <option>Gynécologue</option>
+            <option>Pédiatre</option>
+            <option>Psychiatre</option>
+            <option>Radiologue</option>
+            <option>Ophtalmologue</option>
+            <option>Pharmacien</option>
+            <option>Orthopédiste</option>
+            <option>Neurologue</option>
+            <option>Oncologue</option>
+            <option>Urologue</option>
+            <option>ORL (Oto-Rhino-Laryngologiste)</option>
+            <option>Dentiste</option>
+            <option>Rhumatologue</option>
+            <option>Endocrinologue</option>
+            <option>Néphrologue</option>
+            <option>Anesthésiste</option>
+            <option>Gastro-entérologue</option>
+            <option>Hématologue</option>
+          </select>
+          <small v-if="$v.profession.$error" class="text-danger">
+            Veuillez sélectionner une spécialité médicale.
+          </small>
+        </div>
+
+        <!-- Social Regime -->
+        <div class="mb-4">
+          <label for="social-regime" class="form-label fw-semibold">Régime social médical :</label>
+          <select
+            id="social-regime"
+            v-model="formData.regime"
+            class="form-select rounded-pill shadow-sm"
+            @blur="$v.regime.$touch()"
+          >
+            <option selected disabled value="">Choisissez votre régime social</option>
+            <option>CPAM (Caisse Primaire d'Assurance Maladie)</option>
+            <option>RSI (Régime Social des Indépendants)</option>
+            <option>CARMF (Caisse Autonome de Retraite des Médecins de France)</option>
+            <option>CNAVPL (Caisse Nationale d’Assurance Vieillesse des Professions Libérales)</option>
+            <option>URSSAF (Union de Recouvrement des Cotisations de Sécurité Sociale et d’Allocations Familiales)</option>
+            <option>MSA (Mutualité Sociale Agricole)</option>
+            <option>Autre</option>
+          </select>
+          <small v-if="$v.regime.$error" class="text-danger">
+            Veuillez sélectionner un régime social.
+          </small>
+        </div>
+
+
+        <!-- Health Insurance -->
+        <div class="mb-4">
+          <label for="health-insurance" class="form-label fw-semibold">Avez-vous un complémentaire santé ?</label>
+          <select
+            id="health-insurance"
+            v-model="formData.complementaire"
+            class="form-select rounded-pill shadow-sm"
+            @blur="$v.complementaire.$touch()"
+          >
+            <option selected disabled value="">Choisissez une option</option>
+            <option>Oui</option>
+            <option>Non</option>
+          </select>
+          <small v-if="$v.complementaire.$error" class="text-danger">
+            Veuillez indiquer si vous avez un complémentaire santé.
+          </small>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="d-flex justify-content-between">
+          <button
+            type="button"
+            class="btn btn-outline-secondary rounded-pill px-4"
+            @click="prevStep"
+          >
+            <i class="bi bi-arrow-left"></i> Précédent
+          </button>
+          <button
+            type="submit"
+            class="btn btn-primary rounded-pill px-4"
+          >
+            Suivant <i class="bi bi-arrow-right"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 </template>
 
 <script setup>
-import { useFormStore } from '@/stores/useFormStore';
-import { reactive, ref } from 'vue';
-import useVuelidate from '@vuelidate/core';
-import { required, email } from '@vuelidate/validators';
+import { reactive } from "vue";
+import { useRouter } from "vue-router";
+import useVuelidate from "@vuelidate/core";
+import { required } from "@vuelidate/validators";
+import { useFormStore } from "@/stores/useFormStore";
+
 const formStore = useFormStore();
+const router = useRouter();
 
-const types = ["Auto Entrepreneur","Nom Propre","SARL","SA","SAS,SASU..." ];
+function selectGender(selectedGender) {
+  formData.gender = selectedGender;
+}
 
-
-
-const data = reactive({
-    nom_entreprise: formStore.formData.step2.nom_entreprise || "",
-    type: formStore.formData.step2.type || "",
-    adresse: formStore.formData.step2.adresse || "",
-    code_postal: formStore.formData.step2.code_postal || "",
-    ville: formStore.formData.step2.ville || "",
-    mobile: formStore.formData.step2.mobile || "",
-    mail: formStore.formData.step2.mail || "",
-    nombre_salaries: formStore.formData.step2.nombre_salaries || "",
-    chiffre_affaires: formStore.formData.step2.chiffre_affaires || "",
-    date_creation: formStore.formData.step2.date_creation || "",
-    nom_dirigeant: formStore.formData.step2.nom_dirigeant || "",
-    date_naissance: formStore.formData.step2.date_naissance || "",
+const formData = reactive({
+  birthdate: formStore.formData.step2.birthdate || "",
+  gender: formStore.formData.step2.gender || "",
+  profession: formStore.formData.step2.profession || "",
+  regime: formStore.formData.step2.regime || "",
+  complementaire: formStore.formData.step2.complementaire || "",
 });
 
-
 const rules = {
-        nom_entreprise: { required },
-        type: { required },
-        adresse:{ required },
-        code_postal: { required },
-        ville: { required },
-        mobile:{ required },
-        mail: { required,email},
-        nombre_salaries: { required },
-        chiffre_affaires: { required },
-        date_creation: { required },
-        nom_dirigeant: { required },
-        date_naissance: { required },
-    };
+  birthdate: { required },
+  gender: { required },
+  profession: { required },
+  regime: { required },
+  complementaire: { required },
+};
 
-const $v = useVuelidate(rules, data);
-function submitStep() {
-   
-    $v.value.$touch(); // Mark all fields as touched
-    if (!$v.value.$invalid) {
-        formStore.updateStepData('step2', data);
-        formStore.nextStep();
-    }
+const $v = useVuelidate(rules, formData);
+
+async function submitStep() {
+  $v.value.$touch();
+  if (!$v.value.$invalid) {
+    formStore.updateStepData("step2", formData);
+    formStore.nextStep();
+  }
+}
+
+function prevStep() {
+  formStore.prevStep(router);
 }
 </script>
+
 <style scoped>
-.formIconContainer{
-    height: 100%;
-}
-.customCloseBtn {
-    background: var(--color1);
-    border: 0;
-    padding: 14px 50px;
-    font-size: 16px;
-    border-radius: 9px;
-    color: #fff;
+.custom-card {
+  border-radius: 15px;
+  padding: 2rem;
+  overflow: hidden;
 }
 
-.contenu {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+.card-header {
+  background-color: #fff;
+  border-bottom: 0px;
+}
+
+button:disabled {
+  opacity: 0.6;
+  pointer-events: none;
 }
 </style>
