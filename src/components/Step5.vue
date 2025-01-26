@@ -3,7 +3,7 @@
     <!-- Main Proposition Card -->
     <div class="proposition-card shadow-lg rounded-lg">
       <!-- Header Section -->
-      <div class="card-header gradient-header text-center text-white py-5">
+      <div class="card-header gradient-header text-center text-white py-4">
         <h1 class="formula-title mb-2">
           🎉 Votre Formule: <span class="text-uppercase">{{ formula }}</span>
         </h1>
@@ -13,8 +13,8 @@
       </div>
 
       <!-- Details Section -->
-      <div class="card-body py-5 px-4">
-        <h3 class="section-title text-center mb-5">
+      <div class="card-body py-3 px-4">
+        <h3 class="section-title text-center mb-4">
           Détails de votre Formule
         </h3>
 
@@ -31,7 +31,7 @@
                 Paramedicaux: {{ details.soins.paramedicaux }}<br />
                 Consultations: {{ details.soins.consultations }}
               </p>
-              <button class="btn btn-link p-0 text-sm" @click="showModal('soins')">
+              <button class="btn btn-link p-0 text-sm text-start" @click="showModal('soins')">
                 Voir toutes les garanties
               </button>
             </div>
@@ -48,7 +48,7 @@
                 Forfait journalier hospitalier : {{ details.hospitalisation.Frais_journaliers_hospitalier }}<br />
                 Participation forfaitaire: {{ details.hospitalisation.Participation_forfaitaire }}
               </p>
-              <button class="btn btn-link p-0 text-sm" @click="showModal('hospitalisation')">
+              <button class="btn btn-link p-0 text-sm text-start" @click="showModal('hospitalisation')">
                 Voir toutes les garanties
               </button>
             </div>
@@ -62,7 +62,7 @@
             <div>
               <h4>Optique</h4>
               <p class="text-muted text-sm">{{ details.optique.monture_2_verres_simples }}</p>
-              <button class="btn btn-link p-0 text-sm" @click="showModal('optique')">
+              <button class="btn btn-link p-0 text-sm text-start" @click="showModal('optique')">
                 Voir toutes les garanties
               </button>
             </div>
@@ -76,6 +76,9 @@
             <div>
               <h4 >Aides Auditives</h4>
               <p class="text-muted text-sm">{{ details.aides_auditives.equipements_classe_I }}</p>
+              <button class="btn btn-link p-0 text-sm text-start" @click="showModal('aides_auditives')">
+                Voir toutes les garanties
+              </button>
             </div>
           </div>
 
@@ -90,6 +93,9 @@
                 Soins: {{ details.dentaire.soins }}<br />
                 Prothèses: {{ details.dentaire.protheses }}
               </p>
+              <button class="btn btn-link p-0 text-sm text-start" @click="showModal('dentaire')">
+                Voir toutes les garanties
+              </button>
             </div>
           </div>
 
@@ -101,6 +107,9 @@
             <div>
               <h4 >Médecines Douces</h4>
               <p class="text-muted text-sm">{{ details.medecines_douces.osteopathie }}</p>
+              <button class="btn btn-link p-0 text-sm text-start" @click="showModal('medecines_douces')">
+                Voir toutes les garanties
+              </button>
             </div>
           </div>
         </div>
@@ -236,7 +245,7 @@ function prevStep() {
 .proposition-page {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   min-height: 100vh;
 }
 
@@ -260,12 +269,12 @@ function prevStep() {
 }
 
 .formula-title {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: bold;
 }
 
 .description {
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-top: 10px;
 }
 
@@ -274,7 +283,7 @@ function prevStep() {
 }
 
 .section-title {
-  font-size: 1.8rem;
+  font-size: 1rem;
   font-weight: bold;
   color: #0056b3;
 }
@@ -428,5 +437,9 @@ function prevStep() {
 }
 h4 {
   font-weight: bold;
+}
+.padding-mobile{
+  padding-right: 4px !important;
+  padding-left: 4px !important;
 }
 </style>
