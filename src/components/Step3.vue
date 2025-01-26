@@ -22,16 +22,18 @@
         <!-- Family Status -->
         <div class="mb-4">
           <label class="form-label fw-semibold d-block">Situation familiale : <span class="text-danger">*</span></label>
-          <div class="d-flex justify-content-center gap-3">
-            <button
-              v-for="status in familyStatuses"
-              :key="status"
-              type="button"
-              :class="['btn rounded-pill px-4', formData.familyStatus === status ? 'btn-primary' : 'btn-outline-secondary']"
-              @click="formData.familyStatus = status"
-            >
-              {{ status }}
-            </button>
+          <div class="row justify-content-center gap-3">
+            <div class="col-auto">
+              <button
+                v-for="status in familyStatuses"
+                :key="status"
+                type="button"
+                :class="['btn rounded-pill px-4 m-1', formData.familyStatus === status ? 'btn-primary' : 'btn-outline-secondary']"
+                @click="formData.familyStatus = status"
+              >
+                {{ status }}
+              </button>
+            </div>
           </div>
           <small v-if="$v.familyStatus.$error" class="text-danger">Veuillez sélectionner votre situation familiale.</small>
         </div>

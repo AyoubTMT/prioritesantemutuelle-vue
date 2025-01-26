@@ -101,9 +101,9 @@
                 </button>
           <button v-else 
             type="submit"
-            class="btn btn-primary rounded-pill px-4"
+            class="btn btn-primary rounded-pill px-4 ms-4"
           >
-            Envoyer <i class="bi bi-arrow-right"></i>
+          Voir mon offre exclusive <i class="bi bi-arrow-right"></i>
           </button>
         </div>
       </form>
@@ -122,6 +122,7 @@ import {VueSpinner} from 'vue3-spinners';
 const formStore = useFormStore();
 const router = useRouter();
 const loader= ref(false);
+const data = formStore.getFormData;
 
 // Form Data
 const formData = reactive({
@@ -149,10 +150,11 @@ async function submitStep() {
   if (!$v.value.$invalid) {
     formStore.updateStepData("step4", formData);
     loader.value =true;
+    console.log(JSON.stringify(data));
     try {
         // const response = await sendEmail();
         // if (response?.status === 200) {
-        //   formStore.nextStep();
+           formStore.nextStep();
         //   router.push('/devis/merci');
         // }
         loader.value =false;
@@ -206,6 +208,9 @@ button.btn-outline-secondary {
 
 #gdprConsent{
   padding: 0px;
+}
+.text-muted {
+  text-align: justify;
 }
 /* Step Titles Styling */
 h2.step-title {

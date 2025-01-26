@@ -12,8 +12,8 @@
             </div>
         </div>
         <div class="card shadow bg-light rounded-4">
-          <div class="row g-0 stepperdiv rounded-4">
-            <div class="col-md-4 bg-light p-5 border-end steps rounded-custom-start ">
+          <div class="row g-0 rounded-4">
+            <div class="col-md-4 bg-light p-5 border-end steps rounded-custom-start stepperdiv">
               
               <ul>
                 <li :class="['first  step', { current: formStore.currentStep == 1,stepHover: formStore.currentStep > 1 }]"  @click="updateCurrentStep(1)">
@@ -50,7 +50,7 @@
               </ul>
             </div>
 
-            <div class="col-md-8 p-5 bg-white rounded-custom-end">
+            <div class="col-md-8 p-5 bg-white rounded-custom-end padding-mobile">
               <div class="container-fluid">
                   <Step1 v-if="formStore.currentStep === 1" />
                   <Step2 v-if="formStore.currentStep === 2" />
@@ -145,7 +145,7 @@ p.desc {
 
 .step {
     flex: 1;
-    text-align: center;
+    /* text-align: center; */
     padding: 10px;
     cursor: pointer;
     /* border-radius: 10px; */
@@ -183,9 +183,16 @@ p.desc {
     box-shadow: 0 .25rem 1.875rem rgb(42 53 79 / 17%);
 }
 
+.stepperdiv {
+  padding: 2px !important;
+}
+.step:nth-child(3) .step-number, .step:nth-child(4) .step-number{
+ padding: 13px !important;
+}
 @media (max-width: 768px) {
     .stepperdiv {
-        display: none !important;
+        /* display: none !important; */
+      padding: 2px !important;
     }
     .container-fluid{
         padding: 15px !important;
@@ -197,6 +204,9 @@ p.desc {
     #formulaire{
         padding: 5px 0px;
     }
+    .padding-mobile {
+      padding: 5px 2px !important;
+    }
 }
 /****************************************/
 .steps {
@@ -207,7 +217,7 @@ p.desc {
     position: absolute;
     content: '';
     width: 2px;
-    height: 185px;
+    height: 250px;
     background: #ebebeb;
     left: 49px;
     top: 50%;
