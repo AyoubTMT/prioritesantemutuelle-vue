@@ -8,47 +8,35 @@ export const useFormStore = defineStore('form', {
     currentStep: 1,
     formData: {
       step1: {
-        profession:  "",
-        siren:  "",
-      
+        soins: "",
+        optique: "",
+        dentaire: "",
+        hospitalisation: "",
+        aides_auditives: "",
+        medecines_douces: "",
       },
       step2: {
-        nom_entreprise:  "",
-        type:"",
-        adresse: "",
-        code_postal:  "",
-        ville:  "",
-        mobile:  "",
-        mail: "",
-        nombre_salaries: "",
-        chiffre_affaires:  "",
-        date_creation: "",
-        nom_dirigeant: "",
-        date_naissance: "",
+        birthdate: "",
+        gender: "",
+        profession: "",
+        regime: "",
+        complementaire: "",
       },
       step3: {
-        deja_assure: '',
-        assureur : {
-            annee: '',
-            en_cours: '',
-            date_resiliation: '',
-            nom: '',
-            nombre_sinistre: '',
-            montant_sinistre: '',
-            non_paiement: '',
-            arriere: '',
-            fausse_declaration: '',
-        }
+        familyStatus: "",
+        insureSpouse: "",
+        spouseBirthdate: "",
+        childrenCount: "",
+        phone: "",
       },
       step4: {
+        lastName: "",
+        firstName: "",
+        email: "",
+        postalCode: "",
+        gdprConsent: "",
       },
       step5: {
-      },
-      step6: {
-        date_effet: '',
-        franchise: '',
-        fractionnement: '',
-        observations_diverses: ''
       }
 
     },
@@ -63,9 +51,6 @@ export const useFormStore = defineStore('form', {
 
   actions: {
     updateStepData(step, data) {
-      if(step == "tarifs" || step == "selectedTarifOptions" || step == "dependecies" ){
-        this.formData[step]=[];
-      }
       this.formData[step] = data;
     },
     nextStep() {

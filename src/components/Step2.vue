@@ -1,10 +1,20 @@
 <template>
   <div class="custom-card py-0 px-0">
-    <div class="card-header">
-      <h2 class="mb-3 fw-bold">Votre profil</h2>
-      <p class="text-muted">
-        Merci de choisir les options correspondant à votre profil.
-      </p>
+    <div class="card-header text-center">
+      <div class="mb-3">
+        <span class="badge bg-light text-primary px-3 py-2 rounded-pill fw-semibold">
+          <i class="bi bi-shield-check me-2"></i>ESPACE SÉCURISÉ
+        </span>
+      </div>
+      <h2 class="step-title">
+        <i class="bi bi-person-lines-fill"></i> Renseignez vos <span>informations personnelles</span> ✍️
+      </h2>
+      <div class="step-indicator d-flex justify-content-center gap-1">
+        <span class="step-bar"></span>
+        <span class="step-bar active"></span>
+        <span class="step-bar"></span>
+        <span class="step-bar"></span>
+      </div>
     </div>
     <div class="card-body">
       <form @submit.prevent="submitStep">
@@ -212,8 +222,49 @@ function prevStep() {
   border-bottom: 0px;
 }
 
+.step-indicator .step-bar {
+  width: 40px;
+  height: 4px;
+  background-color: #dee2e6;
+  border-radius: 2px;
+}
+
+.step-indicator .step-bar.active {
+  background-color: #007bff;
+}
+
 button:disabled {
   opacity: 0.6;
   pointer-events: none;
 }
+/* Step Titles Styling */
+h2.step-title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  text-align: center;
+  color: #007bff; /* Primary blue for trust */
+  margin-bottom: 1rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+}
+
+h2.step-title span {
+  color: #495057; /* Neutral dark for contrast */
+  font-size: 1.5rem;
+}
+
+h2.step-title i {
+  color: #f8c102; /* Accent color for icons */
+  margin-right: 8px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  h2.step-title {
+    font-size: 1.5rem;
+  }
+  h2.step-title span {
+    font-size: 1.25rem;
+  }
+}
+
 </style>

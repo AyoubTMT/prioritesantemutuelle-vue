@@ -1,193 +1,240 @@
 <template>
-  <form @submit.prevent="submitStep">
-    <div class="row g-3 g-md-4">
-
-      <div class="col-12">
-        <label class="formLabel mb-3" for="resiliation">Donnez vous des chantiers en sous traitance à plus de
-          30%</label>
-        <div class="container-fluid p-0">
-          <div class="row">
-            <div class="col-6">
-              <div class="btn-group formIconContainer miniClass" role="group"
-                aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check resilie_par_assureur3ans" name="resilie_par_assureur3ans"
-                  id="resnon" value="NON" v-model="formData.chantiers_sous_traitance">
-                <label class="btn btn-outline-primary iconLabel" for="resnon">
-             
-                  <div class="twoBtns">Non</div>
-                </label>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="btn-group formIconContainer miniClass" role="group"
-                aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check resilie_par_assureur3ans" name="resilie_par_assureur3ans"
-                  id="resoui" value="OUI" v-model="formData.chantiers_sous_traitance">
-                <label class="btn btn-outline-primary iconLabel" for="resoui">
-                
-                  <div class="twoBtns">Oui</div>
-                </label>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <ErrorComponent v-if="$v.chantiers_sous_traitance.$error" :errors="$v.chantiers_sous_traitance.$errors" />
-
+  <div class="custom-card py-0 px-0">
+    <!-- Card Header -->
+    <div class="card-header text-center">
+      <div class="mb-3">
+        <span class="badge bg-light text-primary px-3 py-2 rounded-pill fw-semibold">
+          <i class="bi bi-shield-check me-2"></i>ESPACE SÉCURISÉ
+        </span>
       </div>
-
-      <div class="col-12">
-        <label class="formLabel mb-3" for="resiliation">Souhaitez vous la reprise du passé sur 1 an (+15%)</label>
-        <div class="container-fluid p-0">
-          <div class="row">
-            <div class="col-6">
-              <div class="btn-group formIconContainer miniClass" role="group"
-                aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check resilie_par_assureur3ans" name="reprise_un_annee"
-                  id="reprise_un_annee_non" value="NON" v-model="formData.reprise_un_annee">
-                <label class="btn btn-outline-primary iconLabel" for="reprise_un_annee_non">
-                
-                  <div class="twoBtns">Non</div>
-                </label>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="btn-group formIconContainer miniClass" role="group"
-                aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check resilie_par_assureur3ans" name="reprise_un_annee"
-                  id="reprise_un_annee_oui" value="OUI" v-model="formData.reprise_un_annee">
-                <label class="btn btn-outline-primary iconLabel" for="reprise_un_annee_oui">
-             
-                  <div class="twoBtns">Oui</div>
-                </label>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        <ErrorComponent v-if="$v.reprise_un_annee.$error" :errors="$v.reprise_un_annee.$errors" />
-
+      <h2 class="step-title">
+        <i class="bi bi-check-circle-fill"></i> Finalisez et <span>soumettez votre demande</span> 🎉
+      </h2>
+      <div class="step-indicator d-flex justify-content-center gap-1">
+        <span class="step-bar"></span>
+        <span class="step-bar"></span>
+        <span class="step-bar"></span>
+        <span class="step-bar active"></span>
       </div>
-
-      <div class="col-12">
-        <label class="formLabel mb-3" for="resiliation">Etes-vous en redressement judiciaire</label>
-        <div class="container-fluid p-0">
-          <div class="row">
-            <div class="col-6">
-              <div class="btn-group formIconContainer miniClass" role="group"
-                aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check resilie_par_assureur3ans" name="redressement_judiciaire"
-                  id="redressement_judiciaire_non" value="NON" v-model="formData.redressement_judiciaire">
-                <label class="btn btn-outline-primary iconLabel" for="redressement_judiciaire_non">
-             
-                  <div class="twoBtns">Non</div>
-                </label>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="btn-group formIconContainer miniClass" role="group"
-                aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check resilie_par_assureur3ans" name="redressement_judiciaire"
-                  id="redressement_judiciaire_oui" value="OUI" v-model="formData.redressement_judiciaire">
-                <label class="btn btn-outline-primary iconLabel" for="redressement_judiciaire_oui">
-                 
-                  <div class="twoBtns">Oui</div>
-                </label>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        <ErrorComponent v-if="$v.redressement_judiciaire.$error" :errors="$v.redressement_judiciaire.$errors" />
-
-      </div>
-
-      <div class="col-12">
-        <label class="formLabel mb-3" for="resiliation">Avez-vous des diplomes du batiment</label>
-        <div class="container-fluid p-0">
-          <div class="row">
-            <div class="col-6">
-              <div class="btn-group formIconContainer miniClass" role="group"
-                aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check resilie_par_assureur3ans" name="diplomes_batiment"
-                  id="diplomes_batiment_non" value="NON" v-model="formData.diplomes_batiment">
-                <label class="btn btn-outline-primary iconLabel" for="diplomes_batiment_non">
-               
-                  <div class="twoBtns">Non</div>
-                </label>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="btn-group formIconContainer miniClass" role="group"
-                aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check resilie_par_assureur3ans" name="diplomes_batiment"
-                  id="diplomes_batiment_oui" value="OUI" v-model="formData.diplomes_batiment">
-                <label class="btn btn-outline-primary iconLabel" for="diplomes_batiment_oui">
-           
-                  <div class="twoBtns">Oui</div>
-                </label>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        <ErrorComponent v-if="$v.diplomes_batiment.$error" :errors="$v.diplomes_batiment.$errors" />
-
-      </div>
-      
-      
-      <div class="col-12 mt-0">
-        <div class="container-fluid p-0">
-          <div class="row align-items-center">
-            <div class="col-12">
-            
-              <button type="submit" class="navBtn nextBtn mt-4 d-flex justify-content-center align-items-center">Étape suivante
-                <img src="../assets/icons/arrow-next.svg" alt="suivant" class="ms-3 img-fluid"></button>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
-  </form>
+
+    <!-- Card Body -->
+    <div class="card-body">
+      <form @submit.prevent="submitStep">
+        <!-- Form Inputs -->
+        <div class="row mb-4">
+          <div class="col-md-6">
+            <label for="last-name" class="form-label fw-semibold">Nom :</label>
+            <input
+              type="text"
+              id="last-name"
+              class="form-control rounded-pill shadow-sm"
+              v-model="formData.lastName"
+              placeholder="Votre nom"
+            />
+            <small v-if="$v.lastName.$error" class="text-danger">Veuillez entrer votre nom.</small>
+          </div>
+          <div class="col-md-6">
+            <label for="first-name" class="form-label fw-semibold">Prénom :</label>
+            <input
+              type="text"
+              id="first-name"
+              class="form-control rounded-pill shadow-sm"
+              v-model="formData.firstName"
+              placeholder="Votre prénom"
+            />
+            <small v-if="$v.firstName.$error" class="text-danger">Veuillez entrer votre prénom.</small>
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col-md-6">
+            <label for="email" class="form-label fw-semibold">E-mail :</label>
+            <input
+              type="email"
+              id="email"
+              class="form-control rounded-pill shadow-sm"
+              v-model="formData.email"
+              placeholder="Votre e-mail"
+            />
+            <small v-if="$v.email.$error" class="text-danger">Veuillez entrer un e-mail valide.</small>
+          </div>
+          <div class="col-md-6">
+            <label for="postal-code" class="form-label fw-semibold">Code postal :</label>
+            <input
+              type="text"
+              id="postal-code"
+              class="form-control rounded-pill shadow-sm"
+              v-model="formData.postalCode"
+              placeholder="Votre code postal"
+            />
+            <small v-if="$v.postalCode.$error" class="text-danger">Veuillez entrer un code postal valide.</small>
+          </div>
+        </div>
+
+        <!-- GDPR Consent -->
+        <div class="mb-4">
+          <div class="form-check">
+            <input
+              type="checkbox"
+              id="gdprConsent"
+              class="form-check-input rounded-circle"
+              v-model="formData.gdprConsent"
+            />
+            <label for="gdprConsent" class="form-check-label text-muted">
+              En validant ma demande, j'accepte de transmettre mes informations afin de recevoir gratuitement un devis ou d’être contacté par téléphone ou par email par un professionnel. Mes données sont protégées par la réglementation européenne RGPD.
+            </label>
+          </div>
+          <small v-if="$v.gdprConsent.$error" class="text-danger">Veuillez accepter les conditions.</small>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="d-flex justify-content-between">
+          <button
+            type="button"
+            class="btn btn-outline-secondary rounded-pill px-4"
+            @click="prevStep"
+          >
+            <i class="bi bi-arrow-left"></i> Précédent
+          </button>
+          <button v-if="loader" type="button" class="btn btn-primary rounded-pill px-4">
+                    <vue-spinner size="30" color="white" />
+                </button>
+          <button v-else 
+            type="submit"
+            class="btn btn-primary rounded-pill px-4"
+          >
+            Envoyer <i class="bi bi-arrow-right"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 </template>
 
 <script setup>
-import BonASavoir from './BonASavoir.vue';
-import { useFormStore } from '@/stores/useFormStore';
-import { ref, reactive, computed } from 'vue';
-import useVuelidate from '@vuelidate/core';
-import { required } from '@vuelidate/validators';
-
-import { VueSpinner } from 'vue3-spinners';
-import { toast } from 'vue3-toastify';
-
-import axios from 'axios';
+import { reactive, ref } from "vue";
+import useVuelidate from "@vuelidate/core";
+import { required, email, minLength } from "@vuelidate/validators";
+import { useRouter } from "vue-router";
+import { useFormStore } from "@/stores/useFormStore";
+import {VueSpinner} from 'vue3-spinners';
 
 const formStore = useFormStore();
-const step4Data = formStore.getFormData;
+const router = useRouter();
+const loader= ref(false);
+
+// Form Data
 const formData = reactive({
-  chantiers_sous_traitance: step4Data.step4.chantiers_sous_traitance,
-  reprise_un_annee: step4Data.step4.reprise_un_annee,
-  redressement_judiciaire: step4Data.step4.redressement_judiciaire,
-  diplomes_batiment: step4Data.step4.diplomes_batiment,
-})
+  lastName: formStore.formData.step4.lastName || "",
+  firstName: formStore.formData.step4.firstName || "",
+  email: formStore.formData.step4.email || "",
+  postalCode: formStore.formData.step4.postalCode || "",
+  gdprConsent: formStore.formData.step4.gdprConsent || false,
+});
+
+// Validation Rules
 const rules = {
-    chantiers_sous_traitance: { required },
-    reprise_un_annee: { required },
-    redressement_judiciaire:{ required },
-    diplomes_batiment: { required },
+  lastName: { required },
+  firstName: { required },
+  email: { required, email },
+  postalCode: { required, minLength: minLength(5) },
+  gdprConsent: { required },
 };
 
 const $v = useVuelidate(rules, formData);
 
+// Submit Logic
 async function submitStep() {
-  $v.value.$touch(); // Mark all fields as touched
-    if (!$v.value.$invalid) {
-      formStore.updateStepData('step4', formData);
-      formStore.nextStep();
+  $v.value.$touch();
+  if (!$v.value.$invalid) {
+    formStore.updateStepData("step4", formData);
+    loader.value =true;
+    try {
+        // const response = await sendEmail();
+        // if (response?.status === 200) {
+        //   formStore.nextStep();
+        //   router.push('/devis/merci');
+        // }
+        loader.value =false;
+
+    } catch (error) {
+        console.error('Error devis:', error);
+        loader.value =false;
+
     }
+  }
 }
 
+// Navigation
+function prevStep() {
+  formStore.prevStep(router);
+}
 </script>
+
+<style scoped>
+.custom-card {
+  border-radius: 15px;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.card-header {
+  background-color: #fff;
+  border-bottom: 0px;
+}
+
+.step-indicator .step-bar {
+  width: 40px;
+  height: 4px;
+  background-color: #dee2e6;
+  border-radius: 2px;
+}
+
+.step-indicator .step-bar.active {
+  background-color: #007bff;
+}
+
+button:disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+button.btn-outline-secondary {
+  border-color: #dee2e6;
+  color: #6c757d;
+}
+
+#gdprConsent{
+  padding: 0px;
+}
+/* Step Titles Styling */
+h2.step-title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  text-align: center;
+  color: #007bff; /* Primary blue for trust */
+  margin-bottom: 1rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+}
+
+h2.step-title span {
+  color: #495057; /* Neutral dark for contrast */
+  font-size: 1.5rem;
+}
+
+h2.step-title i {
+  color: #f8c102; /* Accent color for icons */
+  margin-right: 8px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  h2.step-title {
+    font-size: 1.5rem;
+  }
+  h2.step-title span {
+    font-size: 1.25rem;
+  }
+}
+
+</style>

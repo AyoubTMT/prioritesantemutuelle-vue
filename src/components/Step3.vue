@@ -1,327 +1,238 @@
 <template>
-  <form @submit.prevent="submitStep">
-    <div class="row">
-      <div class="col-12">
-        <label class="formLabel mb-3" for="resiliation">Avez-vous déjà été assuré</label>
-        <div class="container-fluid p-0">
-          <div class="row">
-            <div class="col-6">
-              <div class="btn-group formIconContainer miniClass" role="group"
-                aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check resilie_par_assureur3ans" name="deja_assure" id="deja_assure_non"
-                  value="NON" v-model="formData.deja_assure">
-                <label class="btn btn-outline-primary iconLabel" for="deja_assure_non">
-                
-                  <div class="twoBtns">Non</div>
-                </label>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="btn-group formIconContainer miniClass" role="group"
-                aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check resilie_par_assureur3ans" name="deja_assure" id="deja_assure_oui"
-                  value="OUI" v-model="formData.deja_assure">
-                <label class="btn btn-outline-primary iconLabel" for="deja_assure_oui">
-                 
-                  <div class="twoBtns">Oui</div>
-                </label>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <ErrorComponent v-if="$v.deja_assure.$error" :errors="$v.deja_assure.$errors" />
-
+  <div class="custom-card py-0 px-0">
+    <!-- Card Header -->
+    <div class="card-header text-center">
+      <div class="mb-3">
+        <span class="badge bg-light text-primary px-3 py-2 rounded-pill fw-semibold">
+          <i class="bi bi-shield-check me-2"></i>ESPACE SÉCURISÉ
+        </span>
+      </div>
+      <h2 class="step-title">
+        <i class="bi bi-search"></i> Vérifiez vos <span>choix et ajustez</span> 🚀
+      </h2>
+      <div class="step-indicator d-flex justify-content-center gap-1">
+        <span class="step-bar"></span>
+        <span class="step-bar"></span>
+        <span class="step-bar active"></span>
+        <span class="step-bar"></span>
       </div>
     </div>
-    <div class="row mt-3 p-2" v-if="formData.deja_assure == 'OUI'">
-      <div class="col-12 ">
-        <label class="formLabel mb-2"> Nombre d'années d'assurance
-        </label>
-        <input type="number" v-model="formData.assureur.annee" class="form-control">
-        <ErrorComponent v-if="$v.assureur.annee.$error" :errors="$v.assureur.annee.$errors" />
-
-      </div>
-
-      <div class="col-12">
-        <label class="formLabel mb-3" for="resiliation">Votre contrat est-il en cours</label>
-        <div class="container-fluid p-0">
-          <div class="row">
-            <div class="col-6">
-              <div class="btn-group formIconContainer miniClass" role="group"
-                aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check resilie_par_assureur3ans" name="en_cours" id="en_cours_non"
-                  value="NON" v-model="formData.assureur.en_cours">
-                <label class="btn btn-outline-primary iconLabel" for="en_cours_non">
-                 
-                  <div class="twoBtns">Non</div>
-                </label>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="btn-group formIconContainer miniClass" role="group"
-                aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check resilie_par_assureur3ans" name="en_cours" id="en_cours_oui"
-                  value="OUI" v-model="formData.assureur.en_cours">
-                <label class="btn btn-outline-primary iconLabel" for="en_cours_oui">
-                 
-                  <div class="twoBtns">Oui</div>
-                </label>
-              </div>
-            </div>
+    <div class="card-body">
+      <form @submit.prevent="submitStep">
+        <!-- Family Status -->
+        <div class="mb-4">
+          <label class="form-label fw-semibold d-block">Situation familiale : <span class="text-danger">*</span></label>
+          <div class="d-flex justify-content-center gap-3">
+            <button
+              v-for="status in familyStatuses"
+              :key="status"
+              type="button"
+              :class="['btn rounded-pill px-4', formData.familyStatus === status ? 'btn-primary' : 'btn-outline-secondary']"
+              @click="formData.familyStatus = status"
+            >
+              {{ status }}
+            </button>
           </div>
-
+          <small v-if="$v.familyStatus.$error" class="text-danger">Veuillez sélectionner votre situation familiale.</small>
         </div>
-        <ErrorComponent v-if="$v.assureur.en_cours.$error" :errors="$v.assureur.en_cours.$errors" />
 
-      </div>
-      <div class="col-12 col-md-6">
-        <label class="formLabel mb-2"> Date de résiliation de votre dernier contrat
-        </label>
-        <input type="date" v-model="formData.assureur.date_resiliation" class="form-control">
-        <ErrorComponent v-if="$v.assureur.date_resiliation.$error" :errors="$v.assureur.date_resiliation.$errors" />
-
-      </div>
-
-      <div class="col-12 col-md-6 ">
-        <label class="formLabel mb-2"> Nom de l'ancienne compagnie
-        </label>
-        <input type="text" v-model="formData.assureur.nom" class="form-control">
-        <ErrorComponent v-if="$v.assureur.nom.$error" :errors="$v.assureur.nom.$errors" />
-
-      </div>
-      <div class="col-12 col-md-6 ">
-        <label class="formLabel mb-2"> Nombre de sinistres déclarés sur 36 mois
-        </label>
-        <input type="number" v-model="formData.assureur.nombre_sinistre" class="form-control">
-        <ErrorComponent v-if="$v.assureur.nombre_sinistre.$error" :errors="$v.assureur.nombre_sinistre.$errors" />
-
-      </div>
-      <div class="col-12 col-md-6">
-        <label class="formLabel mb-2"> Montant des sinistres déclarés sur 36 mois
-        </label>
-        <input type="number" v-model="formData.assureur.montant_sinistre" class="form-control">
-        <ErrorComponent v-if="$v.assureur.montant_sinistre.$error" :errors="$v.assureur.montant_sinistre.$errors" />
-
-      </div>
-      <div class="col-12">
-        <label class="formLabel mb-3" for="resiliation">Votre ancien contrat a-t'il-été résilié pour
-          non-paiement</label>
-        <div class="container-fluid p-0">
-          <div class="row">
-            <div class="col-6">
-              <div class="btn-group formIconContainer miniClass" role="group"
-                aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check resilie_par_assureur3ans" name="non_paiement" id="non_paiement_non"
-                  value="NON" v-model="formData.assureur.non_paiement">
-                <label class="btn btn-outline-primary iconLabel" for="non_paiement_non">
-      
-                  <div class="twoBtns">Non</div>
-                </label>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="btn-group formIconContainer miniClass" role="group"
-                aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check resilie_par_assureur3ans" name="non_paiement" id="non_paiement_oui"
-                  value="OUI" v-model="formData.assureur.non_paiement">
-                <label class="btn btn-outline-primary iconLabel" for="non_paiement_oui">
-                 
-                  <div class="twoBtns">Oui</div>
-                </label>
-              </div>
-            </div>
-            <ErrorComponent v-if="$v.assureur.non_paiement.$error" :errors="$v.assureur.non_paiement.$errors" />
-
+        <!-- Spouse Insurance -->
+        <div class="mb-4">
+          <label class="form-label fw-semibold d-block">Voulez-vous assurer votre conjoint ? <span class="text-danger">*</span></label>
+          <div class="d-flex justify-content-center gap-3">
+            <button
+              type="button"
+              :class="['btn rounded-pill px-4', formData.insureSpouse ? 'btn-primary' : 'btn-outline-secondary']"
+              @click="formData.insureSpouse = true"
+            >
+              Oui
+            </button>
+            <button
+              type="button"
+              :class="['btn rounded-pill px-4', formData.insureSpouse === false ? 'btn-primary' : 'btn-outline-secondary']"
+              @click="formData.insureSpouse = false"
+            >
+              Non
+            </button>
           </div>
-          <div class="col-12">
-            <label class="formLabel mb-3" for="resiliation">Si oui, avez-vous réglé l’arriéré à la compagnie</label>
-            <div class="container-fluid p-0">
-              <div class="row">
-                <div class="col-6">
-                  <div class="btn-group formIconContainer miniClass" role="group"
-                    aria-label="Basic radio toggle button group">
-                    <input type="radio" class="btn-check resilie_par_assureur3ans" name="arriere" id="arriere_non"
-                      value="NON" v-model="formData.assureur.arriere">
-                    <label class="btn btn-outline-primary iconLabel" for="arriere_non">
-                   
-                      <div class="twoBtns">Non</div>
-                    </label>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="btn-group formIconContainer miniClass" role="group"
-                    aria-label="Basic radio toggle button group">
-                    <input type="radio" class="btn-check resilie_par_assureur3ans" name="arriere" id="arriere_oui"
-                      value="OUI" v-model="formData.assureur.arriere">
-                    <label class="btn btn-outline-primary iconLabel" for="arriere_oui">
-                    
-                      <div class="twoBtns">Oui</div>
-                    </label>
-                  </div>
-                </div>
-                <ErrorComponent v-if="$v.assureur.arriere.$error" :errors="$v.assureur.arriere.$errors" />
-
-              </div>
-
-            </div>
-          </div>
-
-          <div class="col-12">
-            <label class="formLabel mb-3" for="resiliation">Votre ancien contrat a-t'il-été résilié pour fausse
-              déclaration</label>
-            <div class="container-fluid p-0">
-              <div class="row">
-                <div class="col-6">
-                  <div class="btn-group formIconContainer miniClass" role="group"
-                    aria-label="Basic radio toggle button group">
-                    <input type="radio" class="btn-check resilie_par_assureur3ans" name="fausse_declaration"
-                      id="fausse_declaration_non" value="NON" v-model="formData.assureur.fausse_declaration">
-                    <label class="btn btn-outline-primary iconLabel" for="fausse_declaration_non">
-                    
-                      <div class="twoBtns">Non</div>
-                    </label>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="btn-group formIconContainer miniClass" role="group"
-                    aria-label="Basic radio toggle button group">
-                    <input type="radio" class="btn-check resilie_par_assureur3ans" name="fausse_declaration"
-                      id="fausse_declaration_oui" value="OUI" v-model="formData.assureur.fausse_declaration">
-                    <label class="btn btn-outline-primary iconLabel" for="fausse_declaration_oui">
-                    
-                      <div class="twoBtns">Oui</div>
-                    </label>
-                  </div>
-                </div>
-                <ErrorComponent v-if="$v.assureur.fausse_declaration.$error"
-                  :errors="$v.assureur.fausse_declaration.$errors" />
-
-              </div>
-
-            </div>
-          </div>
+          <small v-if="$v.insureSpouse.$error" class="text-danger">Veuillez indiquer si vous souhaitez assurer votre conjoint.</small>
         </div>
-      </div>
 
- 
+        <!-- Spouse Birthdate -->
+        <div v-if="formData.insureSpouse" class="mb-4">
+          <label for="spouse-birthdate" class="form-label fw-semibold">Si oui, date de naissance du conjoint :</label>
+          <input
+            type="date"
+            id="spouse-birthdate"
+            class="form-control rounded-pill shadow-sm"
+            v-model="formData.spouseBirthdate"
+          />
+          <small v-if="$v.spouseBirthdate.$error" class="text-danger">Veuillez entrer la date de naissance de votre conjoint.</small>
+        </div>
+
+        <!-- Children to Insure -->
+        <div class="mb-4">
+          <label class="form-label fw-semibold d-block">Nombre d'enfants à assurer : <span class="text-danger">*</span></label>
+          <div class="d-flex justify-content-center gap-3">
+            <button
+              v-for="n in maxChildren"
+              :key="n"
+              type="button"
+              :class="['btn rounded-pill px-4', formData.childrenCount === n ? 'btn-primary' : 'btn-outline-secondary']"
+              @click="formData.childrenCount = n"
+            >
+              {{ n === 0 ? '🚫 (0)' : n }}
+            </button>
+          </div>
+          <small v-if="$v.childrenCount.$error" class="text-danger">Veuillez indiquer le nombre d'enfants à assurer.</small>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="mb-4">
+          <label for="phone" class="form-label fw-semibold">Téléphone <span class="text-danger">*</span></label>
+          <input
+            type="tel"
+            id="phone"
+            class="form-control rounded-pill shadow-sm"
+            v-model="formData.phone"
+            placeholder="Votre numéro de téléphone"
+          />
+          <small v-if="$v.phone.$error" class="text-danger">Veuillez entrer un numéro de téléphone valide.</small>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="d-flex justify-content-between">
+          <button
+            type="button"
+            class="btn btn-outline-secondary rounded-pill px-4"
+            @click="prevStep"
+          >
+            <i class="bi bi-arrow-left"></i> Précédent
+          </button>
+          <button
+            type="submit"
+            class="btn btn-primary rounded-pill px-4"
+          >
+            Suivant <i class="bi bi-arrow-right"></i>
+          </button>
+        </div>
+      </form>
     </div>
-    <div class="row">
-      <div class="col-12 mt-0">
-        <div class="container-fluid p-0">
-          <div class="row align-items-center">
-            <div class="col-12">
-              <button type="submit" class="navBtn nextBtn mt-4 d-flex justify-content-center align-items-center">Étape
-                suivante <img src="../assets/icons/arrow-next.svg" alt="suivant" class="ms-3 img-fluid"></button>
-            </div>
-            <div class="col-12 text-center">
-              <!-- <a class="backLink" onclick="goBack()"><img src="../assets/icons/back-arrow.svg" alt="back" class="img-fluid me-3"> Retour</a> -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </form>
+  </div>
 </template>
 
 <script setup>
-import BonASavoir from './BonASavoir.vue';
-import { useFormStore } from '@/stores/useFormStore';
-import { ref, reactive, computed } from 'vue'
-import useVuelidate from '@vuelidate/core';
-import { required, requiredIf } from '@vuelidate/validators';
+import { reactive } from "vue";
+import useVuelidate from "@vuelidate/core";
+import { required, numeric } from "@vuelidate/validators";
+import { useRouter } from "vue-router";
+import { useFormStore } from "@/stores/useFormStore";
+
 const formStore = useFormStore();
-const step3Data = formStore.getFormData;
+const router = useRouter();
 
+// Form Data
 const formData = reactive({
-  deja_assure: step3Data.step3.deja_assure || "NON",
-  assureur: {
-    annee: step3Data.step3.assureur.annee || "",
-    en_cours: step3Data.step3.assureur.en_cours || "",
-    date_resiliation: step3Data.step3.assureur.date_resiliation || "",
-    nom: step3Data.step3.assureur.nom || "",
-    nombre_sinistre: step3Data.step3.assureur.nombre_sinistre || "",
-    montant_sinistre: step3Data.step3.assureur.montant_sinistre || "",
-    non_paiement: step3Data.step3.assureur.non_paiement || "",
-    arriere: step3Data.step3.assureur.arriere || "",
-    fausse_declaration: step3Data.step3.assureur.fausse_declaration || ""
-  }
-})
+  familyStatus: formStore.formData.step3.familyStatus || "",
+  insureSpouse: formStore.formData.step3.insureSpouse || null,
+  spouseBirthdate: formStore.formData.step3.spouseBirthdate || "",
+  childrenCount: formStore.formData.step3.childrenCount || 0,
+  phone: formStore.formData.step3.phone || "",
+});
 
+// Constants
+const familyStatuses = ["Marié(e)", "Célibataire", "Divorcé(e)", "Veuf/ve"];
+const maxChildren = [0, 1, 2, 3];
+
+// Validation Rules
 const rules = {
-  deja_assure: { required },
-  assureur: {
-    annee: { requiredIf: requiredIf(isDejaAssure) },
-    en_cours: { requiredIf: requiredIf(isDejaAssure) },
-    date_resiliation: { requiredIf: requiredIf(isDejaAssure) },
-    nom: { requiredIf: requiredIf(isDejaAssure) },
-    nombre_sinistre: { requiredIf: requiredIf(isDejaAssure) },
-    montant_sinistre: { requiredIf: requiredIf(isDejaAssure) },
-    non_paiement: { requiredIf: requiredIf(isDejaAssure) },
-    arriere: { requiredIf: requiredIf(isDejaAssure) },
-    fausse_declaration: { requiredIf: requiredIf(isDejaAssure) },
-  }
-
+  familyStatus: { required },
+  insureSpouse: { required },
+  spouseBirthdate: {
+    required: (value) => !formData.insureSpouse || value !== "",
+  },
+  childrenCount: { required, numeric },
+  phone: { required },
 };
 
 const $v = useVuelidate(rules, formData);
 
-function isDejaAssure() {
-  return formData.deja_assure == "OUI"
-}
-
-function submitStep() {
-  $v.value.$touch(); // Mark all fields as touched
+// Submit Logic
+async function submitStep() {
+  $v.value.$touch();
   if (!$v.value.$invalid) {
-    formStore.updateStepData('step3', formData);
+    formStore.updateStepData("step3", formData);
     formStore.nextStep();
   }
-
 }
 
-
-
+// Navigation
+function prevStep() {
+  formStore.prevStep(router);
+}
 </script>
+
 <style scoped>
-.villeSearchResult,
-.containerResult,
-.adressesResult {
-  height: 0px;
-  position: relative;
-  z-index: 2;
+.custom-card {
+  border-radius: 15px;
+  padding: 2rem;
+  overflow: hidden;
 }
 
-#villesCp,
-.racesList,
-#adresses,
-#stationCp {
-  max-height: 176px;
-  overflow-y: auto;
-  background-color: rgb(255, 255, 255);
-  list-style: none;
-  padding: 0px 0px;
-  border-radius: 4px;
-  width: 100%;
-  border: 1px solid rgb(165, 165, 165);
-  margin-top: 8px;
+
+.card-header {
+  background-color: #fff;
+  border-bottom: 0px;
 }
 
-ul#villesCp li,
-ul#stationCp li,
-#adresses li {
-  font-size: 16px;
-  padding: 5px 15px;
-  color: #303030;
-  cursor: pointer;
+.step-indicator .step-bar {
+  width: 40px;
+  height: 4px;
+  background-color: #dee2e6;
+  border-radius: 2px;
 }
 
-ul#villesCp li:hover,
-ul#stationCp li:hover,
-#adresses li:hover {
-  color: var(--color1);
-  transition: 0.3s;
-  background-color: var(--color3);
-  border-radius: 0;
+.step-indicator .step-bar.active {
+  background-color: #007bff;
 }
+
+button:disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+button.btn-outline-secondary {
+  border-color: #dee2e6;
+  color: #6c757d;
+}
+/* Step Titles Styling */
+h2.step-title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  text-align: center;
+  color: #007bff; /* Primary blue for trust */
+  margin-bottom: 1rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+}
+
+h2.step-title span {
+  color: #495057; /* Neutral dark for contrast */
+  font-size: 1.5rem;
+}
+
+h2.step-title i {
+  color: #f8c102; /* Accent color for icons */
+  margin-right: 8px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  h2.step-title {
+    font-size: 1.5rem;
+  }
+  h2.step-title span {
+    font-size: 1.25rem;
+  }
+}
+
 </style>

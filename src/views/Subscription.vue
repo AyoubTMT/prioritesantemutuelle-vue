@@ -31,16 +31,20 @@
                   </li>
                 <li :class="['done step', { current: formStore.currentStep == 3 , stepHover: formStore.currentStep > 3 }]" @click="updateCurrentStep(3)">
                     <div class="title">
-                      <span class="step-number">2</span>
-                      <span class="step-text">Votre profil</span>
+                      <span class="step-number">3</span>
+                      <span class="step-text">Vos informations personnelles</span>
                     </div>
                   </li>
-                <li :class="['last step', { current: formStore.currentStep == 4  }]">
+                <li :class="['last step', { current: formStore.currentStep == 4 , stepHover: formStore.currentStep > 4 }]" @click="updateCurrentStep(4)">
                     <div class="title">
-                      <span class="step-number">3</span>
-                      <span class="step-text">Set
-                        Financial
-                        Goals</span>
+                      <span class="step-number">4</span>
+                      <span class="step-text">Finalisez votre demande</span>
+                    </div>              
+                </li>
+                <li :class="['last step', { current: formStore.currentStep == 5 , stepHover: formStore.currentStep > 5 }]" @click="updateCurrentStep(5)">
+                    <div class="title">
+                      <span class="step-number">5</span>
+                      <span class="step-text">Devis</span>
                     </div>              
                 </li>
               </ul>
