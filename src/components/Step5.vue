@@ -132,8 +132,8 @@
           <i class="bi bi-arrow-left"></i> Précédent
           <!-- Call to Action -->
         </button>
-        <button class="btn btn-gradient btn-lg px-5" @click="finalizeOffer">
-          Finaliser mon Offre 🚀
+        <button class="btn btn-gradient btn-lg px-4" @click="finalizeOffer">
+          Envoyer 🚀
         </button>
       </div>
     </div>
@@ -246,7 +246,7 @@ function prevStep() {
   display: flex;
   justify-content: center;
   align-items: start;
-  min-height: 100vh;
+  /* min-height: 100vh; */
 }
 
 .proposition-card {

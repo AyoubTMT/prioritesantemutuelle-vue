@@ -189,9 +189,9 @@ p.desc {
 .step:nth-child(3) .step-number, .step:nth-child(4) .step-number{
  padding: 13px !important;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .stepperdiv {
-        /* display: none !important; */
+        display: none !important;
       padding: 2px !important;
     }
     .container-fluid{
@@ -206,6 +206,9 @@ p.desc {
     }
     .padding-mobile {
       padding: 5px 2px !important;
+    }
+    .card-footer .btn:nth-child(2) {
+      padding: 0px !important;
     }
 }
 /****************************************/
