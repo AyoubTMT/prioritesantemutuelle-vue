@@ -5,9 +5,15 @@
                 <div class="col-10 col-md-2 col-lg-2 col-xl-3 d-flex align-items-center">
 <!--                     <img src="../assets/icons/back.svg" alt="retour" class="slideback me-2" @click="prevStep">
  -->                    <router-link to="/">
-                        <!-- <h1>ECA</h1> -->
-                        <div class="d-none d-lg-block"><img src="../assets/logo.png" width="300" height="35" alt="decennale-express" class="img-fluid"></div>
-                        <div class="d-block d-lg-none"><img src="../assets/logo.png" width="250" height="35" alt="decennale-express" class="img-fluid"></div>
+                        
+                        <div class="text-xl font-bold">
+                            <a href="/"
+                                class="mb-6 text-lg font-bold text-primary text-xl">
+                                <span class="">Santé&nbsp;</span><span class="text-secondary">Pro Audio</span>
+                            </a>
+                        </div>
+                        <!-- <div class="d-none d-lg-block"><img src="../assets/logo.png" width="300" height="35" alt="decennale-express" class="img-fluid"></div>
+                        <div class="d-block d-lg-none"><img src="../assets/logo.png" width="250" height="35" alt="decennale-express" class="img-fluid"></div> -->
                     </router-link>
                 </div>
                 <div class="col-md-8 col-lg-8 col-xl-6 d-none d-md-block">
