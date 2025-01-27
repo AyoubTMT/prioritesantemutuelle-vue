@@ -24,7 +24,7 @@
             <label for="soins_generaux_sante" class="form-label fw-bold">Soins courants :<em class="text-danger">*</em>
               <i class="ms-1 fa fa-info-circle" title="médecine générale, pharmacie, examens, radios, etc."></i>
             </label>
-            <div class="btn-group-custom">
+            <div class="btn-group-custom text-sm">
               <button
                 type="button"
                 class="btn-custom"
@@ -66,7 +66,7 @@
           <div class="mb-4">
             <label class="form-label fw-bold">Optique :<em class="text-danger">*</em>
               <i class="ms-1 fa fa-info-circle" title="lentilles, lunettes, chirurgie réfractive, etc."></i></label>
-            <div class="btn-group-custom">
+            <div class="btn-group-custom text-sm">
               <button
                 type="button"
                 class="btn-custom"
@@ -109,7 +109,7 @@
           <div class="mb-4">
             <label class="form-label fw-bold">Dentaire :<em class="text-danger">*</em>
               <i class="ms-1 fa fa-info-circle" title="dentiste, prothèses, soins, etc."></i></label>
-            <div class="btn-group-custom">
+            <div class="btn-group-custom text-sm">
               <button
                 type="button"
                 class="btn-custom"
@@ -152,7 +152,7 @@
           <div class="mb-4">
             <label class="form-label fw-bold">Hospitalisation :<em class="text-danger">*</em>
               <i class="ms-1 fa fa-info-circle" title="frais de séjour, frais de transport, chirurgie, etc."></i></label>
-            <div class="btn-group-custom">
+            <div class="btn-group-custom text-sm">
               <button
                 type="button"
                 class="btn-custom"
@@ -195,7 +195,7 @@
           <div class="mb-4">
             <label class="form-label fw-bold">AIDES AUDITIVES :<em class="text-danger">*</em>
               <i class="ms-1 fa fa-info-circle" title="équipement"></i></label>
-            <div class="btn-group-custom">
+            <div class="btn-group-custom text-sm">
               <button
                 type="button"
                 class="btn-custom"
@@ -238,7 +238,7 @@
           <div class="mb-4">
             <label class="form-label fw-bold">Médecines douces :<em class="text-danger">*</em>
               <i class="ms-1 fa fa-info-circle" title="ostéopathe, chiropracteur, acupuncteur …"></i></label>
-            <div class="btn-group-custom">
+            <div class="btn-group-custom text-sm">
               <button
                 type="button"
                 class="btn-custom"
