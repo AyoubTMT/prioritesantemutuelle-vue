@@ -44,7 +44,7 @@
                 <li :class="['last step', { current: formStore.currentStep == 5 , stepHover: formStore.currentStep > 5 }]" @click="updateCurrentStep(5)">
                     <div class="title">
                       <span class="step-number">5</span>
-                      <span class="step-text">Devis</span>
+                      <span class="step-text">Offre recommandé</span>
                     </div>              
                 </li>
               </ul>
@@ -195,7 +195,8 @@ p.desc {
       padding: 2px !important;
     }
     .container-fluid{
-        padding: 15px !important;
+      padding: 15px !important;
+      border-radius: 24px 0px 0px 24px !important;
     }
     .container{
         padding-left: 0px;
@@ -206,6 +207,10 @@ p.desc {
     }
     .padding-mobile {
       padding: 5px 2px !important;
+      border-radius: 24px 0px 0px 24px !important;
+    }
+    .rounded-custom-end {
+      border-radius: 24px 24px 24px 24px !important;
     }
     .card-footer .btn:nth-child(2) {
       padding: 0px !important;
@@ -289,6 +294,6 @@ p.desc {
   border-radius: 24px 0px 0px 24px !important;
 }
 .rounded-custom-end{
-  border-radius: 0px 24px 24px 0px !important;
+  border-radius: 0px 24px 24px 0px ;
 }
 </style>

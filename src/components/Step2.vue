@@ -74,28 +74,50 @@
             @blur="$v.profession.$touch()"
           >
             <option selected disabled value="">Choisissez une spécialité médicale</option>
-            <option>Médecin généraliste</option>
-            <option>Chirurgien</option>
-            <option>Cardiologue</option>
-            <option>Dermatologue</option>
-            <option>Gynécologue</option>
-            <option>Pédiatre</option>
-            <option>Psychiatre</option>
-            <option>Radiologue</option>
-            <option>Ophtalmologue</option>
-            <option>Pharmacien</option>
-            <option>Orthopédiste</option>
-            <option>Neurologue</option>
-            <option>Oncologue</option>
-            <option>Urologue</option>
-            <option>ORL (Oto-Rhino-Laryngologiste)</option>
-            <option>Dentiste</option>
-            <option>Rhumatologue</option>
-            <option>Endocrinologue</option>
-            <option>Néphrologue</option>
-            <option>Anesthésiste</option>
-            <option>Gastro-entérologue</option>
-            <option>Hématologue</option>
+            <!-- Médecins -->
+            <optgroup label="Médecins">
+                    <option>Médecin généraliste</option>
+                    <option>Chirurgien</option>
+                    <option>Cardiologue</option>
+                    <option>Dermatologue</option>
+                    <option>Gynécologue</option>
+                    <option>Pédiatre</option>
+                    <option>Psychiatre</option>
+                    <option>Radiologue</option>
+                    <option>Ophtalmologue</option>
+                    <option>Pharmacien</option>
+                    <option>Orthopédiste</option>
+                    <option>Neurologue</option>
+                    <option>Oncologue</option>
+                    <option>Urologue</option>
+                    <option>ORL (Oto-Rhino-Laryngologiste)</option>
+                    <option>Dentiste</option>
+                    <option>Rhumatologue</option>
+                    <option>Endocrinologue</option>
+                    <option>Néphrologue</option>
+                    <option>Anesthésiste</option>
+                    <option>Gastro-entérologue</option>
+                    <option>Hématologue</option>
+            </optgroup>
+
+            <!-- Infirmiers -->
+            <optgroup label="Infirmiers">
+              <option>Infirmier généraliste</option>
+              <option>Infirmier anesthésiste</option>
+              <option>Infirmier de bloc opératoire</option>
+              <option>Infirmier spécialisé en pédiatrie</option>
+              <option>Infirmier en gériatrie</option>
+            </optgroup>
+
+            <!-- Sages-Femmes -->
+            <optgroup label="Sages-Femmes">
+              <option>Sage-femme généraliste</option>
+              <option>Sage-femme échographiste</option>
+              <option>Sage-femme libérale</option>
+            </optgroup>
+
+            <!-- Autres -->
+              <option>Autres</option>
           </select>
           <small v-if="$v.profession.$error" class="text-danger">
             Veuillez sélectionner une spécialité médicale.
