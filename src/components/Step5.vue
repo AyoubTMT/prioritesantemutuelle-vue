@@ -227,7 +227,8 @@ function closeModal() {
 
 // Finalize offer logic
 function finalizeOffer() {
-  alert("Votre offre a été finalisée avec succès ! 🎉");
+  // alert("Votre offre a été finalisée avec succès ! 🎉");
+  router.push('/devis/merci');
 }
 
 // Fetch formula when the component is mounted
