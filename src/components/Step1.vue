@@ -18,272 +18,82 @@
     </div>
       <div class="card-body">
         <h4 class="text-center mb-4 text-primary"></h4>
-        <form @submit.prevent="submitStep">
-          <!-- Section: Soins courants -->
-          <div class="mb-4">
-            <label for="soins_generaux_sante" class="form-label fw-bold">Soins courants :<em class="text-danger">*</em>
-              <i class="ms-1 fa fa-info-circle" title="médecine générale, pharmacie, examens, radios, etc."></i>
-            </label>
-            <div class="btn-group-custom text-sm">
-              <button
-                type="button"
-                class="btn-custom"
-                :class="{ active: selected.soins === 'S1' }"
-                @click="selected.soins = 'S1'"
-              >
-                Minimum<br>♥
-              </button>
-              <button
-                type="button"
-                class="btn-custom"
-                :class="{ active: selected.soins === 'S2' }"
-                @click="selected.soins = 'S2'"
-              >
-                Moyen<br>♥♥
-              </button>
-              <button
-                type="button"
-                class="btn-custom"
-                :class="{ active: selected.soins === 'S3' }"
-                @click="selected.soins = 'S3'"
-              >
-                Fort<br>♥♥♥
-              </button>
-              <button
-                type="button"
-                class="btn-custom"
-                :class="{ active: selected.soins === 'S4' }"
-                @click="selected.soins = 'S4'"
-              >
-                Avancé<br>♥♥♥♥
-              </button>
-            </div>
-              <div v-if="$v.soins.$error" class="text-danger text-center">
-                  Veuillez sélectionner une option.
-              </div>
-          </div>
-          <!-- Section: Optique -->
-          <div class="mb-4">
-            <label class="form-label fw-bold">Optique :<em class="text-danger">*</em>
-              <i class="ms-1 fa fa-info-circle" title="lentilles, lunettes, chirurgie réfractive, etc."></i></label>
-            <div class="btn-group-custom text-sm">
-              <button
-                type="button"
-                class="btn-custom"
-                :class="{ active: selected.optique === 'O1' }"
-                @click="selected.optique = 'O1'"
-              >
-                Minimum<br>♥
-              </button>
-              <button
-                type="button"
-                class="btn-custom"
-                :class="{ active: selected.optique === 'O2' }"
-                @click="selected.optique = 'O2'"
-              >
-                Moyen<br>♥♥
-              </button>
-              <button
-                type="button"
-                class="btn-custom"
-                :class="{ active: selected.optique === 'O3' }"
-                @click="selected.optique = 'O3'"
-              >
-                Fort<br>♥♥♥
-              </button>
-              <button
-                type="button"
-                class="btn-custom"
-                :class="{ active: selected.optique === 'O4' }"
-                @click="selected.optique = 'O4'"
-              >
-                Avancé<br>♥♥♥♥
-              </button>
-            </div>
-              <div v-if="$v.optique.$error" class="text-danger text-center">
-                  Veuillez sélectionner une option.
-              </div>
-          </div>
+        <form @submit.prevent="submitStep" class="needs-validation" novalidate>
+          <!-- Section Template -->
+          <template v-for="(section, index) in sections" :key="index">
+            <div class="card mb-4 shadow-sm">
+              <div class="card-body">
+                <!-- Section Header -->
+                <div class="d-flex align-items-center mb-3">
+                  <h5 class="card-title mb-0 me-2">
+                    {{ section.title }}:
+                    <sup class="text-danger">*</sup>
+                  </h5>
+                  <i 
+                    class="fas fa-info-circle text-muted" 
+                    data-bs-toggle="tooltip" 
+                    :title="section.tooltip"
+                  ></i>
+                </div>
 
-          <!-- Section: Dentaire -->
-          <div class="mb-4">
-            <label class="form-label fw-bold">Dentaire :<em class="text-danger">*</em>
-              <i class="ms-1 fa fa-info-circle" title="dentiste, prothèses, soins, etc."></i></label>
-            <div class="btn-group-custom text-sm">
-              <button
-                type="button"
-                class="btn-custom"
-                :class="{ active: selected.dentaire === 'D1' }"
-                @click="selected.dentaire = 'D1'"
-              >
-                Minimum<br>♥
-              </button>
-              <button
-                type="button"
-                class="btn-custom"
-                :class="{ active: selected.dentaire === 'D2' }"
-                @click="selected.dentaire = 'D2'"
-              >
-                Moyen<br>♥♥
-              </button>
-              <button
-                type="button"
-                class="btn-custom"
-                :class="{ active: selected.dentaire === 'D3' }"
-                @click="selected.dentaire = 'D3'"
-              >
-                Fort<br>♥♥♥
-              </button>
-              <button
-                type="button"
-                class="btn-custom"
-                :class="{ active: selected.dentaire === 'D4' }"
-                @click="selected.dentaire = 'D4'"
-              >
-                Avancé<br>♥♥♥♥
-              </button>
-            </div>
-              <div v-if="$v.dentaire.$error" class="text-danger text-center">
-                  Veuillez sélectionner une option.
-              </div>
-          </div>
+                <!-- Options Grid -->
+                <div class="row g-3">
+                  <div 
+                    v-for="(option, oIndex) in section.options" 
+                    :key="oIndex"
+                    class="col-6 col-sm-6 col-lg-3"
+                  >
+                    <input 
+                      type="radio" 
+                      :name="section.name" 
+                      :id="`${section.name}-${option.value}`" 
+                      :value="option.value"
+                      v-model="selected[section.name]"
+                      class="btn-check"
+                      autocomplete="off"
+                    >
+                    <label 
+                      :for="`${section.name}-${option.value}`"
+                      class="btn btn-outline-primary w-100 d-flex flex-column py-3 option-card"
+                      :class="{ 'active': selected[section.name] === option.value }"
+                    >
+                      <span class="fw-bold mb-1">{{ option.label }}</span>
+                      <div class="text-primary">
+                        <template v-for="n in option.level" :key="n">
+                          <i class="fas fa-heart"></i>
+                        </template>
+                      </div>
+                      <small class="text-muted mt-1">{{ option.subtext }}</small>
+                    </label>
+                  </div>
+                </div>
 
-          <!-- Section: Hospitalisation -->
-          <div class="mb-4">
-            <label class="form-label fw-bold">Hospitalisation :<em class="text-danger">*</em>
-              <i class="ms-1 fa fa-info-circle" title="frais de séjour, frais de transport, chirurgie, etc."></i></label>
-            <div class="btn-group-custom text-sm">
-              <button
-                type="button"
-                class="btn-custom"
-                :class="{ active: selected.hospitalisation === 'H1' }"
-                @click="selected.hospitalisation = 'H1'"
-              >
-                Minimum<br>♥
-              </button>
-              <button
-                type="button"
-                class="btn-custom"
-                :class="{ active: selected.hospitalisation === 'H2' }"
-                @click="selected.hospitalisation = 'H2'"
-              >
-                Moyen<br>♥♥
-              </button>
-              <button
-                type="button"
-                class="btn-custom"
-                :class="{ active: selected.hospitalisation === 'H3' }"
-                @click="selected.hospitalisation = 'H3'"
-              >
-                Fort<br>♥♥♥
-              </button>
-              <button
-                type="button"
-                class="btn-custom"
-                :class="{ active: selected.hospitalisation === 'H4' }"
-                @click="selected.hospitalisation = 'H4'"
-              >
-                Avancé<br>♥♥♥♥
-              </button>
-            </div>
-              <div v-if="$v.hospitalisation.$error" class="text-danger text-center">
-                  Veuillez sélectionner une option.
+                <!-- Error Message -->
+                <div 
+                  v-if="$v[section.name].$error" 
+                  class="alert alert-danger mt-3 mb-0 py-2"
+                >
+                  <i class="fas fa-exclamation-circle me-2"></i>
+                  Veuillez sélectionner une option
+                </div>
               </div>
-          </div>
-
-          <!-- Section: AIDES AUDITIVES -->
-          <div class="mb-4">
-            <label class="form-label fw-bold">AIDES AUDITIVES :<em class="text-danger">*</em>
-              <i class="ms-1 fa fa-info-circle" title="équipement"></i></label>
-            <div class="btn-group-custom text-sm">
-              <button
-                type="button"
-                class="btn-custom"
-                :class="{ active: selected.aides_auditives === 'A1' }"
-                @click="selected.aides_auditives = 'A1'"
-              >
-                Minimum<br>♥
-              </button>
-              <button
-                type="button"
-                class="btn-custom"
-                :class="{ active: selected.aides_auditives === 'A2' }"
-                @click="selected.aides_auditives = 'A2'"
-              >
-                Moyen<br>♥♥
-              </button>
-              <button
-                type="button"
-                class="btn-custom"
-                :class="{ active: selected.aides_auditives === 'A3' }"
-                @click="selected.aides_auditives = 'A3'"
-              >
-                Fort<br>♥♥♥
-              </button>
-              <button
-                type="button"
-                class="btn-custom"
-                :class="{ active: selected.aides_auditives === 'A4' }"
-                @click="selected.aides_auditives = 'A4'"
-              >
-                Avancé<br>♥♥♥♥
-              </button>
             </div>
-              <div v-if="$v.aides_auditives.$error" class="text-danger text-center">
-                  Veuillez sélectionner une option.
-              </div>
-          </div>
-
-          <!-- Section: Médecines douces -->
-          <div class="mb-4">
-            <label class="form-label fw-bold">Médecines douces :<em class="text-danger">*</em>
-              <i class="ms-1 fa fa-info-circle" title="ostéopathe, chiropracteur, acupuncteur …"></i></label>
-            <div class="btn-group-custom text-sm">
-              <button
-                type="button"
-                class="btn-custom"
-                :class="{ active: selected.medecines_douces === 'G1' }"
-                @click="selected.medecines_douces = 'G1'"
-              >
-                Minimum<br>♥
-              </button>
-              <button
-                type="button"
-                class="btn-custom"
-                :class="{ active: selected.medecines_douces === 'G2' }"
-                @click="selected.medecines_douces = 'G2'"
-              >
-                Moyen<br>♥♥
-              </button>
-              <button
-                type="button"
-                class="btn-custom"
-                :class="{ active: selected.medecines_douces === 'G3' }"
-                @click="selected.medecines_douces = 'G3'"
-              >
-                Fort<br>♥♥♥
-              </button>
-              <button
-                type="button"
-                class="btn-custom"
-                :class="{ active: selected.medecines_douces === 'G4' }"
-                @click="selected.medecines_douces = 'G4'"
-              >
-                Avancé<br>♥♥♥♥
-              </button>
-            </div>
-              <div v-if="$v.medecines_douces.$error" class="text-danger text-center">
-                  Veuillez sélectionner une option.
-              </div>
-          </div>
+          </template>
 
           <!-- Navigation Buttons -->
-          <div class="d-flex justify-content-between">
-            <button type="button" class="btn btn-outline-secondary rounded-pill px-4"  @click="prevStep">
-              <i class="bi bi-arrow-left"></i> Précédent
+          <div class="d-flex justify-content-between mt-5">
+            <button 
+              type="button" 
+              class="btn btn-lg btn-outline-secondary rounded-pill px-4"
+              @click="prevStep"
+            >
+              <i class="fas fa-arrow-left me-2"></i>Précédent
             </button>
-            <button type="submit" class="btn btn-primary rounded-pill px-4">
-              Suivant <i class="bi bi-arrow-right"></i>
+            <button 
+              type="submit" 
+              class="btn btn-lg btn-primary rounded-pill px-4"
+            >
+              Suivant <i class="fas fa-arrow-right ms-2"></i>
             </button>
           </div>
         </form>
@@ -292,56 +102,118 @@
 </template>
   
 <script setup>
-    import { useFormStore } from '@/stores/useFormStore';
-    import { reactive, watch } from 'vue';
-    import useVuelidate from '@vuelidate/core';
-    import { required } from '@vuelidate/validators';
-    import { useRouter } from 'vue-router';
-    const router = useRouter();
-    
-    const formStore = useFormStore();
-    
-    const selected = reactive({
-        soins: formStore.formData.step1.soins || "",
-        optique: formStore.formData.step1.optique || "",
-        dentaire: formStore.formData.step1.dentaire || "",
-        hospitalisation: formStore.formData.step1.hospitalisation || "",
-        aides_auditives: formStore.formData.step1.aides_auditives || "",
-        medecines_douces: formStore.formData.step1.medecines_douces || "",
-    
-    });
-    
-    const rules = {
-        soins: { required },
-        optique: { required },
-        dentaire: { required },
-        hospitalisation: { required },
-        aides_auditives: { required },
-        medecines_douces: { required },
-    };
-    
-    const $v = useVuelidate(rules, selected);
+import { useFormStore } from '@/stores/useFormStore';
+import { reactive, computed } from 'vue';
+import useVuelidate from '@vuelidate/core';
+import { required } from '@vuelidate/validators';
+import { useRouter } from 'vue-router';
 
-    watch(selected, (newValues) => {
-        Object.assign(selected, newValues);
-    });
+const router = useRouter();
+const formStore = useFormStore();
 
-    async function submitStep() {
-        $v.value.$touch();
-        if (!$v.value.$invalid) {
-            console.log('Form submitted successfully!');
-            formStore.updateStepData('step1', selected);
-            formStore.nextStep();
-        }
-    }
-    
-    function prevStep() {
-        formStore.prevStep(router);
-    }
+// Define sections configuration
+const sections = reactive([
+  {
+    title: 'Soins courants',
+    name: 'soins',
+    tooltip: 'médecine générale, pharmacie, examens, radios, etc.',
+    options: [
+      { value: 'S1', label: 'Minimum', level: 1, subtext: 'Couverture basique' },
+      { value: 'S2', label: 'Moyen', level: 2, subtext: 'Protection standard' },
+      { value: 'S3', label: 'Fort', level: 3, subtext: 'Couverture étendue' },
+      { value: 'S4', label: 'Avancé', level: 4, subtext: 'Protection maximale' }
+    ]
+  },
+  {
+    title: 'Optique',
+    name: 'optique',
+    tooltip: 'lentilles, lunettes, chirurgie réfractive, etc.',
+    options: [
+      { value: 'O1', label: 'Minimum', level: 1, subtext: 'Couverture basique' },
+      { value: 'O2', label: 'Moyen', level: 2, subtext: 'Protection standard' },
+      { value: 'O3', label: 'Fort', level: 3, subtext: 'Couverture étendue' },
+      { value: 'O4', label: 'Avancé', level: 4, subtext: 'Protection maximale' }
+    ]
+  },
+  {
+    title: 'Dentaire',
+    name: 'dentaire',
+    tooltip: 'dentiste, prothèses, soins, etc.',
+    options: [
+      { value: 'D1', label: 'Minimum', level: 1, subtext: 'Couverture basique' },
+      { value: 'D2', label: 'Moyen', level: 2, subtext: 'Protection standard' },
+      { value: 'D3', label: 'Fort', level: 3, subtext: 'Couverture étendue' },
+      { value: 'D4', label: 'Avancé', level: 4, subtext: 'Protection maximale' }
+    ]
+  },
+  {
+    title: 'Hospitalisation',
+    name: 'hospitalisation',
+    tooltip: 'frais de séjour, frais de transport, chirurgie, etc.',
+    options: [
+      { value: 'H1', label: 'Minimum', level: 1, subtext: 'Couverture basique' },
+      { value: 'H2', label: 'Moyen', level: 2, subtext: 'Protection standard' },
+      { value: 'H3', label: 'Fort', level: 3, subtext: 'Couverture étendue' },
+      { value: 'H4', label: 'Avancé', level: 4, subtext: 'Protection maximale' }
+    ]
+  },
+  {
+    title: 'AIDES AUDITIVES',
+    name: 'aides_auditives',
+    tooltip: 'équipement',
+    options: [
+      { value: 'A1', label: 'Minimum', level: 1, subtext: 'Couverture basique' },
+      { value: 'A2', label: 'Moyen', level: 2, subtext: 'Protection standard' },
+      { value: 'A3', label: 'Fort', level: 3, subtext: 'Couverture étendue' },
+      { value: 'A4', label: 'Avancé', level: 4, subtext: 'Protection maximale' }
+    ]
+  },
+  {
+    title: 'Médecines douces',
+    name: 'medecines_douces',
+    tooltip: 'ostéopathe, chiropracteur, acupuncteur …',
+    options: [
+      { value: 'G1', label: 'Minimum', level: 1, subtext: 'Couverture basique' },
+      { value: 'G2', label: 'Moyen', level: 2, subtext: 'Protection standard' },
+      { value: 'G3', label: 'Fort', level: 3, subtext: 'Couverture étendue' },
+      { value: 'G4', label: 'Avancé', level: 4, subtext: 'Protection maximale' }
+    ]
+  }
+]);
+
+// Reactive state
+const selected = reactive({
+  ...Object.fromEntries(sections.map(section => [
+    section.name, 
+    formStore.formData.step1[section.name] || ""
+  ]))
+});
+
+// Dynamic validation rules
+const rules = computed(() => ({
+  ...Object.fromEntries(sections.map(section => [
+    section.name,
+    { required }
+  ]))
+}));
+
+const $v = useVuelidate(rules, selected);
+
+async function submitStep() {
+  const isValid = await $v.value.$validate();
+  if (isValid) {
+    formStore.updateStepData('step1', selected);
+    formStore.nextStep();
+  }
+}
+
+function prevStep() {
+  formStore.prevStep(router);
+}
 </script>
 
 <style scoped>
-  /* Step Titles Styling */
+/* Step Titles Styling */
   h2.step-title {
     font-size: 1.75rem;
     font-weight: bold;
@@ -370,13 +242,6 @@
       font-size: 1.25rem;
     }
   }
-
-  /* Custom Card Design */
-  .custom-card {
-    border-radius: 15px;
-    padding: 2rem;
-    overflow: hidden;
-  }
   
   .card-header {
     /* display: flex;
@@ -397,74 +262,33 @@
   .step-indicator .step-bar.active {
     background-color: #007bff;
   }
-  
-  /* Custom Button Group */
-  .btn-group-custom {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    flex-wrap: wrap; /* Pour les petits écrans */
-  }
-  
-  .btn-custom {
-    flex: 1;
-    background-color: #f8f9fa;
-    border: 1px solid #ced4da;
-    color: #495057;
-    font-weight: bold;
-    padding-top: 3px;
-    text-align: center;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    border-radius: var(--bs-border-radius-pill) !important;
-  }
-  
-  .btn-custom:hover {
-    background-color: #007bff;
-    color: white;
-    transform: scale(1.05);
-  }
-  
-  .btn-custom.active {
-    background-color: #007bff;
-    color: white;
-    box-shadow: 0 3px 8px rgba(0, 123, 255, 0.3);
-  }
-  
-  /* Typography */
-  h4 {
-    font-weight: 700;
-  }
-  
-  label {
-    font-size: 1rem;
-  }
-  
-  button:focus {
-    outline: none;
-    box-shadow: none;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .custom-card {
-      padding: 1.5rem;
-    }
-  
-    .btn-custom {
-      padding: 8px; /* Réduction des marges pour petits écrans */
-      font-size: 0.9rem;
-    }
-  }
-  
-  @media (max-width: 576px) {
-    h4 {
-      font-size: 1.2rem; /* Taille réduite pour le titre */
-    }
-  
-    .btn-custom {
-      font-size: 0.8rem; /* Taille des boutons réduite */
-    }
-  }
-  </style>
+.option-card {
+  transition: all 0.2s ease;
+  border: 2px solid #dee2e6;
+  cursor: pointer;
+}
+
+.option-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.btn-check:checked + .option-card {
+  border-color: #0d6efd;
+  background-color: #f8f9fa;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  color: #2c3e50;
+}
+
+.alert-danger {
+  font-size: 0.9rem;
+}
+#formulaire .btn-check:checked + .btn, #formulaire .btn.active{
+  background-color: #b0e2fd !important;
+  border-color: #0d6efd !important;
+  color: #3e3e3e;
+}
+</style>
