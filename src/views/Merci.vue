@@ -14,7 +14,7 @@
             <i class="fas fa-phone-alt text-primary me-2"></i> Téléphone : <a href="tel:+33123456789" class="text-decoration-none">+33 1 23 45 67 89</a>
           </li>
           <li class="mb-2">
-            <i class="fas fa-envelope text-primary me-2"></i> Email : <a href="mailto:contact@votreentreprise.fr" class="text-decoration-none">contact@votreentreprise.fr</a>
+            <i class="fas fa-envelope text-primary me-2"></i> Email : <a href="mailto:contact@santeproaudio.fr" class="text-decoration-none">contact@santeproaudio.fr</a>
           </li>
           <li>
             <i class="fas fa-map-marker-alt text-primary me-2"></i> Adresse : 123 Rue de l'Exemple, 75001 Paris, France

@@ -24,7 +24,7 @@
         <!-- Form Inputs -->
         <div class="row mb-4">
           <div class="col-md-6">
-            <label for="last-name" class="form-label fw-semibold">Nom :</label>
+            <label for="last-name" class="form-label fw-semibold">Nom</label>
             <input
               type="text"
               id="last-name"
@@ -35,7 +35,7 @@
             <small v-if="$v.lastName.$error" class="text-danger">Veuillez entrer votre nom.</small>
           </div>
           <div class="col-md-6">
-            <label for="first-name" class="form-label fw-semibold">Prénom :</label>
+            <label for="first-name" class="form-label fw-semibold">Prénom</label>
             <input
               type="text"
               id="first-name"
@@ -48,7 +48,7 @@
         </div>
         <div class="row mb-4">
           <div class="col-md-6">
-            <label for="email" class="form-label fw-semibold">E-mail :</label>
+            <label for="email" class="form-label fw-semibold">E-mail</label>
             <input
               type="email"
               id="email"
@@ -59,7 +59,7 @@
             <small v-if="$v.email.$error" class="text-danger">Veuillez entrer un e-mail valide.</small>
           </div>
           <div class="col-md-6">
-            <label for="postal-code" class="form-label fw-semibold">Code postal :</label>
+            <label for="postal-code" class="form-label fw-semibold">Code postal</label>
             <input
               type="text"
               id="postal-code"

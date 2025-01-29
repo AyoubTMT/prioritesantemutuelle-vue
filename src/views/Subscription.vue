@@ -57,7 +57,6 @@
                   <Step3 v-if="formStore.currentStep === 3" />
                   <Step4 v-if="formStore.currentStep === 4" />
                   <Step5 v-if="formStore.currentStep === 5" />
-                  <Step6 v-if="formStore.currentStep === 6" />
               </div>
             </div>
           </div>
@@ -73,7 +72,6 @@ import Step2 from '../components/Step2.vue';
 import Step3 from '../components/Step3.vue';
 import Step4 from '../components/Step4.vue';
 import Step5 from '../components/Step5.vue';
-import Step6 from '../components/Step6.vue';
 import MyHeader from '../components/header.vue';
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
@@ -81,27 +79,12 @@ import { useRouter } from 'vue-router';
 const formStore = useFormStore();
 console.log('formStore.currentStep');
 console.log(formStore.currentStep);
-if (formStore.currentStep > 7) {
-    formStore.updateCurrentStep(7)
+if (formStore.currentStep > 5) {
+    formStore.updateCurrentStep(5)
 }
 
-const stepMap = {
-    1: 'Vos besoins',
-    2: 'Votre profil',
-    3: 'Recueil du besoin',
-    4: 'Recueil du besoin',
-    5: 'Activité',
-    6: 'Finalisation',
-};
-const steps = ref(['Vos besoins', 'Recueil du besoin', 'Activité', 'Finalisation']);
-
-const isActiveStep = (stepIndex) => {
-    const activeStep = stepMap[formStore.currentStep];
-    return steps.value[stepIndex - 1] == activeStep;
-};
-
 const progressPercentage = computed(() => {
-    return (formStore.currentStep / 6) * 100;
+    return (formStore.currentStep / 5) * 100;
 });
 
 function updateCurrentStep(step) {

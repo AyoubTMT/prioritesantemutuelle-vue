@@ -99,7 +99,7 @@
             v-model="formData.phone"
             placeholder="Votre numéro de téléphone"
           />
-          <small v-if="$v.phone.$error" class="text-danger">Veuillez entrer un numéro de téléphone valide.</small>
+          <small v-if="$v.phone.$error" class="text-danger">{{ getPhoneErrorMessage }}</small>
         </div>
 
         <!-- Navigation Buttons -->
@@ -124,7 +124,7 @@
 </template>
 
 <script setup>
-import { reactive } from "vue";
+import { reactive, computed  } from "vue";
 import useVuelidate from "@vuelidate/core";
 import { required, numeric } from "@vuelidate/validators";
 import { useRouter } from "vue-router";
@@ -141,10 +141,14 @@ const formData = reactive({
   childrenCount: formStore.formData.step3.childrenCount || 0,
   phone: formStore.formData.step3.phone || "",
 });
-console.log(formData);
+
 // Constants
 const familyStatuses = ["Marié(e)", "Célibataire", "Divorcé(e)", "Veuf/ve"];
 const maxChildren = [0, 1, 2, 3];
+const frenchPhoneValidator = (value) => {
+  const cleaned = value.replace(/[^\d]/g, ''); // Remove non-digit characters
+  return /^0[1-9]\d{8}$/.test(cleaned); // Exact 10 digits starting with 0[1-9]
+};
 
 // Validation Rules
 const rules = {
@@ -154,8 +158,15 @@ const rules = {
     required: (value) => !formData.insureSpouse || value !== "",
   },
   childrenCount: { required, numeric },
-  phone: { required },
+  phone: { required, frenchPhoneValidator },
 };
+
+const getPhoneErrorMessage = computed(() => {
+  if (!$v.value.phone.$dirty) return "";
+  if ($v.value.phone.required.$invalid) return "Le numéro de téléphone est requis.";
+  if ($v.value.phone.frenchPhoneValidator.$invalid) return "Numéro de téléphone invalide (Format: 0X XX XX XX XX)";
+  return "";
+});
 
 const $v = useVuelidate(rules, formData);
 

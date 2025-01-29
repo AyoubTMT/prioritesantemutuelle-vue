@@ -26,9 +26,15 @@
             id="dob"
             class="form-control rounded-pill shadow-sm"
             v-model="formData.birthdate"
+    @focus="birthdatePlaceholder = ''"
+    @blur="
+      birthdatePlaceholder = 'jj/mm/aaaa';
+      $v.birthdate.$touch();
+    "
+    :placeholder="birthdatePlaceholder"
           />
           <small v-if="$v.birthdate.$error" class="text-danger">
-            Date de naissance requise.
+            {{ getBirthdateErrorMessage }}
           </small>
         </div>
 
@@ -188,14 +194,15 @@
 </template>
 
 <script setup>
-import { reactive } from "vue";
+import { ref, reactive, computed } from "vue";
 import { useRouter } from "vue-router";
 import useVuelidate from "@vuelidate/core";
-import { required } from "@vuelidate/validators";
+import { required,maxLength } from "@vuelidate/validators";
 import { useFormStore } from "@/stores/useFormStore";
 
 const formStore = useFormStore();
 const router = useRouter();
+const birthdatePlaceholder = ref("jj/mm/aaaa");
 
 function selectGender(selectedGender) {
   formData.gender = selectedGender;
@@ -209,8 +216,16 @@ const formData = reactive({
   complementaire: formStore.formData.step2.complementaire || "",
 });
 
+const isOlderThan18 = (value) => {
+  if (!value) return false;
+  const birthDate = new Date(value);
+  const today = new Date();
+  const age = today.getFullYear() - birthDate.getFullYear();
+  return age > 18;
+};
+
 const rules = {
-  birthdate: { required },
+  birthdate: { required,maxlength:maxLength(10), isOlderThan18 },
   gender: { required },
   profession: { required },
   regime: { required },
@@ -218,6 +233,14 @@ const rules = {
 };
 
 const $v = useVuelidate(rules, formData);
+
+const getBirthdateErrorMessage = computed(() => {
+  if (!$v.value.birthdate.$dirty) return ""; // Don't show error until the field is touched
+  if ($v.value.birthdate.required.$invalid) return "La date de naissance est requise.";
+  if ($v.value.birthdate.isOlderThan18.$invalid) return "Vous devez avoir au moins 18 ans.";
+  if ($v.value.birthdate.maxlength.$invalid) return "Format invalide (jj/mm/aaaa).";
+  return "";
+});
 
 async function submitStep() {
   $v.value.$touch();
