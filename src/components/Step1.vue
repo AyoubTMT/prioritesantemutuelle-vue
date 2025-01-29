@@ -167,7 +167,7 @@ const router = useRouter();
 const formStore = useFormStore();
 
 // PDF Configuration
-const pdfUrl = ref('/src/assets/media/COM-SANTE-renfort.pdf');
+const pdfUrl = ref('/COM-SANTE-renfort.pdf');
 let pdfModal = null;
 
 // Helper Functions
