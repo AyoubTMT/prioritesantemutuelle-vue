@@ -194,20 +194,24 @@ const API_BASE_URL = import.meta.env.VITE_BASE_URL || "http://back.santeproaudio
 async function fetchFormula() {
   loading.value = true;
   error.value = null;
-  console.log(JSON.stringify(data.step1));
+
   try {
-    const response = await axios.post(`${API_BASE_URL}/api/suggest-formula`, data.step1, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    formula.value = response.data.formula;
-    details.value = response.data.details;
+    const formulaResponse = await axios.post(
+      `${API_BASE_URL}/api/suggest-formula`, 
+      data.step1
+    );
+    
+    formula.value = formulaResponse.data.formula;
+    details.value = formulaResponse.data.details;
+
+    axios.post(`${API_BASE_URL}/api/send-email`, data)
+      .catch(emailError => {
+        console.error("Email sending failed:", emailError);
+      });
+
   } catch (err) {
-    console.error("Error finalizing offer:", err);
-    error.value =
-      err.response?.data.message ||
-      "Une erreur est survenue lors de la récupération de la formule.";
+    console.error("Error fetching formula:", err);
+    error.value = err.response?.data?.message || "Erreur lors de la récupération";
   } finally {
     loading.value = false;
   }
