@@ -228,5 +228,47 @@ h2.step-title i {
     font-size: 1.25rem;
   }
 }
+.form-check-input {
+  width: 1.25em;
+  height: 1.25em;
+  margin-top: 0.15em;
+  border: 2px solid #0d6efd;
+  border-radius: 0.25em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
 
+.form-check-input:checked {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.form-check-label {
+  margin-left: 0.5em;
+  font-size: 1rem;
+  color: #2c3e50;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.form-check-label:hover {
+  color: #0d6efd;
+}
+
+/* Optional: Add a custom checkmark */
+.form-check-input:checked::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0.5em;
+  height: 0.8em;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
 </style>

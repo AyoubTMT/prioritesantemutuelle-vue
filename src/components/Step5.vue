@@ -189,7 +189,7 @@ const isModalVisible = ref(false);
 const modalTitle = ref("");
 const modalData = ref({});
 const API_BASE_URL = import.meta.env.VITE_BASE_URL || "http://back.santeproaudio.fr";
-console.log(data.step1);
+
 // Fetch formula from the API
 async function fetchFormula() {
   loading.value = true;
