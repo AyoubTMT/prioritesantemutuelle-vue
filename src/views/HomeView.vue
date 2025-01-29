@@ -377,7 +377,7 @@
                           <div class="mb-2 text-sm">"Grâce à Santé Pro Audio, j'ai enfin une couverture santé qui répond
                             parfaitement à mes besoins en tant que médecin. Leur service est réactif et humain, je me sens
                             soutenue dans ma pratique." </div>
-                          <div class="mb-2 text-sm font-bold">- Dr. Élise Moreau</div>
+                          <div class="mb-2 text-sm font-bold">- Un Médecin Satisfait</div>
                         </div>
                       </div>
                     </div>

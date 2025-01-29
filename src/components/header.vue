@@ -31,7 +31,7 @@
                     <div class="questionLink d-flex justify-content-end align-items-center text-decoration-none">
                         <div class="assistanteImg online" data-bs-toggle="modal" data-bs-target="#aide">
                             <p class="d-none d-md-none d-lg-none d-xl-block">Besoin d'aide ?</p>
-                            <img src="../assets/images/assistance.png" width="40" height="40" alt="image de l'assistante"
+                            <img src="../assets/media/assistance.png" width="40" height="40" alt="image de l'assistante"
                                 class="img-fluid">
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                         ">
 
                 <div class="contact">
-                    <img src="../assets/images/assistance.png" class="assistanceImg img-fluid" style="
+                    <img src="../assets/media/assistance.png" class="assistanceImg img-fluid" style="
                             border-radius: 50%;
                             margin-top: 18px;
                         ">
