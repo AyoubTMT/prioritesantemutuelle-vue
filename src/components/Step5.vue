@@ -188,20 +188,23 @@ const error = ref(null);
 const isModalVisible = ref(false);
 const modalTitle = ref("");
 const modalData = ref({});
+const API_BASE_URL = import.meta.env.VITE_BASE_URL || "http://back.santeproaudio.fr";
 
 // Fetch formula from the API
 async function fetchFormula() {
   loading.value = true;
   error.value = null;
-
+  console.log(JSON.stringify(data.step1));
   try {
-    const response = await axios.post(
-      `${import.meta.env.VITE_BASE_URL}/api/suggest-formula`,
-      data.step1
-    );
+    const response = await axios.post(`${API_BASE_URL}/api/suggest-formula`, data.step1, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     formula.value = response.data.formula;
     details.value = response.data.details;
   } catch (err) {
+    console.error("Error finalizing offer:", err);
     error.value =
       err.response?.data.message ||
       "Une erreur est survenue lors de la récupération de la formule.";
