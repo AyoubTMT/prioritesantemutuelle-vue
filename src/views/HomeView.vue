@@ -127,15 +127,12 @@
                 <div class="relative flex flex-col items-center lg:flex-row">
                   <div class="mt-10 w-full lg:mt-20 lg:w-[55%] lg:pr-12">
                     <h1 class="mb-6 text-center text-3xl font-bold lg:text-left xl:text-4xl 2xl:text-5xl">
-                      <div class="[font-family:var(--font-family-heading)]">Assurance Santé Spécialement pour Vous</div>
-                      <div class="text-[var(--primary-color)] [font-family:var(--font-family-heading)]">Protection adaptée
-                        aux professionnels de santé</div>
+                      <div class="[font-family:var(--font-family-heading)]">Assurance Santé Spécialement pour les Médecins</div>
+                      <div class="text-[var(--primary-color)] [font-family:var(--font-family-heading)]">Protection exclusive pour les professionnels de santé</div>
                       <div class="[font-family:var(--font-family-heading)] 2xl:text-base"><br></div>
                     </h1>
                     <p class="mb-6 text-center text-[var(--gray-text-color)] sm:text-sm lg:text-left">Santé Pro Audio
-                      offre des solutions d'assurance santé personnalisées pour médecins, infirmiers et sages-femmes. Avec
-                      des avantages sur mesure, vous bénéficierez d'une couverture qui comprend vos besoins uniques. Votre
-                      santé est notre priorité.</p>
+                       propose une assurance santé conçue exclusivement pour les médecins. Profitez d'avantages uniques et d'une couverture personnalisée répondant aux besoins spécifiques de votre profession. Votre santé est notre priorité.</p>
                     <div class="mb-10 text-center lg:text-left">
                       <a href="/devis"
                         class="items-center rounded bg-[var(--primary-button-bg-color)] px-4 py-2 font-semibold text-[var(--primary-button-text-color)] hover:bg-[var(--primary-button-hover-bg-color)] hover:text-[var(--primary-button-hover-text-color)]">
@@ -164,8 +161,7 @@
               <div class="container mx-auto px-4 sm:px-10 xl:px-28">
                 <h2
                   class="mb-6 text-center text-2xl font-bold [font-family:var(--font-family-heading)] xl:text-3xl 2xl:text-4xl">
-                  Solutions d'Assurance Santé Spécialement Conçues pour les Médecins, Audioprothésistes, Dentistes et
-                  Infirmiers</h2>
+                  Solutions d'Assurance Santé Spécialement Conçues pour les Médecins, Infirmiers et Sages-Femmes</h2>
                 <h3 class="mx-auto mb-10 w-3/4 text-center font-thin text-[var(--gray-text-color)]"><br></h3>
                 <div class="flex flex-row">
                   <div class="hidden w-[28%] xl:block">
@@ -183,28 +179,7 @@
                         <i class="fa-duotone fa-user-md" aria-hidden="true"></i>
                       </div>
                       <h4 class="mb-3 text-xl font-semibold">Assurance pour Médecins</h4>
-                      <p class="text-[var(--gray-text-color)]">Protégez votre carrière médicale avec une couverture
-                        spécifiquement adaptée aux médecins.</p>
-                    </div>
-                    <div
-                      class="flex-1 px-6 text-center md:max-w-xs transform transition duration-300 hover:scale-105 hover:shadow-lg">
-                      <div
-                        class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-3xl bg-orange-100 text-3xl text-orange-500">
-                        <i class="fa-duotone fa-headset" aria-hidden="true"></i>
-                      </div>
-                      <h4 class="mb-3 text-xl font-semibold">Solutions pour Audioprothésistes</h4>
-                      <p class="text-[var(--gray-text-color)]">Bénéficiez d'une couverture adaptée aux professionnels de
-                        l'audioprothèse pour une tranquillité d'esprit.</p>
-                    </div>
-                    <div
-                      class="flex-1 px-6 text-center md:max-w-xs transform transition duration-300 hover:scale-105 hover:shadow-lg">
-                      <div
-                        class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-3xl bg-rose-100 text-3xl text-rose-500">
-                        <i class="fa-duotone fa-tooth" aria-hidden="true"></i>
-                      </div>
-                      <h4 class="mb-2 text-xl font-semibold">Assurance pour Dentistes</h4>
-                      <p class="text-[var(--gray-text-color)]">Optez pour une couverture qui tient compte des spécificités
-                        du métier de dentiste.</p>
+                      <p class="text-[var(--gray-text-color)]">Protégez votre parcours médical avec des solutions spécialement conçues pour les médecins.</p>
                     </div>
                     <div
                       class="flex-1 px-6 text-center md:max-w-xs transform transition duration-300 hover:scale-105 hover:shadow-lg">
@@ -213,8 +188,16 @@
                         <i class="fa-duotone fa-user-nurse" aria-hidden="true"></i>
                       </div>
                       <h4 class="mb-2 text-xl font-semibold">Services pour Infirmiers</h4>
-                      <p class="break-words text-[var(--gray-text-color)]">Sécurisez votre avenir professionnel avec nos
-                        solutions adaptées aux infirmiers.</p>
+                      <p class="break-words text-[var(--gray-text-color)]">Sécurisez vos ambitions professionnelles avec notre large gamme de protections pour infirmiers.</p>
+                    </div>
+                    <div
+                      class="flex-1 px-6 text-center md:max-w-xs transform transition duration-300 hover:scale-105 hover:shadow-lg">
+                      <div
+                        class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-yellow-100 text-3xl text-yellow-500">
+                        <i class="fa-duotone fa-baby" aria-hidden="true"></i>
+                      </div>
+                      <h4 class="mb-3 text-xl font-semibold">Protection pour Sages-Femmes</h4>
+                      <p class="text-[var(--gray-text-color)]">Optez pour une assurance qui soutient votre vocation à accompagner les futures mamans.</p>
                     </div>
                     <div
                       class="flex-1 px-6 text-center md:max-w-xs transform transition duration-300 hover:scale-105 hover:shadow-lg">
@@ -233,8 +216,7 @@
                         <i class="fa-duotone fa-calendar-check" aria-hidden="true"></i>
                       </div>
                       <h4 class="mb-2 text-xl font-semibold">Gestion Administrative Simplifiée</h4>
-                      <p class="text-[var(--gray-text-color)]">Facilitez la prise de rendez-vous en permettant à vos
-                        clients de réserver directement via votre site.</p>
+                      <p class="text-[var(--gray-text-color)]">Facilitez votre quotidien administratif pour vous concentrer sur l'essentiel : vos patients.</p>
                     </div>
                   </div>
                 </div>
@@ -256,7 +238,7 @@
                             dédiée</div>
                           <div
                             class="mb-3 font-bold [font-family:var(--font-family-heading)] lg:text-3xl 2xl:text-3xl xl:text-xl md:text-lg text-xl">
-                            Assurance santé sur mesure pour médecins, infirmiers, sages-femmes et audioprothésistes</div>
+                            Assurance santé sur mesure pour les Médecins, Infirmiers et Sages-Femmes</div>
                           <div class="mb-10 text-sm md:text-xs">Concentrez-vous sur vos patients pendant que nous prenons
                             soin de votre sécurité et de votre bien-être. Adhérez dès aujourd'hui pour bénéficier d'une
                             protection adaptée à vos besoins professionnels.</div>
@@ -305,8 +287,7 @@
                       Solutions d'Assurance Santé pour les Professionnels de la Santé
                     </h1>
                     <p class="mb-6 text-center text-base font-thin text-[var(--gray-text-color)] lg:text-left">
-                      Découvrez comment Santé Pro Audio a transformé la couverture santé de médecins, infirmiers dentistes
-                      et audioprothésistes. Nos projets sont conçus pour vous protéger et soutenir votre pratique
+                      Découvrez comment Santé Pro Audio a transformé la couverture santé de médecins, infirmiers et sages-femmes. Nos projets sont conçus pour vous protéger et soutenir votre pratique
                       professionnelle.
                     </p>
                   </div>
@@ -384,7 +365,7 @@
                             class="absolute bottom-4 right-4 h-full w-full rounded-tl-2xl border-2 border-[var(--dark-border-color)]">
                           </div>
                           <img
-                            src="https://media.gettyimages.com/id/2156062809/photo/headshot-closeup-portrait-middle-eastern-israel-businesswoman-business-lady-standing-isolated.jpg?b=1&amp;s=612x612&amp;w=0&amp;k=20&amp;c=mPEqaET5s98W_40DmBTRbYY5z0F-_1YkqdC4TCHJeig="
+                            src="https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/c9171c36-a5e9-47fb-b946-560e28d11f00/public"
                             alt="Professionnel de santé" class="relative mt-4 h-full rounded-2xl object-cover lg:mt-0"
                             data-landingsite-gallery-type="image" data-testimonial-image="" data-dont-replace=""
                             data-media="{&quot;id&quot;:&quot;2156062809&quot;,&quot;src&quot;:&quot;iStock&quot;,&quot;type&quot;:&quot;image&quot;}">
@@ -414,7 +395,7 @@
                     </h1>
                     <p class="mb-6 text-center text-[var(--gray-text-color)] lg:text-left text-sm">Santé Pro Audio se
                       consacre à fournir des solutions d'assurance santé sur mesure, spécifiquement pour les médecins,
-                      infirmiers dentistes et audioprothésistes. Avec notre couverture, vous êtes assuré d'obtenir une
+                      infirmiers et sages-femmes. Avec notre couverture, vous êtes assuré d'obtenir une
                       protection qui répond parfaitement à vos exigences professionnelles.</p>
                     <div class="mb-6 pl-8 text-center text-[var(--gray-text-color)] lg:text-left text-sm">
                       <ul class="">
