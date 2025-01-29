@@ -14,6 +14,16 @@ export const useFormStore = defineStore('form', {
         hospitalisation: "",
         aides_auditives: "",
         medecines_douces: "",
+        renfort: "",
+        custom: {
+          soins: '',
+          optique: '',
+          dentaire: '',
+          hospitalisation: '',
+          aides_auditives: '',
+          medecines_douces: '',
+          renfort: '',
+        }
       },
       step2: {
         birthdate: "",
@@ -51,7 +61,18 @@ export const useFormStore = defineStore('form', {
 
   actions: {
     updateStepData(step, data) {
-      this.formData[step] = data;
+      if (step === 'step1') {
+        this.formData.step1 = {
+          ...this.formData.step1,
+          ...data,
+          custom: {
+            ...this.formData.step1.custom,
+            ...data.custom
+          }
+        };
+      } else {
+        this.formData[step] = data;
+      }
     },
     nextStep() {
       this.currentStep++;

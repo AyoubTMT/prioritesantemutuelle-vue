@@ -4,9 +4,9 @@
     <div class="proposition-card shadow-lg rounded-lg">
       <!-- Header Section -->
       <div class="card-header gradient-header text-center text-white py-4">
-        <h1 class="formula-title mb-2">
-          🎉 Votre Formule: <span class="text-uppercase">{{ formula }}</span>
-        </h1>
+        <h2 class="formula-title mb-2">
+          🎉 Notre conseil: La formule <span class="text-uppercase">{{ formula }}</span>
+        </h2>
         <p class="description mb-0">
           Découvrez les avantages personnalisés adaptés à vos besoins.
         </p>
@@ -26,7 +26,7 @@
               <i class="fas fa-heartbeat"></i>
             </div>
             <div>
-              <h4>Soins Courants</h4>
+              <h4>Soins Courants : <span class="text-muted fw-bold">{{ data.step1.custom.soins }}</span></h4>
               <p class="text-muted text-sm">
                 Paramedicaux: {{ details.soins.paramedicaux }}<br />
                 Consultations: {{ details.soins.consultations }}
@@ -43,7 +43,7 @@
               <i class="fas fa-hospital"></i>
             </div>
             <div>
-              <h4>Hospitalisation</h4>
+              <h4>Hospitalisation : <span class="text-muted fw-bold">{{ data.step1.custom.hospitalisation }}</span></h4>
               <p class="text-muted text-sm">
                 Forfait journalier hospitalier : {{ details.hospitalisation.Frais_journaliers_hospitalier }}<br />
                 Participation forfaitaire: {{ details.hospitalisation.Participation_forfaitaire }}
@@ -60,7 +60,7 @@
               <i class="fas fa-glasses"></i>
             </div>
             <div>
-              <h4>Optique</h4>
+              <h4>Optique : <span class="text-muted fw-bold">{{ data.step1.custom.optique }}</span></h4>
               <p class="text-muted text-sm">{{ details.optique.monture_2_verres_simples }}</p>
               <button class="btn btn-link p-0 text-sm text-start" @click="showModal('optique')">
                 Voir toutes les garanties
@@ -74,7 +74,7 @@
               <i class="fas fa-deaf"></i>
             </div>
             <div>
-              <h4 >Aides Auditives</h4>
+              <h4 >Aides Auditives : <span class="text-muted fw-bold">{{ data.step1.custom.aides_auditives }}</span></h4>
               <p class="text-muted text-sm">{{ details.aides_auditives.equipements_classe_I }}</p>
               <button class="btn btn-link p-0 text-sm text-start" @click="showModal('aides_auditives')">
                 Voir toutes les garanties
@@ -88,7 +88,7 @@
               <i class="fas fa-tooth"></i>
             </div>
             <div>
-              <h4 >Dentaire</h4>
+              <h4 >Dentaire : <span class="text-muted fw-bold">{{ data.step1.custom.dentaire }}</span></h4>
               <p class="text-muted text-sm">
                 Soins: {{ details.dentaire.soins }}<br />
                 Prothèses: {{ details.dentaire.protheses }}
@@ -105,7 +105,7 @@
               <i class="fas fa-leaf"></i>
             </div>
             <div>
-              <h4 >Médecines Douces</h4>
+              <h4 >Médecines Douces : <span class="text-muted fw-bold">{{ data.step1.custom.medecines_douces }}</span></h4>
               <p class="text-muted text-sm">{{ details.medecines_douces.osteopathie }}</p>
               <button class="btn btn-link p-0 text-sm text-start" @click="showModal('medecines_douces')">
                 Voir toutes les garanties
@@ -133,7 +133,7 @@
           <!-- Call to Action -->
         </button>
         <button class="btn btn-gradient btn-lg px-4" @click="finalizeOffer">
-          Envoyer 🚀
+          Mon tarif 🚀
         </button>
       </div>
     </div>
@@ -189,7 +189,7 @@ const isModalVisible = ref(false);
 const modalTitle = ref("");
 const modalData = ref({});
 const API_BASE_URL = import.meta.env.VITE_BASE_URL || "http://back.santeproaudio.fr";
-
+console.log(data.step1);
 // Fetch formula from the API
 async function fetchFormula() {
   loading.value = true;

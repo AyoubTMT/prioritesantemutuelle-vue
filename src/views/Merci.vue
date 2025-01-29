@@ -1,9 +1,9 @@
 <template>
   <div class="merci-page">
     <div class="merci-card shadow-lg rounded-lg text-center py-5 px-4">
-      <h1 class="merci-title text-primary mb-4">🎉 Merci pour votre confiance !</h1>
+      <!-- <h1 class="merci-title text-primary mb-4">Merci pour votre confiance !</h1> -->
       <p class="merci-description mb-5">
-        Votre formulaire a été soumis avec succès. Nous vous remercions pour votre intérêt et nous vous contacterons bientôt pour plus de détails.
+        Votre formulaire a été soumis avec succès. Vous allez recevoir votre devis en express.
       </p>
 
       <!-- Contact Information -->
@@ -11,13 +11,10 @@
         <h3 class="text-secondary mb-3">Nos coordonnées</h3>
         <ul class="list-unstyled">
           <li class="mb-2">
-            <i class="fas fa-phone-alt text-primary me-2"></i> Téléphone : <a href="tel:+33123456789" class="text-decoration-none">+33 1 23 45 67 89</a>
+            <i class="fas fa-phone-alt text-primary me-2"></i> Téléphone : <a href="tel:+33146592228" class="text-decoration-none">+33 1 46 59 22 28</a>
           </li>
           <li class="mb-2">
             <i class="fas fa-envelope text-primary me-2"></i> Email : <a href="mailto:contact@santeproaudio.fr" class="text-decoration-none">contact@santeproaudio.fr</a>
-          </li>
-          <li>
-            <i class="fas fa-map-marker-alt text-primary me-2"></i> Adresse : 123 Rue de l'Exemple, 75001 Paris, France
           </li>
         </ul>
       </div>

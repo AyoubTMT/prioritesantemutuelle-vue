@@ -80,6 +80,33 @@
             </div>
           </template>
 
+          <div class="mb-4">
+            <div class="row justify-content-baseline align-items-baseline gap-3">
+            <label class="col-12 col-lg-5 form-label fw-semibold d-block">Je choisis le renfort :<em class="text-danger pe-2">*</em>
+            <a href="#" @click.prevent="showPdfModal" class="text-decoration-none">
+              <i class="fas fa-file-pdf fs-5 text-danger"></i>
+            </a>
+            </label>
+              <button
+                type="button"
+                :class="['col-3 col-md-3 col-lg-2 btn rounded-pill px-4', selected.renfort == 'OUI' ? 'btn-primary' : 'btn-outline-secondary']"
+                @click="selected.renfort = 'OUI'"
+              >
+                Oui
+              </button>
+              <button
+                type="button"
+                :class="['col-3 col-md-3 col-lg-2 btn rounded-pill px-4', selected.renfort == 'NON' ? 'btn-primary' : 'btn-outline-secondary']"
+                @click="selected.renfort = 'NON'"
+              >
+                Non
+              </button>
+            </div>
+            <div v-if="$v.renfort.$error" class="text-danger text-center">
+              Veuillez sélectionner une option.
+            </div>
+          </div>
+
           <!-- Navigation Buttons -->
           <div class="d-flex justify-content-between mt-5">
             <button 
@@ -99,17 +126,38 @@
         </form>
       </div>
     </div>
+   <!-- PDF Modal -->
+  <div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="pdfModalLabel">Tableau de garantie du renfort</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <iframe 
+            :src="pdfUrl" 
+            style="width: 100%; height: 80vh;" 
+            frameborder="0"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
   
 <script setup>
 import { useFormStore } from '@/stores/useFormStore';
-import { reactive, computed } from 'vue';
+import { reactive, computed, ref } from 'vue';
 import useVuelidate from '@vuelidate/core';
 import { required } from '@vuelidate/validators';
 import { useRouter } from 'vue-router';
+import { Modal } from 'bootstrap';
 
 const router = useRouter();
 const formStore = useFormStore();
+const pdfUrl = ref('/src/assets/media/COM-SANTE-renfort.pdf');
+let pdfModal = null;
 
 // Define sections configuration
 const sections = reactive([
@@ -186,23 +234,52 @@ const selected = reactive({
   ...Object.fromEntries(sections.map(section => [
     section.name, 
     formStore.formData.step1[section.name] || ""
-  ]))
+  ])),
+  renfort: formStore.formData.step1.renfort || ""
 });
+
+const getStep1CustomData = () => {
+  const customData = {};
+  
+  sections.forEach(section => {
+    const selectedOption = section.options.find(
+      opt => opt.value === selected[section.name]
+    );
+    customData[section.name] = selectedOption?.label || '';
+  });
+
+  // Add renfort value (directly as Oui/Non)
+  customData.renfort = selected.renfort ? selected.renfort.charAt(0).toUpperCase() + selected.renfort.slice(1) : '';
+
+  return customData;
+};
 
 // Dynamic validation rules
 const rules = computed(() => ({
   ...Object.fromEntries(sections.map(section => [
     section.name,
     { required }
-  ]))
+  ])),
+  renfort: { required }
 }));
+
+function showPdfModal() {
+  if (!pdfModal) {
+    pdfModal = new Modal(document.getElementById('pdfModal'));
+  }
+  pdfModal.show();
+}
 
 const $v = useVuelidate(rules, selected);
 
 async function submitStep() {
   const isValid = await $v.value.$validate();
   if (isValid) {
-    formStore.updateStepData('step1', selected);
+    const stepData = {
+      ...selected,
+      custom: getStep1CustomData()
+    };
+    formStore.updateStepData('step1', stepData);
     formStore.nextStep();
   }
 }
@@ -290,5 +367,15 @@ function prevStep() {
   background-color: #b0e2fd !important;
   border-color: #0d6efd !important;
   color: #3e3e3e;
+}
+
+.fa-file-pdf {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.fa-file-pdf:hover {
+  transform: scale(1.1);
+  color: #dc3545 !important;
 }
 </style>

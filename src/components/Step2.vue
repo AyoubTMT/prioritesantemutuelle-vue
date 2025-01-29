@@ -79,9 +79,10 @@
             class="form-select rounded-pill shadow-sm"
             @blur="$v.profession.$touch()"
           >
-            <option selected disabled value="">Choisissez une spécialité médicale</option>
-            <!-- Médecins -->
-            <optgroup label="Médecins">
+          <option selected disabled value="">Choisissez une spécialité médicale</option>
+          <option>Audioprothésiste</option>
+          <option>Salarié chez un audioprothésiste</option>
+          <!--   <optgroup label="Médecins">
                     <option>Médecin généraliste</option>
                     <option>Chirurgien</option>
                     <option>Cardiologue</option>
@@ -106,7 +107,6 @@
                     <option>Hématologue</option>
             </optgroup>
 
-            <!-- Infirmiers -->
             <optgroup label="Infirmiers">
               <option>Infirmier généraliste</option>
               <option>Infirmier anesthésiste</option>
@@ -115,15 +115,13 @@
               <option>Infirmier en gériatrie</option>
             </optgroup>
 
-            <!-- Sages-Femmes -->
             <optgroup label="Sages-Femmes">
               <option>Sage-femme généraliste</option>
               <option>Sage-femme échographiste</option>
               <option>Sage-femme libérale</option>
             </optgroup>
 
-            <!-- Autres -->
-              <option>Autres</option>
+              <option>Autres</option> -->
           </select>
           <small v-if="$v.profession.$error" class="text-danger">
             Veuillez sélectionner une spécialité médicale.
@@ -153,7 +151,6 @@
           </small>
         </div>
 
-
         <!-- Health Insurance -->
         <div class="mb-4">
           <label for="health-insurance" class="form-label fw-semibold">Avez-vous un complémentaire santé ?</label>
@@ -171,7 +168,7 @@
             Veuillez indiquer si vous avez un complémentaire santé.
           </small>
         </div>
-
+          
         <!-- Navigation Buttons -->
         <div class="d-flex justify-content-between">
           <button

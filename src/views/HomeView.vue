@@ -35,7 +35,7 @@
                   <div class="text-xl font-bold">
                     <a href="/"
                       class="primary-color-text text-xl text-[var(--primary-color)] [font-family:var(--font-family-heading)] lg:text-3xl">
-                      <span class="">Santé Pro Audio</span>
+                      <span class="">Santé Pro </span><span class="text-dark">Audio</span>
                     </a>
                   </div>
                   <!-- <div class="flex lg:hidden">
@@ -103,11 +103,11 @@
                   <div
                     class="flex flex-col mt-4 lg:flex-row items-center space-y-4 lg:mt-0 lg:space-y-0 lg:space-x-4 text-sm lg:text-base">
                     
-              <router-link to="/devis" class="navbar-link">
-                <a href="/devis"
-                class="primary-color-bg rounded bg-[var(--primary-button-bg-color)] px-[var(--button-padding-x)] py-[var(--button-padding-y)] text-[var(--primary-button-text-color)] hover:bg-[var(--primary-button-hover-bg-color)] hover:text-[var(--primary-button-hover-text-color)]">Devis
-                en 2 minutes</a>
-              </router-link>
+                    <router-link to="/devis" class="navbar-link">
+                      <a href="/devis"
+                      class="primary-color-bg rounded bg-[var(--primary-button-bg-color)] px-[var(--button-padding-x)] py-[var(--button-padding-y)] text-[var(--primary-button-text-color)] hover:bg-[var(--primary-button-hover-bg-color)] hover:text-[var(--primary-button-hover-text-color)]">Devis
+                      en 2 minutes</a>
+                    </router-link>
                   </div>
                 </div>
               </nav>
@@ -127,12 +127,12 @@
                 <div class="relative flex flex-col items-center lg:flex-row">
                   <div class="mt-10 w-full lg:mt-20 lg:w-[55%] lg:pr-12">
                     <h1 class="mb-6 text-center text-3xl font-bold lg:text-left xl:text-4xl 2xl:text-5xl">
-                      <div class="[font-family:var(--font-family-heading)]">Assurance Santé Spécialement pour les Médecins</div>
-                      <div class="text-[var(--primary-color)] [font-family:var(--font-family-heading)]">Protection exclusive pour les professionnels de santé</div>
+                      <div class="[font-family:var(--font-family-heading)]">Assurance Santé <br>Spéciale Audioprothésiste</div>
+                      <div class="text-[var(--primary-color)] [font-family:var(--font-family-heading)] mt-3">Protection exclusive pour les professionnels de santé</div>
                       <div class="[font-family:var(--font-family-heading)] 2xl:text-base"><br></div>
                     </h1>
                     <p class="mb-6 text-center text-[var(--gray-text-color)] sm:text-sm lg:text-left">Santé Pro Audio
-                       propose une assurance santé conçue exclusivement pour les médecins. Profitez d'avantages uniques et d'une couverture personnalisée répondant aux besoins spécifiques de votre profession. Votre santé est notre priorité.</p>
+                       propose une assurance santé conçue exclusivement pour les audioprothésistes. Profitez d'avantages uniques et d'une couverture personnalisée répondant aux besoins spécifiques de votre profession. Votre santé est notre priorité.</p>
                     <div class="mb-10 text-center lg:text-left">
                       <a href="/devis"
                         class="items-center rounded bg-[var(--primary-button-bg-color)] px-4 py-2 font-semibold text-[var(--primary-button-text-color)] hover:bg-[var(--primary-button-hover-bg-color)] hover:text-[var(--primary-button-hover-text-color)]">
