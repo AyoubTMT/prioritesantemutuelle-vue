@@ -5,7 +5,7 @@
       <!-- Header Section -->
       <div class="card-header gradient-header text-center text-white py-4">
         <h2 class="formula-title mb-2">
-          🎉 Notre conseil: La formule <span class="text-uppercase">{{ formula }}</span>
+          Notre conseil: La formule <span class="text-uppercase">{{ formula }}</span>
         </h2>
         <p class="description mb-0">
           Découvrez les avantages personnalisés adaptés à vos besoins.
@@ -112,6 +112,35 @@
               </button>
             </div>
           </div>
+
+          <div class="detail-item" >
+            <div class="icon-container gradient-dark">
+              <i class="fas fa-plus-circle fa-2x text-white"></i>
+            </div>
+            <div>
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <h4>Renfort</h4>
+                <span class="badge bg-success rounded-pill">
+                  <i class="fas fa-check-circle me-1"></i>Activé
+                </span>
+              </div>
+              <p class="text-muted text-sm">
+                Cette garantie vous permet d'améliorer votre couverture en ajoutant des niveaux supérieurs de remboursement.
+              </p>
+              <button class="btn btn-link p-0 text-sm text-start" @click="openPdfModal('/COM-SANTE-renfort.pdf')">
+                <i class="fas fa-file-pdf text-danger me-1"></i>Voir tous les détails
+              </button>
+            </div>
+          </div>
+
+            <!-- Enhanced PDF Modal Trigger -->
+          <div class="text-center my-4">
+            <h5 class="fw-semibold mb-3">Documents :</h5>
+            <button class="btn btn-outline-primary rounded-pill px-4 py-2 d-inline-flex align-items-center" @click="openPdfModal('/tableau_de_garantie.pdf')">
+              <i class="fas fa-file-pdf fs-5 text-danger me-2"></i> 
+              <span>Tableau de garanties</span>
+            </button>
+          </div>
         </div>
 
         <!-- Loading or Error -->
@@ -138,31 +167,61 @@
       </div>
     </div>
 
-    <!-- Modal -->
-    <div v-if="isModalVisible" class="modal-overlay" @click.self="closeModal">
+    <!-- Vue.js PDF Modal -->
+    <div v-if="isPdfModalVisible" class="modal-overlay" @click.self="isPdfModalVisible = false">
       <div class="modal-content">
-        <h4 class="modal-title text-center mb-4">{{ modalTitle }}</h4>
-        <table class="table table-bordered text-sm">
-          <thead>
-            <tr>
-              <th>Garantie</th>
-              <th>Détails</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(value, key) in modalData" :key="key">
-              <template v-if="key === 'description'">
-                  <td :colspan="2" class="text-center">{{ value }}</td>
-              </template>
-              <template v-else>
-                  <td>{{ formatKey(key) }}</td>
-                  <td>{{ value }}</td>
-              </template>
-            </tr>
-          </tbody>
-        </table>
-        <button class="btn btn-danger mt-3" @click="closeModal">Fermer</button>
+        <div class="modal-header d-flex justify-content-between align-items-center">
+          <h5 class="modal-title">Tableau de Garantie</h5>
+          <button class="btn-close" @click="isPdfModalVisible = false"></button>
+        </div>
+        <div class="modal-body">
+          <iframe :src="pdfUrl" style="width: 100%; height: 80vh;" frameborder="0"></iframe>
+        </div>
+        <div class="modal-footer text-center">
+          <button class="btn btn-danger rounded-pill px-4" @click="isPdfModalVisible = false">Fermer</button>
+        </div>
       </div>
+    </div>
+  </div>
+  <!-- PDF Modal -->
+  <div class="modal fade" id="pdfModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Document de renfort</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <iframe :src="pdfUrl" style="width: 100%; height: 80vh" frameborder="0"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div v-if="isModalVisible" class="modal-overlay" @click.self="closeModal">
+    <div class="modal-content">
+      <h4 class="modal-title text-center mb-4">{{ modalTitle }}</h4>
+      <table class="table table-bordered text-sm">
+        <thead>
+          <tr>
+            <th>Garantie</th>
+            <th>Détails</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(value, key) in modalData" :key="key">
+            <template v-if="key === 'description'">
+                <td :colspan="2" class="text-center">{{ value }}</td>
+            </template>
+            <template v-else>
+                <td>{{ formatKey(key) }}</td>
+                <td>{{ value }}</td>
+            </template>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-danger mt-3" @click="closeModal">Fermer</button>
     </div>
   </div>
 </template>
@@ -170,13 +229,14 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useFormStore } from "@/stores/useFormStore";
-import { storeToRefs } from "pinia";
 import axios from "axios";
 import { useRouter } from "vue-router";
 
 // Access form store
 const formStore = useFormStore();
 const data = formStore.getFormData;
+const pdfUrl = ref("/tableau_de_garantie.pdf");
+const isPdfModalVisible = ref(false);
 
 // Reactive state variables
 const router = useRouter();
@@ -224,12 +284,17 @@ function formatKey(key) {
 // Modal logic
 function showModal(category) {
   modalTitle.value = `Toutes les garanties pour ${category}`;
-  modalData.value = details.value[category];
+  modalData.value = details.value[category] || { description: "Aucune information supplémentaire disponible." };
   isModalVisible.value = true;
 }
 
 function closeModal() {
   isModalVisible.value = false;
+}
+
+function openPdfModal(url) {
+  pdfUrl.value = url;
+  isPdfModalVisible.value = true;
 }
 
 // Finalize offer logic
@@ -319,10 +384,6 @@ function prevStep() {
   }
 }
 
-.detail-item:hover {
-  transform: translateY(-5px);
-}
-
 .icon-container {
   width: 60px;
   height: 60px;
@@ -356,6 +417,10 @@ function prevStep() {
 
 .gradient-danger {
   background: linear-gradient(135deg, #dc3545, #c82333);
+}
+
+.gradient-dark {
+  background: linear-gradient(135deg, #000000, #000000);
 }
 
 .btn-gradient {
@@ -449,5 +514,109 @@ h4 {
 .padding-mobile{
   padding-right: 4px !important;
   padding-left: 4px !important;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 900px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.modal-body {
+  padding: 15px;
+}
+
+.modal-footer {
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  text-align: center;
+}
+
+
+
+.badge.bg-success {
+  font-size: 0.9rem;
+  padding: 0.35em 0.75em;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Improved Button Clarity */
+.btn-outline-primary {
+  border: 2px solid #0d6efd;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+  background: #0d6efd;
+  color: white;
+}
+
+/* Enhanced PDF Icon */
+.fa-file-pdf {
+  transition: transform 0.2s ease;
+}
+
+.fa-file-pdf:hover {
+  transform: scale(1.1);
+}
+
+/* Clearer Modal Trigger */
+.btn-link {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+
+.btn-link:hover::before {
+  transform: translateX(3px);
+}
+
+/* Improved Visual Hierarchy */
+.detail-item {
+  border-left: 4px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.detail-item:hover {
+  border-left-color: #0d6efd;
+  transform: translateY(-5px);
+}
+
+.modal-content {
+  border: 2px solid #0d6efd;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.modal-title {
+  font-weight: 600;
+  color: #2c3e50;
+  border-bottom: 2px solid #f8f9fa;
+  padding-bottom: 0.5rem;
 }
 </style>
