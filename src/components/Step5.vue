@@ -1,19 +1,19 @@
 <template>
   <div class="proposition-page">
     <!-- Main Proposition Card -->
-    <div class="proposition-card shadow-lg rounded-lg">
+    <div class="proposition-card">
       <!-- Header Section -->
       <div class="card-header gradient-header text-center text-white py-4">
         <h2 class="formula-title mb-2">
           Notre conseil: La formule <span class="text-uppercase">{{ formula }}</span>
         </h2>
-        <p class="description mb-0">
+        <p class="description">
           Découvrez les avantages personnalisés adaptés à vos besoins.
         </p>
       </div>
 
       <!-- Details Section -->
-      <div class="card-body py-3 px-4">
+      <div class="card-body py-3 px-5">
         <h3 class="section-title text-center mb-4">
           Détails de votre Formule
         </h3>
@@ -74,7 +74,7 @@
               <i class="fas fa-deaf"></i>
             </div>
             <div>
-              <h4 >Aides Auditives : <span class="text-muted fw-bold">{{ data.step1.custom.aides_auditives }}</span></h4>
+              <h4>Aides Auditives : <span class="text-muted fw-bold">{{ data.step1.custom.aides_auditives }}</span></h4>
               <p class="text-muted text-sm">{{ details.aides_auditives.equipements_classe_I }}</p>
               <button class="btn btn-link p-0 text-sm text-start" @click="showModal('aides_auditives')">
                 Voir toutes les garanties
@@ -88,7 +88,7 @@
               <i class="fas fa-tooth"></i>
             </div>
             <div>
-              <h4 >Dentaire : <span class="text-muted fw-bold">{{ data.step1.custom.dentaire }}</span></h4>
+              <h4>Dentaire : <span class="text-muted fw-bold">{{ data.step1.custom.dentaire }}</span></h4>
               <p class="text-muted text-sm">
                 Soins: {{ details.dentaire.soins }}<br />
                 Prothèses: {{ details.dentaire.protheses }}
@@ -105,7 +105,7 @@
               <i class="fas fa-leaf"></i>
             </div>
             <div>
-              <h4 >Médecines Douces : <span class="text-muted fw-bold">{{ data.step1.custom.medecines_douces }}</span></h4>
+              <h4>Médecines Douces : <span class="text-muted fw-bold">{{ data.step1.custom.medecines_douces }}</span></h4>
               <p class="text-muted text-sm">{{ details.medecines_douces.osteopathie }}</p>
               <button class="btn btn-link p-0 text-sm text-start" @click="showModal('medecines_douces')">
                 Voir toutes les garanties
@@ -113,16 +113,17 @@
             </div>
           </div>
 
-          <div class="detail-item" >
+          <!-- Renfort (Optional Guarantee) -->
+          <div class="detail-item" v-if="data.step1.renfort === 'oui'">
             <div class="icon-container gradient-dark">
               <i class="fas fa-plus-circle fa-2x text-white"></i>
             </div>
             <div>
               <div class="d-flex align-items-center gap-2 mb-2">
                 <h4>Renfort</h4>
-                <span class="badge bg-success rounded-pill">
+                <!-- <span class="badge bg-success rounded-pill">
                   <i class="fas fa-check-circle me-1"></i>Activé
-                </span>
+                </span> -->
               </div>
               <p class="text-muted text-sm">
                 Cette garantie vous permet d'améliorer votre couverture en ajoutant des niveaux supérieurs de remboursement.
@@ -133,7 +134,7 @@
             </div>
           </div>
 
-            <!-- Enhanced PDF Modal Trigger -->
+          <!-- PDF Modal Trigger -->
           <div class="text-center my-4">
             <h5 class="fw-semibold mb-3">Documents :</h5>
             <button class="btn btn-outline-primary rounded-pill px-4 py-2 d-inline-flex align-items-center" @click="openPdfModal('/tableau_de_garantie.pdf')">
@@ -152,14 +153,14 @@
         </div>
       </div>
 
-      <div class="card-footer text-center py-4 d-flex justify-content-between flex-column flex-md-row gap-2">
+      <!-- Footer Section -->
+      <div class="card-footer text-center py-4 px-5 d-flex justify-content-between flex-column flex-md-row gap-2">
         <button
           type="button"
           class="btn btn-outline-secondary rounded-pill px-4"
           @click="prevStep"
         >
           <i class="bi bi-arrow-left"></i> Précédent
-          <!-- Call to Action -->
         </button>
         <button class="btn btn-gradient btn-lg px-4" @click="finalizeOffer">
           Mon tarif 🚀
@@ -167,7 +168,7 @@
       </div>
     </div>
 
-    <!-- Vue.js PDF Modal -->
+    <!-- PDF Modal -->
     <div v-if="isPdfModalVisible" class="modal-overlay" @click.self="isPdfModalVisible = false">
       <div class="modal-content">
         <div class="modal-header d-flex justify-content-between align-items-center">
@@ -182,46 +183,48 @@
         </div>
       </div>
     </div>
-  </div>
-  <!-- PDF Modal -->
-  <div class="modal fade" id="pdfModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
+
+    <!-- Details Modal -->
+    <div v-if="isModalVisible" class="modal-overlay" @click.self="closeModal">
       <div class="modal-content">
+        <!-- Modal Header -->
         <div class="modal-header">
-          <h5 class="modal-title">Document de renfort</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h4 class="modal-title">{{ modalTitle }}</h4>
+          <button class="btn-close" @click="closeModal">
+            <i class="fas fa-times"></i>
+          </button>
         </div>
+
+        <!-- Modal Body -->
         <div class="modal-body">
-          <iframe :src="pdfUrl" style="width: 100%; height: 80vh" frameborder="0"></iframe>
+          <table class="details-table">
+            <thead>
+              <tr>
+                <th>Garantie</th>
+                <th>Détails</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(value, key) in modalData" :key="key">
+                <template v-if="key === 'description'">
+                  <td :colspan="2" class="description">{{ value }}</td>
+                </template>
+                <template v-else>
+                  <td class="garantie">{{ formatKey(key) }}</td>
+                  <td class="details">{{ value }}</td>
+                </template>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+          <button class="btn btn-close-modal" @click="closeModal">
+            Fermer
+          </button>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- Modal -->
-  <div v-if="isModalVisible" class="modal-overlay" @click.self="closeModal">
-    <div class="modal-content">
-      <h4 class="modal-title text-center mb-4">{{ modalTitle }}</h4>
-      <table class="table table-bordered text-sm">
-        <thead>
-          <tr>
-            <th>Garantie</th>
-            <th>Détails</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(value, key) in modalData" :key="key">
-            <template v-if="key === 'description'">
-                <td :colspan="2" class="text-center">{{ value }}</td>
-            </template>
-            <template v-else>
-                <td>{{ formatKey(key) }}</td>
-                <td>{{ value }}</td>
-            </template>
-          </tr>
-        </tbody>
-      </table>
-      <button class="btn btn-danger mt-3" @click="closeModal">Fermer</button>
     </div>
   </div>
 </template>
@@ -244,6 +247,7 @@ const formula = ref(null);
 const details = ref(null);
 const loading = ref(false);
 const error = ref(null);
+
 // Modal state variables
 const isModalVisible = ref(false);
 const modalTitle = ref("");
@@ -299,7 +303,6 @@ function openPdfModal(url) {
 
 // Finalize offer logic
 function finalizeOffer() {
-  // alert("Votre offre a été finalisée avec succès ! 🎉");
   router.push('/devis/merci');
 }
 
@@ -307,75 +310,74 @@ function finalizeOffer() {
 onMounted(() => {
   fetchFormula();
 });
+
 // Navigation
 function prevStep() {
   formStore.prevStep(router);
 }
 </script>
 
-
 <style scoped>
+/* Main Page Layout */
 .proposition-page {
   display: flex;
   justify-content: center;
   align-items: start;
-  /* min-height: 100vh; */
+  padding: 0px;
 }
 
+/* Proposition Card */
 .proposition-card {
   width: 100%;
-  max-width: 900px;
+  /* max-width: 900px;
   background: white;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); */
   animation: fadeInUp 0.5s ease-in-out;
 }
 
-.card-header {
-  background: linear-gradient(90deg, #007bff, #0056b3);
-  color: white;
+.padding-mobile, .container-fluid {
+  padding: 0px !important;
 }
 
-.gradient-header {
+/* Card Header */
+.card-header {
   background: linear-gradient(120deg, #007bff, #00d2ff);
+  color: white;
+  padding: 20px;
+  text-align: center;
 }
 
 .formula-title {
   font-size: 2rem;
   font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .description {
   font-size: 1rem;
-  margin-top: 10px;
+  margin: 0;
 }
 
+/* Card Body */
 .card-body {
   padding: 30px 40px;
 }
 
 .section-title {
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: bold;
   color: #0056b3;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
+/* Details Grid */
 .details-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 25px;
-}
-
-.detail-item {
-  display: flex;
-  gap: 15px;
-  align-items: flex-start;
-  background: #f9f9f9;
-  border-radius: 15px;
-  padding: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease;
 }
 
 @media (max-width: 1023px) {
@@ -384,6 +386,25 @@ function prevStep() {
   }
 }
 
+/* Detail Item */
+.detail-item {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+  background: #f9f9f9;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  border-left: 4px solid transparent;
+}
+
+.detail-item:hover {
+  border-left-color: #0d6efd;
+  transform: translateY(-5px);
+}
+
+/* Icon Container */
 .icon-container {
   width: 60px;
   height: 60px;
@@ -423,6 +444,7 @@ function prevStep() {
   background: linear-gradient(135deg, #000000, #000000);
 }
 
+/* Buttons */
 .btn-gradient {
   background: linear-gradient(135deg, #007bff, #00d2ff);
   color: white;
@@ -440,132 +462,6 @@ function prevStep() {
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-  overflow-y: auto;
-}
-
-.modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 600px;
-  width: 90%;
-  max-height: 90vh; /* Ensure modal doesn't exceed screen height */
-  overflow-y: auto; /* Enable scrolling for modal content */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-}
-
-.modal-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #007bff;
-  margin-bottom: 15px;
-  text-align: center;
-}
-
-.table {
-  width: 100%;
-  margin-bottom: 1rem;
-  color: #212529;
-  border-collapse: collapse;
-}
-
-.table th,
-.table td {
-  padding: 0.75rem;
-  vertical-align: top;
-  border-top: 1px solid #dee2e6;
-}
-.btn-close-modal {
-  display: block;
-  margin: 0 auto;
-  background: #dc3545;
-  color: white;
-  border: none;
-  border-radius: 25px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-h4 {
-  font-weight: bold;
-}
-.padding-mobile{
-  padding-right: 4px !important;
-  padding-left: 4px !important;
-}
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-.modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 900px;
-  width: 90%;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-}
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 10px;
-}
-
-.modal-body {
-  padding: 15px;
-}
-
-.modal-footer {
-  border-top: 1px solid #ddd;
-  padding-top: 10px;
-  text-align: center;
-}
-
-
-
-.badge.bg-success {
-  font-size: 0.9rem;
-  padding: 0.35em 0.75em;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-/* Improved Button Clarity */
 .btn-outline-primary {
   border: 2px solid #0d6efd;
   transition: all 0.3s ease;
@@ -576,47 +472,178 @@ h4 {
   color: white;
 }
 
-/* Enhanced PDF Icon */
-.fa-file-pdf {
-  transition: transform 0.2s ease;
-}
-
-.fa-file-pdf:hover {
-  transform: scale(1.1);
-}
-
-/* Clearer Modal Trigger */
 .btn-link {
   position: relative;
   padding-left: 1.5rem;
+  color: #0d6efd;
+  text-decoration: none;
 }
-
 
 .btn-link:hover::before {
   transform: translateX(3px);
 }
 
-/* Improved Visual Hierarchy */
-.detail-item {
-  border-left: 4px solid transparent;
-  transition: border-color 0.3s ease;
+/* Badge */
+.badge.bg-success {
+  font-size: 0.9rem;
+  padding: 0.35em 0.75em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.detail-item:hover {
-  border-left-color: #0d6efd;
-  transform: translateY(-5px);
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
 }
 
+/* Modal Content */
 .modal-content {
-  border: 2px solid #0d6efd;
-  border-radius: 15px;
+  background: white;
+  border-radius: 12px;
+  max-width: 800px;
+  width: 90%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal Header */
+.modal-header {
+  padding: 20px;
+  background: linear-gradient(135deg, #007bff, #00d2ff);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .modal-title {
+  font-size: 1.5rem;
   font-weight: 600;
-  color: #2c3e50;
-  border-bottom: 2px solid #f8f9fa;
-  padding-bottom: 0.5rem;
+  margin: 0;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.btn-close:hover {
+  opacity: 0.8;
+}
+
+/* Modal Body */
+.modal-body {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.details-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.details-table th,
+.details-table td {
+  padding: 12px;
+  text-align: left;
+}
+
+.details-table th {
+  background: #f8f9fa;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.details-table td {
+  border-bottom: 1px solid #eee;
+}
+
+.details-table tr:last-child td {
+  border-bottom: none;
+}
+
+.garantie {
+  font-weight: 500;
+  color: #007bff;
+}
+
+.details {
+  color: #555;
+}
+
+/* Modal Footer */
+.modal-footer {
+  padding: 15px;
+  background: #f8f9fa;
+  border-top: 1px solid #eee;
+  text-align: center;
+}
+
+.btn-close-modal {
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-close-modal:hover {
+  background: #c82333;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    max-height: 80vh;
+  }
+
+  .modal-title {
+    font-size: 1.25rem;
+  }
+
+  .details-table th,
+  .details-table td {
+    padding: 10px;
+  }
+
+  .description {
+    padding: 15px;
+  }
 }
 </style>

@@ -22,20 +22,18 @@
         <!-- Family Status -->
         <div class="mb-4">
           <label class="form-label fw-semibold d-block">Situation familiale : <span class="text-danger">*</span></label>
-          <div class="row justify-content-center gap-3">
-            <div class="col-auto">
-              <button
-                v-for="status in familyStatuses"
-                :key="status"
-                type="button"
-                :class="['btn rounded-pill px-4 m-1', formData.familyStatus === status ? 'btn-primary' : 'btn-outline-secondary']"
-                @click="formData.familyStatus = status"
-              >
-                {{ status }}
-              </button>
-            </div>
+          <div class="d-flex justify-content-center gap-3">
+            <button
+              v-for="status in familyStatuses"
+              :key="status"
+              type="button"
+              :class="['btn rounded-pill px-4', formData.familyStatus === status ? 'btn-primary' : 'btn-outline-secondary']"
+              @click="formData.familyStatus = status"
+            >
+              {{ status }}
+            </button>
           </div>
-          <small v-if="$v.familyStatus.$error" class="text-danger">Veuillez sélectionner votre situation familiale.</small>
+          <small v-if="errors.familyStatus" class="text-danger">{{ errors.familyStatus }}</small>
         </div>
 
         <!-- Spouse Insurance -->
@@ -57,19 +55,14 @@
               Non
             </button>
           </div>
-          <small v-if="$v.insureSpouse.$error" class="text-danger">Veuillez indiquer si vous souhaitez assurer votre conjoint.</small>
+          <small v-if="errors.insureSpouse" class="text-danger">{{ errors.insureSpouse }}</small>
         </div>
 
         <!-- Spouse Birthdate -->
         <div v-if="formData.insureSpouse" class="mb-4">
-          <label for="spouse-birthdate" class="form-label fw-semibold">Si oui, date de naissance du conjoint :</label>
-          <input
-            type="date"
-            id="spouse-birthdate"
-            class="form-control rounded-pill shadow-sm"
-            v-model="formData.spouseBirthdate"
-          />
-          <small v-if="$v.spouseBirthdate.$error" class="text-danger">Veuillez entrer la date de naissance de votre conjoint.</small>
+          <label class="form-label fw-semibold">Si oui, date de naissance du conjoint :</label>
+          <input type="date" class="form-control rounded-pill shadow-sm" v-model="formData.spouseBirthdate" />
+          <small v-if="errors.spouseBirthdate" class="text-danger">{{ errors.spouseBirthdate }}</small>
         </div>
 
         <!-- Children to Insure -->
@@ -81,40 +74,35 @@
               :key="n"
               type="button"
               :class="['btn rounded-pill px-4', formData.childrenCount === n ? 'btn-primary' : 'btn-outline-secondary']"
-              @click="formData.childrenCount = n"
+              @click="setChildrenCount(n)"
             >
               {{ n === 0 ? '🚫 (0)' : n }}
             </button>
           </div>
-          <small v-if="$v.childrenCount.$error" class="text-danger">Veuillez indiquer le nombre d'enfants à assurer.</small>
+          <small v-if="errors.childrenCount" class="text-danger">{{ errors.childrenCount }}</small>
         </div>
 
-        <!-- Phone Number -->
-        <div class="mb-4">
-          <label for="phone" class="form-label fw-semibold">Téléphone <span class="text-danger">*</span></label>
-          <input
-            type="tel"
-            id="phone"
-            class="form-control rounded-pill shadow-sm"
-            v-model="formData.phone"
-            placeholder="Votre numéro de téléphone"
-          />
-          <small v-if="$v.phone.$error" class="text-danger">{{ getPhoneErrorMessage }}</small>
+        <!-- Children's Birthdates -->
+        <div v-if="formData.childrenCount > 0" class="mb-4">
+          <label class="form-label fw-semibold d-block">Date de naissance des enfants :</label>
+          <div v-for="(child, index) in formData.childrenBirthdates" :key="index">
+            <input
+              type="date"
+              class="form-control rounded-pill shadow-sm mt-2"
+              v-model="formData.childrenBirthdates[index]"
+            />
+            <small v-if="errors.childrenBirthdates && errors.childrenBirthdates[index]" class="text-danger">
+              {{ errors.childrenBirthdates[index] }}
+            </small>
+          </div>
         </div>
 
         <!-- Navigation Buttons -->
         <div class="d-flex justify-content-between">
-          <button
-            type="button"
-            class="btn btn-outline-secondary rounded-pill px-4"
-            @click="prevStep"
-          >
+          <button type="button" class="btn btn-outline-secondary rounded-pill px-4" @click="prevStep">
             <i class="bi bi-arrow-left"></i> Précédent
           </button>
-          <button
-            type="submit"
-            class="btn btn-primary rounded-pill px-4"
-          >
+          <button type="submit" class="btn btn-primary rounded-pill px-4">
             Suivant <i class="bi bi-arrow-right"></i>
           </button>
         </div>
@@ -124,66 +112,121 @@
 </template>
 
 <script setup>
-import { reactive, computed  } from "vue";
-import useVuelidate from "@vuelidate/core";
-import { required, numeric } from "@vuelidate/validators";
+import { reactive, watch } from "vue";
 import { useRouter } from "vue-router";
 import { useFormStore } from "@/stores/useFormStore";
 
 const formStore = useFormStore();
 const router = useRouter();
 
-// Form Data
 const formData = reactive({
   familyStatus: formStore.formData.step3.familyStatus || "",
   insureSpouse: formStore.formData.step3.insureSpouse || false,
   spouseBirthdate: formStore.formData.step3.spouseBirthdate || "",
   childrenCount: formStore.formData.step3.childrenCount || 0,
-  phone: formStore.formData.step3.phone || "",
+  childrenBirthdates: formStore.formData.step3.childrenBirthdates || [],
 });
 
-// Constants
+const errors = reactive({
+  familyStatus: "",
+  insureSpouse: "",
+  spouseBirthdate: "",
+  childrenCount: "",
+  childrenBirthdates: [],
+});
+
 const familyStatuses = ["Marié(e)", "Célibataire", "Divorcé(e)", "Veuf/ve"];
 const maxChildren = [0, 1, 2, 3];
-const frenchPhoneValidator = (value) => {
-  const cleaned = value.replace(/[^\d]/g, ''); // Remove non-digit characters
-  return /^0[1-9]\d{8}$/.test(cleaned); // Exact 10 digits starting with 0[1-9]
-};
 
-// Validation Rules
-const rules = {
-  familyStatus: { required },
-  insureSpouse: { required },
-  spouseBirthdate: {
-    required: (value) => !formData.insureSpouse || value !== "",
-  },
-  childrenCount: { required, numeric },
-  phone: { required, frenchPhoneValidator },
-};
+function setChildrenCount(count) {
+  formData.childrenCount = count;
+  formData.childrenBirthdates = Array.from({ length: count }, (_, i) => formData.childrenBirthdates[i] || "");
+}
 
-const getPhoneErrorMessage = computed(() => {
-  if (!$v.value.phone.$dirty) return "";
-  if ($v.value.phone.required.$invalid) return "Le numéro de téléphone est requis.";
-  if ($v.value.phone.frenchPhoneValidator.$invalid) return "Numéro de téléphone invalide (Format: 0X XX XX XX XX)";
-  return "";
+watch(() => formData.childrenCount, (newCount) => {
+  formData.childrenBirthdates = Array.from({ length: newCount }, (_, i) => formData.childrenBirthdates[i] || "");
 });
 
-const $v = useVuelidate(rules, formData);
+function validateForm() {
+  let isValid = true;
 
-// Submit Logic
+  // Reset errors
+  errors.familyStatus = "";
+  errors.insureSpouse = "";
+  errors.spouseBirthdate = "";
+  errors.childrenCount = "";
+  errors.childrenBirthdates = [];
+
+  // Validate Family Status
+  if (!formData.familyStatus) {
+    errors.familyStatus = "Veuillez sélectionner votre situation familiale.";
+    isValid = false;
+  }
+
+  // Validate Spouse Insurance
+  if (formData.insureSpouse === null || formData.insureSpouse === undefined) {
+    errors.insureSpouse = "Veuillez indiquer si vous souhaitez assurer votre conjoint.";
+    isValid = false;
+  }
+
+  // Validate Spouse Birthdate
+  if (formData.insureSpouse && !formData.spouseBirthdate) {
+    errors.spouseBirthdate = "Veuillez entrer la date de naissance du conjoint.";
+    isValid = false;
+  } else if (formData.insureSpouse && !isOlderThan18(formData.spouseBirthdate)) {
+    errors.spouseBirthdate = "Le conjoint doit avoir plus de 18 ans.";
+    isValid = false;
+  }
+
+  // Validate Children Count
+  if (formData.childrenCount === null || formData.childrenCount === undefined) {
+    errors.childrenCount = "Veuillez indiquer le nombre d'enfants à assurer.";
+    isValid = false;
+  }
+
+  // Validate Children Birthdates
+  if (formData.childrenCount > 0) {
+    formData.childrenBirthdates.forEach((birthdate, index) => {
+      if (!birthdate) {
+        errors.childrenBirthdates[index] = "Veuillez entrer la date de naissance.";
+        isValid = false;
+      } else if (!isUnder25(birthdate)) {
+        errors.childrenBirthdates[index] = "L'enfant doit avoir moins de 25 ans.";
+        isValid = false;
+      }
+    });
+  }
+
+  return isValid;
+}
+
+function isOlderThan18(value) {
+  if (!value) return false;
+  const birthDate = new Date(value);
+  const today = new Date();
+  return today.getFullYear() - birthDate.getFullYear() >= 18;
+}
+
+function isUnder25(value) {
+  if (!value) return false;
+  const birthDate = new Date(value);
+  const today = new Date();
+  return today.getFullYear() - birthDate.getFullYear() < 25 && today.getFullYear() - birthDate.getFullYear() > 0;
+}
+
 async function submitStep() {
-  $v.value.$touch();
-  if (!$v.value.$invalid) {
+  if (validateForm()) {
     formStore.updateStepData("step3", formData);
     formStore.nextStep();
   }
 }
 
-// Navigation
 function prevStep() {
   formStore.prevStep(router);
 }
 </script>
+
+
 
 <style scoped>
 .custom-card {

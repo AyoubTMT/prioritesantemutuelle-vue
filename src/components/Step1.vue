@@ -52,7 +52,7 @@
                 />
                 <label
                   :for="`${section.name}-${option.value}`"
-                  class="btn btn-outline-primary w-100 d-flex flex-column py-3"
+                  class="btn btn-outline-primary w-100 d-flex flex-column py-3 btn-option"
                   :class="{
                     active: selected[section.name] === option.value,
                     'disabled-option': !isOptionAllowed(section.name, option.value),
@@ -157,7 +157,7 @@
 
 <script setup>
 import { useFormStore } from '@/stores/useFormStore';
-import { reactive, computed, ref, watch } from 'vue';
+import { reactive, computed, ref, watch, onMounted } from 'vue';
 import useVuelidate from '@vuelidate/core';
 import { required } from '@vuelidate/validators';
 import { useRouter } from 'vue-router';
@@ -276,11 +276,15 @@ const baseLevel = computed(() => {
 });
 
 // Check if an option is allowed
-const isOptionAllowed = (sectionName, optionValue) => {
+function isOptionAllowed(_sectionName, optionValue) {
   const allowedLevels = getAllowedLevels(baseLevel.value);
   const optionLevel = getLevel(optionValue);
   return allowedLevels.includes(optionLevel);
-};
+}
+
+onMounted(() => {
+  pdfModal = new Modal(document.getElementById('pdfModal'));
+});
 
 // Watch for changes to reset invalid selections
 watch(selected, (newValues) => {
@@ -300,7 +304,10 @@ const rules = computed(() => ({
       section.name,
       {
         required,
-        allowedLevel: (value) => getAllowedLevels(baseLevel.value).includes(getLevel(value)),
+        allowedLevel: (value) => {
+          const allowedLevels = getAllowedLevels(baseLevel.value);
+          return allowedLevels.includes(getLevel(value));
+        },
       },
     ])
   ),
@@ -312,17 +319,13 @@ const $v = useVuelidate(rules, selected);
 
 const getStep1CustomData = () => {
   const customData = {};
-  
-  sections.forEach(section => {
+  sections.forEach((section) => {
     const selectedOption = section.options.find(
-      opt => opt.value === selected[section.name]
+      (opt) => opt.value === selected[section.name]
     );
     customData[section.name] = selectedOption?.label || '';
   });
-
-  // Add renfort value (directly as Oui/Non)
   customData.renfort = selected.renfort ? selected.renfort.charAt(0).toUpperCase() + selected.renfort.slice(1) : '';
-
   return customData;
 };
 
@@ -397,7 +400,13 @@ function showPdfModal() {
   color: white;
   border-color: #0d6efd;
 }
-
+.btn-outline-primary.active  .fa-heart::before {
+  content: "\f004";
+  font-weight: 900;
+}
+.btn-outline-primary  {
+  border: 2px solid #dee2e6;
+}
 /* Disabled Option Style */
 .disabled-option {
   opacity: 0.5;

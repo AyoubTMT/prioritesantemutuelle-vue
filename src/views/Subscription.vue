@@ -77,8 +77,6 @@ import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 
 const formStore = useFormStore();
-console.log('formStore.currentStep');
-console.log(formStore.currentStep);
 if (formStore.currentStep > 5) {
     formStore.updateCurrentStep(5)
 }
@@ -171,6 +169,9 @@ p.desc {
 }
 .step:nth-child(3) .step-number, .step:nth-child(4) .step-number{
  padding: 13px !important;
+}
+.padding-mobile:has(.proposition-page), .container-fluid:has(.proposition-page) {
+  padding: 0px !important;
 }
 @media (max-width: 767px) {
     .stepperdiv {

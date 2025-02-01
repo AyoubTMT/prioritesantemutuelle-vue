@@ -37,13 +37,15 @@ export const useFormStore = defineStore('form', {
         insureSpouse: "",
         spouseBirthdate: "",
         childrenCount: "",
-        phone: "",
+        childrenBirthdates: [],
       },
       step4: {
         lastName: "",
         firstName: "",
         email: "",
         postalCode: "",
+        phone: "",
+        adress: "",
         gdprConsent: "",
       },
       step5: {
