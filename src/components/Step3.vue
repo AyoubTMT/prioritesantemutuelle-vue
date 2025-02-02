@@ -211,7 +211,7 @@ function isUnder25(value) {
   if (!value) return false;
   const birthDate = new Date(value);
   const today = new Date();
-  return today.getFullYear() - birthDate.getFullYear() < 25 && today.getFullYear() - birthDate.getFullYear() > 0;
+  return today.getFullYear() - birthDate.getFullYear() < 25 && today.getFullYear() - birthDate.getFullYear() >= 0;
 }
 
 async function submitStep() {
