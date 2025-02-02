@@ -44,8 +44,8 @@ export const useFormStore = defineStore('form', {
         firstName: "",
         email: "",
         postalCode: "",
-        phone: "",
-        adress: "",
+        telephone: "",
+        adresse: "",
         gdprConsent: "",
       },
       step5: {

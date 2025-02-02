@@ -302,8 +302,17 @@ function openPdfModal(url) {
 }
 
 // Finalize offer logic
-function finalizeOffer() {
-  router.push('/devis/merci');
+async function finalizeOffer() {
+  try {
+    const formulaResponse = await axios.post(
+      `${API_BASE_URL}/api/send-email-client`, 
+      data
+    );
+    router.push('/devis/merci');
+  } catch (err) {
+    console.error("Error :", err);
+  }
+
 }
 
 // Fetch formula when the component is mounted
