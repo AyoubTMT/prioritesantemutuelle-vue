@@ -72,14 +72,14 @@
 
         <!-- Profession -->
         <div class="mb-4">
-          <label for="profession" class="form-label fw-semibold">Spécialité médicale :</label>
+          <label for="profession" class="form-label fw-semibold">Spécialité :</label>
           <select
             id="profession"
             v-model="formData.profession"
             class="form-select rounded-pill shadow-sm"
             @blur="$v.profession.$touch()"
           >
-          <option selected disabled value="">Choisissez une spécialité médicale</option>
+          <option selected disabled value="">Choisissez une option</option>
           <option>Audioprothésiste Indépendant</option>
           <option>Salarié dans un centre d'audition</option>
           <option>Audioprothésiste gérant du centre d'audition</option>
@@ -125,7 +125,7 @@
               <option>Autres</option> -->
           </select>
           <small v-if="$v.profession.$error" class="text-danger">
-            Veuillez sélectionner une spécialité médicale.
+            Veuillez sélectionner une option.
           </small>
         </div>
 
@@ -154,7 +154,7 @@
 
         <!-- Health Insurance -->
         <div class="mb-4">
-          <label for="health-insurance" class="form-label fw-semibold">Avez-vous un complémentaire santé ?</label>
+          <label for="health-insurance" class="form-label fw-semibold">Avez-vous déjà une complémentaire santé ?</label>
           <select
             id="health-insurance"
             v-model="formData.complementaire"
