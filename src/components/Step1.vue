@@ -40,7 +40,7 @@
               <div
                 v-for="option in section.options"
                 :key="option.value"
-                class="col-6 col-md-3"
+                class="col-12 col-md-6 col-xl-3"
               >
                 <input
                   type="radio"
@@ -78,7 +78,7 @@
         <div class="card mb-4">
           <div class="card-body">
             <div class="d-flex align-items-center gap-3 mb-3">
-              <label class="form-label mb-0">
+              <label class="card-title form-label mb-0">
                 Je choisis le renfort :<em class="text-danger">*</em>
               </label>
               <a href="#" @click.prevent="showPdfModal" class="text-decoration-none">
@@ -126,12 +126,12 @@
         <div class="d-flex justify-content-between mt-5">
           <button
             type="button"
-            class="btn btn-lg btn-outline-secondary rounded-pill px-4"
+            class="btn btn-outline-secondary rounded-pill px-4"
             @click="prevStep"
           >
             <i class="fas fa-arrow-left me-2"></i>Précédent
           </button>
-          <button type="submit" class="btn btn-lg btn-primary rounded-pill px-4">
+          <button type="submit" class="btn btn-primary rounded-pill px-4">
             Suivant <i class="fas fa-arrow-right ms-2"></i>
           </button>
         </div>
@@ -477,8 +477,13 @@ h2.step-title {
   }
 
   .card-title {
-    font-size: 1.1rem;
+    font-size: 16px;
+    font-weight: 700;
     color: #2c3e50;
+  }
+
+  .fa-info-circle {
+    color: #000 !important;
   }
 
   .alert-danger {
