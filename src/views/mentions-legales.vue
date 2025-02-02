@@ -175,68 +175,69 @@
             </section>
           </div>
           <div>
-            <footer class="relative overflow-hidden bg-[var(--light-background-color)] py-12 code-section" id="s86nq6s9">
-              <div class="container relative mx-auto px-4 pb-0 sm:px-8 xl:px-28">
-                <div
-                  class="absolute -left-80 -top-14 h-[350px] w-[350px] rounded-full border-[50px] border-[var(--medium-background-color)]">
-                </div>
-                <div
-                  class="absolute -right-40 bottom-0 h-[350px] w-[350px] rounded-full border-[50px] border-[var(--medium-background-color)]">
-                </div>
-                <div class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden"></div>
-                <div class="relative z-10 grid grid-cols-1 gap-x-2 sm:grid-cols-2 md:grid-cols-4">
-                  <div class="mb-6 flex flex-col space-y-3">
-                    <a href="/"
-                      class="mb-6 text-lg font-bold text-[var(--primary-color)] [font-family:var(--font-family-heading)] lg:text-2xl">
-                      <span class="">Santé&nbsp;</span><span class="text-gray-800">Pro Audio</span>
-                    </a>
-                    <div class="text-gray-700 2xl:pr-[30%]">une assurance santé dédiée aux audioprothésiste</div>
-                  </div>
-                  <div class="mb-6 flex flex-col space-y-3">
-                    <div class="mb-6 text-xl font-semibold">Nos Services</div>
-                    <div class="flex flex-col space-y-3 text-[var(--dark-text-color)]">
-                      <div class="">Assurance Santé Personnalisée</div>
-                      <div class="">Conseil en Protection Sociale</div>
-                      <div class="">Gestion des Sinistres</div>
-                      <div class="">Assistance Médicale</div>
-                      <div class="">Indemnisation Rapide</div>
-                      <div class="">Prévention des Risques</div>
-                    </div>
-                  </div>
-                  <div class="mb-6 flex flex-col space-y-3">
-                    <div class="mb-6 text-xl font-semibold">Conditions</div>
-                    <div class="flex flex-col space-y-3 text-[var(--dark-text-color)]">
-                      <div class=""><router-link to="/mentions-legales">Mentions Légales</router-link></div>
-                    </div>
-                  </div>
-                  <div class="mb-6 flex flex-col space-y-3 text-[var(--dark-text-color)]">
-                    <div class="mb-6 text-xl font-semibold">Contactez-nous</div>
-                    <div class="flex flex-row">
-                      <div class="flex h-8 w-8 items-center justify-center rounded-full p-2">
-                        <i class="primary-color-text fa-regular fa-phone text-lg text-[var(--primary-color)]"
-                          aria-hidden="true"></i>
-                      </div>
-                      <div class="flex items-center text-sm"><a href="tel:+33146592228" class="text-decoration-none">+33 1 46 59 22 28</a></div>
-                    </div>
-                    <div class="flex flex-row">
-                      <div class="flex h-8 w-8 items-center justify-center rounded-full p-2">
-                        <i class="primary-color-text fa-regular fa-envelope text-lg text-[var(--primary-color)]"
-                          aria-hidden="true"></i>
-                      </div>
-                      <div class="flex items-center text-sm"><a href="mailto:contact@santeproaudio.fr" class="text-decoration-none">contact@santeproaudio.fr</a></div>
-                    </div>
-                    <div class="flex flex-row">
-                      <div class="flex h-8 w-8 items-center justify-center rounded-full p-2">
-                        <i class="primary-color-text fa-regular fa-location-dot text-lg text-[var(--primary-color)]"
-                          aria-hidden="true"></i>
-                      </div>
-                      <div class="flex items-center text-sm">45, rue de Boulainvilliers, 75016 Paris, France</div>
-                    </div>
-                  </div>
-                </div>
-                <p class="relative z-10 mt-20 text-center text-base text-[var(--gray-text-color)]">© Santé Pro Audio 2025</p>
+            
+          <footer class="relative overflow-hidden bg-[var(--light-background-color)] py-16 code-section" id="sx6gvq">
+            <div class="container relative mx-auto px-4 pb-0 sm:px-12 xl:px-32">
+              <div
+                class="absolute -left-80 -top-14 h-[400px] w-[400px] rounded-full border-[60px] border-[var(--medium-background-color)]">
               </div>
-            </footer>
+              <div
+                class="absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full border-[60px] border-[var(--medium-background-color)]">
+              </div>
+              <div class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden"></div>
+              <div class="relative z-10 grid grid-cols-1 gap-x-2 sm:grid-cols-2 md:grid-cols-4">
+                <div class="mb-8 flex flex-col space-y-4"><a href="/"
+                    class="mb-8 text-xl font-bold text-[var(--primary-color)] [font-family:var(--font-family-heading)] lg:text-3xl"><span
+                      class="">Santé </span><span class="text-gray-800">Pro Audio</span></a>
+                  <div class="text-gray-700 2xl:pr-[30%]">Une assurance pour les audioprothésistes.</div>
+                </div>
+                <div class="mb-8 flex flex-col space-y-4 text-[var(--dark-text-color)]">
+                  <div class="mb-8 text-2xl font-semibold">Menu</div>
+                  <a href="/" class="">Accueil</a>
+                  <a href="/#services" class="">Services</a>
+                  <a href="/mentions-legales" class="">Mentions Légales</a>
+                  <a href="/#faq" class="">FAQ</a>
+                  <a href="/#contact" class="">Contact</a>
+                </div>
+                <div class="mb-8 flex flex-col space-y-4">
+                  <div class="mb-8 text-2xl font-semibold">Nos Services</div>
+                  <div class="flex flex-col space-y-4 text-[var(--dark-text-color)]">
+                    <div class="">Assurance santé personnalisée</div>
+                    <div class="">Formules adaptées aux audioprothésistes</div>
+                    <div class="">Conseil en Protection Sociale</div>
+                    <div class="">Indemnisation Rapide</div>
+                    <div class="">Couverture complète et avantages</div>
+                  </div>
+                </div>
+                <div class="mb-8 flex flex-col space-y-4 text-[var(--dark-text-color)]">
+                  <div class="mb-8 text-2xl font-semibold">Contactez-nous</div>
+                  <div class="flex flex-row">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full p-2"><i
+                        class="primary-color-text fa-regular fa-phone text-xl text-[var(--primary-color)]"
+                        aria-hidden="true"></i></div>
+                    <div class="flex items-center">+33 1 46 59 22 28</div>
+                  </div>
+                  <div class="flex flex-row">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full p-2"><i
+                        class="primary-color-text fa-regular fa-envelope text-xl text-[var(--primary-color)]"
+                        aria-hidden="true"></i></div>
+                    <div class="flex items-center">contact@santeproaudio.fr</div>
+                  </div>
+                  <div class="flex flex-row">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full p-2"><i
+                        class="primary-color-text fa-regular fa-location-dot text-xl text-[var(--primary-color)]"
+                        aria-hidden="true"></i></div>
+                    <div class="flex items-center">
+                      <div><br></div>
+                      <div class="">45, rue de Boulainvilliers, 75016 Paris, France</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p class="relative z-10 mt-24 text-center text-lg text-[var(--gray-text-color)]">© Santé Pro Audio 2024
+              </p>
+            </div>
+          </footer>
           </div>
         </div>
       </div>
