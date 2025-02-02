@@ -469,6 +469,12 @@
                       <div class="">Prévention des Risques</div>
                     </div>
                   </div>
+                  <div class="mb-6 flex flex-col space-y-3">
+                    <div class="mb-6 text-xl font-semibold">Conditions</div>
+                    <div class="flex flex-col space-y-3 text-[var(--dark-text-color)]">
+                      <div class=""><router-link to="/mentions-legales">Mentions Légales</router-link></div>
+                    </div>
+                  </div>
                   <div class="mb-6 flex flex-col space-y-3 text-[var(--dark-text-color)]">
                     <div class="mb-6 text-xl font-semibold">Contactez-nous</div>
                     <div class="flex flex-row">
@@ -476,21 +482,21 @@
                         <i class="primary-color-text fa-regular fa-phone text-lg text-[var(--primary-color)]"
                           aria-hidden="true"></i>
                       </div>
-                      <div class="flex items-center text-sm">(33) 666-6666</div>
+                      <div class="flex items-center text-sm"><a href="tel:+33146592228" class="text-decoration-none">+33 1 46 59 22 28</a></div>
                     </div>
                     <div class="flex flex-row">
                       <div class="flex h-8 w-8 items-center justify-center rounded-full p-2">
                         <i class="primary-color-text fa-regular fa-envelope text-lg text-[var(--primary-color)]"
                           aria-hidden="true"></i>
                       </div>
-                      <div class="flex items-center text-sm">info@santeproaudio.com</div>
+                      <div class="flex items-center text-sm"><a href="mailto:contact@santeproaudio.fr" class="text-decoration-none">contact@santeproaudio.fr</a></div>
                     </div>
                     <div class="flex flex-row">
                       <div class="flex h-8 w-8 items-center justify-center rounded-full p-2">
                         <i class="primary-color-text fa-regular fa-location-dot text-lg text-[var(--primary-color)]"
                           aria-hidden="true"></i>
                       </div>
-                      <div class="flex items-center text-sm">Paris, France</div>
+                      <div class="flex items-center text-sm">45, rue de Boulainvilliers, 75016 Paris, France</div>
                     </div>
                   </div>
                 </div>

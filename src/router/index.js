@@ -12,13 +12,18 @@ const router = createRouter({
     {
       path: '/devis',
       name: 'devis',
-      component: () => import('../views/Subscription.vue'), // Parent component for all steps
+      component: () => import('../views/Subscription.vue'),
  
     },
     {
       path: '/devis/merci',
       name: 'merci',
       component: () => import('../views/Merci.vue'),
+    },
+    {
+      path: '/mentions-legales',
+      name: 'merci',
+      component: () => import('../views/mentions-legales.vue'),
     },
     {
       path: '/:pathMatch(.*)*',
