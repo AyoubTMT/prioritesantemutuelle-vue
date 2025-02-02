@@ -80,8 +80,9 @@
             @blur="$v.profession.$touch()"
           >
           <option selected disabled value="">Choisissez une spécialité médicale</option>
-          <option>Audioprothésiste</option>
-          <option>Salarié chez un audioprothésiste</option>
+          <option>Audioprothésiste Indépendant</option>
+          <option>Salarié dans un centre d'audition</option>
+          <option>Audioprothésiste gérant du centre d'audition</option>
           <!--   <optgroup label="Médecins">
                     <option>Médecin généraliste</option>
                     <option>Chirurgien</option>
@@ -129,7 +130,7 @@
         </div>
 
         <!-- Social Regime -->
-        <div class="mb-4">
+        <!-- <div class="mb-4">
           <label for="social-regime" class="form-label fw-semibold">Régime social médical :</label>
           <select
             id="social-regime"
@@ -149,7 +150,7 @@
           <small v-if="$v.regime.$error" class="text-danger">
             Veuillez sélectionner un régime social.
           </small>
-        </div>
+        </div> -->
 
         <!-- Health Insurance -->
         <div class="mb-4">
@@ -225,7 +226,7 @@ const rules = {
   birthdate: { required,maxlength:maxLength(10), isOlderThan18 },
   gender: { required },
   profession: { required },
-  regime: { required },
+  // regime: { required },
   complementaire: { required },
 };
 

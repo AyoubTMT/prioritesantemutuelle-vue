@@ -17,10 +17,10 @@
       </div>
     </div>
     <div class="card-body">
-      <h4 class="text-center mb-4 text-primary"></h4>
+      <h4 class="text-center text-primary"></h4>
       <form @submit.prevent="submitStep">
         <!-- Dynamic Sections -->
-        <div v-for="section in sections" :key="section.name" class="card mb-4 shadow-sm">
+        <div v-for="section in sections" :key="section.name" class="card">
           <div class="card-body">
             <!-- Section Header -->
             <div class="d-flex align-items-center mb-3">
@@ -52,17 +52,17 @@
                 />
                 <label
                   :for="`${section.name}-${option.value}`"
-                  class="btn btn-outline-primary w-100 d-flex flex-column py-3 btn-option"
+                  class="btn btn-outline-primary w-100 d-flex flex-column py-2 btn-option"
                   :class="{
                     active: selected[section.name] === option.value,
                     'disabled-option': !isOptionAllowed(section.name, option.value),
                   }"
                 >
-                  <span class="fw-bold mb-1">{{ option.label }}</span>
+                  <span class="">{{ option.label }}</span>
                   <div class="text-primary">
                     <i v-for="n in option.level" :key="n" class="fas fa-heart"></i>
                   </div>
-                  <small class="text-muted mt-1">{{ option.subtext }}</small>
+                  <small class="">{{ option.subtext }}</small>
                 </label>
               </div>
             </div>
@@ -75,10 +75,10 @@
         </div>
 
         <!-- Renfort Section -->
-        <div class="card mb-4 shadow-sm">
+        <div class="card mb-4">
           <div class="card-body">
             <div class="d-flex align-items-center gap-3 mb-3">
-              <label class="form-label fw-bold mb-0">
+              <label class="form-label mb-0">
                 Je choisis le renfort :<em class="text-danger">*</em>
               </label>
               <a href="#" @click.prevent="showPdfModal" class="text-decoration-none">
@@ -233,7 +233,7 @@ const sections = reactive([
     ]
   },
   {
-    title: 'AIDES AUDITIVES',
+    title: 'Aides Auditives',
     name: 'aides_auditives',
     tooltip: 'équipement',
     options: [
@@ -400,12 +400,22 @@ function showPdfModal() {
   color: white;
   border-color: #0d6efd;
 }
-.btn-outline-primary.active  .fa-heart::before {
+.fa-heart {
+  color: #000;
+}
+.btn-outline-primary:hover .fa-heart {
+  color: #0d6efd !important;
   content: "\f004";
   font-weight: 900;
 }
+.btn-outline-primary.active  .fa-heart::before {
+  content: "\f004";
+  font-weight: 900;
+  color: #0d6efd !important;
+}
 .btn-outline-primary  {
   border: 2px solid #dee2e6;
+  color: #000;
 }
 /* Disabled Option Style */
 .disabled-option {
@@ -446,12 +456,8 @@ h2.step-title {
   }
   
   .card-header {
-    /* display: flex;
-    align-content: center;
-    justify-content: center;
-    padding: 1rem 1rem 0rem 1rem;*/
     background-color: #fff;
-    border-bottom:0px; 
+    border-bottom: 0;
   }
 
   .step-indicator .step-bar {
@@ -464,43 +470,34 @@ h2.step-title {
   .step-indicator .step-bar.active {
     background-color: #007bff;
   }
-.option-card {
-  transition: all 0.2s ease;
-  border: 2px solid #dee2e6;
-  cursor: pointer;
-}
 
-.option-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
+  .card {
+    border: none; /* Remove border */
+    box-shadow: none; /* Remove shadow */
+  }
 
-.btn-check:checked + .option-card {
-  border-color: #0d6efd;
-  background-color: #f8f9fa;
-}
+  .card-title {
+    font-size: 1.1rem;
+    color: #2c3e50;
+  }
 
-.card-title {
-  font-size: 1.1rem;
-  color: #2c3e50;
-}
+  .alert-danger {
+    font-size: 0.9rem;
+  }
+  #formulaire .btn-check:checked + .btn, #formulaire .btn.active{
+    background-color: #b0e2fd !important;
+    border-color: #0d6efd !important;
+    color: #0d6efd;
+    font-weight: bold;
+  }
 
-.alert-danger {
-  font-size: 0.9rem;
-}
-#formulaire .btn-check:checked + .btn, #formulaire .btn.active{
-  background-color: #b0e2fd !important;
-  border-color: #0d6efd !important;
-  color: #3e3e3e;
-}
+  .fa-file-pdf {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
 
-.fa-file-pdf {
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.fa-file-pdf:hover {
-  transform: scale(1.1);
-  color: #dc3545 !important;
-}
+  .fa-file-pdf:hover {
+    transform: scale(1.1);
+    color: #dc3545 !important;
+  }
 </style>
