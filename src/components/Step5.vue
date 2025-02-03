@@ -29,7 +29,7 @@
               <h4>Soins Courants : <span class="text-muted fw-bold">{{ data.step1.custom.soins }}</span></h4>
               <p class="text-muted text-sm">
                 Honoraires paramédicaux: {{ details.soins_courants['Honoraires_paramédicaux'] }}<br />
-                Analyses et examens de laboratoire: {{ details.soins_courants.Analyses_et_examens_de_laboratoire}}<br />
+                Analyses et examens de laboratoire: {{ details.soins_courants['Analyses et examens de laboratoire']}}<br />
                 Médicaments: {{ details.soins_courants.Médicaments}}
               </p>
               <button class="btn btn-link p-0 text-sm text-start" @click="showModal('SOINS COURANTS')">
@@ -313,6 +313,7 @@ async function finalizeOffer() {
       `${API_BASE_URL}/api/send-email-client`, 
       data
     );
+    console.log('ffff');
     router.push('/devis/merci');
   } catch (err) {
     console.error("Error :", err);
