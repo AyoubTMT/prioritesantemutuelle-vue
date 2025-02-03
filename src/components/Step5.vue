@@ -28,10 +28,11 @@
             <div>
               <h4>Soins Courants : <span class="text-muted fw-bold">{{ data.step1.custom.soins }}</span></h4>
               <p class="text-muted text-sm">
-                Paramedicaux: {{ details.soins.paramedicaux }}<br />
-                Consultations: {{ details.soins.consultations }}
+                Honoraires paramédicaux: {{ details.soins_courants['Honoraires_paramédicaux'] }}<br />
+                Analyses et examens de laboratoire: {{ details.soins_courants.Analyses_et_examens_de_laboratoire}}<br />
+                Médicaments: {{ details.soins_courants.Médicaments}}
               </p>
-              <button class="btn btn-link p-0 text-sm text-start" @click="showModal('soins')">
+              <button class="btn btn-link p-0 text-sm text-start" @click="showModal('SOINS COURANTS')">
                 Voir toutes les garanties
               </button>
             </div>
@@ -45,10 +46,10 @@
             <div>
               <h4>Hospitalisation : <span class="text-muted fw-bold">{{ data.step1.custom.hospitalisation }}</span></h4>
               <p class="text-muted text-sm">
-                Forfait journalier hospitalier : {{ details.hospitalisation.Frais_journaliers_hospitalier }}<br />
+                Forfait journalier hospitalier : {{ details.hospitalisation.Forfait_journalier_hospitalier }}<br />
                 Participation forfaitaire: {{ details.hospitalisation.Participation_forfaitaire }}
               </p>
-              <button class="btn btn-link p-0 text-sm text-start" @click="showModal('hospitalisation')">
+              <button class="btn btn-link p-0 text-sm text-start" @click="showModal('HOSPITALISATION')">
                 Voir toutes les garanties
               </button>
             </div>
@@ -61,8 +62,10 @@
             </div>
             <div>
               <h4>Optique : <span class="text-muted fw-bold">{{ data.step1.custom.optique }}</span></h4>
-              <p class="text-muted text-sm">{{ details.optique.monture_2_verres_simples }}</p>
-              <button class="btn btn-link p-0 text-sm text-start" @click="showModal('optique')">
+              <p class="text-muted text-sm">
+                Monture + 2 verres simples : {{ details.optique['Monture + 2 verres simples'] }}<br />
+                Monture + 1 verre simple + 1 verre complexe : {{ details.optique['Monture + 1 verre simple + 1 verre complexe'] }}</p>
+              <button class="btn btn-link p-0 text-sm text-start" @click="showModal('OPTIQUE')">
                 Voir toutes les garanties
               </button>
             </div>
@@ -75,8 +78,9 @@
             </div>
             <div>
               <h4>Aides Auditives : <span class="text-muted fw-bold">{{ data.step1.custom.aides_auditives }}</span></h4>
-              <p class="text-muted text-sm">{{ details.aides_auditives.equipements_classe_I }}</p>
-              <button class="btn btn-link p-0 text-sm text-start" @click="showModal('aides_auditives')">
+              <p class="text-muted text-sm">
+                Equipements de classe II : {{ details.aides_auditives['Equipements de classe II'] }}</p>
+              <button class="btn btn-link p-0 text-sm text-start" @click="showModal('AIDES AUDITIVES')">
                 Voir toutes les garanties
               </button>
             </div>
@@ -90,10 +94,10 @@
             <div>
               <h4>Dentaire : <span class="text-muted fw-bold">{{ data.step1.custom.dentaire }}</span></h4>
               <p class="text-muted text-sm">
-                Soins: {{ details.dentaire.soins }}<br />
-                Prothèses: {{ details.dentaire.protheses }}
+                Soins: {{ details.dentaire.Soins }}<br />
+                Prothèses: {{ details.dentaire.Prothèses }}
               </p>
-              <button class="btn btn-link p-0 text-sm text-start" @click="showModal('dentaire')">
+              <button class="btn btn-link p-0 text-sm text-start" @click="showModal('DENTAIRE')">
                 Voir toutes les garanties
               </button>
             </div>
@@ -106,8 +110,8 @@
             </div>
             <div>
               <h4>Médecines Douces : <span class="text-muted fw-bold">{{ data.step1.custom.medecines_douces }}</span></h4>
-              <p class="text-muted text-sm">{{ details.medecines_douces.osteopathie }}</p>
-              <button class="btn btn-link p-0 text-sm text-start" @click="showModal('medecines_douces')">
+              <p class="text-muted text-sm">Vaccins prescrits non remboursés par la Sécurité sociale : {{ details.prevention_et_medecines_douces['Vaccins_prescrits_non_remboursés_par_la_Sécurité_sociale'] }}</p>
+              <button class="btn btn-link p-0 text-sm text-start" @click="showModal('PREVENTION ET MEDECINES DOUCES')">
                 Voir toutes les garanties
               </button>
             </div>
@@ -264,7 +268,7 @@ async function fetchFormula() {
       `${API_BASE_URL}/api/suggest-formula`, 
       data.step1
     );
-    
+    console.log(formulaResponse.data.details);
     formula.value = formulaResponse.data.formula;
     details.value = formulaResponse.data.details;
 
@@ -288,7 +292,8 @@ function formatKey(key) {
 // Modal logic
 function showModal(category) {
   modalTitle.value = `Toutes les garanties pour ${category}`;
-  modalData.value = details.value[category] || { description: "Aucune information supplémentaire disponible." };
+  const formattedCategory = category.replace(/ /g, '_').toLowerCase();
+  modalData.value = details.value[formattedCategory] || { description: "Aucune information supplémentaire disponible." };
   isModalVisible.value = true;
 }
 
