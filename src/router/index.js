@@ -1,5 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
+import AuditionHomeView from '../views/HomeView.vue';
+import DentaireHomeView from "../views/DentaireHomeView.vue";
+import MedicaleHomeView from "../views/MedicaleHomeView.vue";
+
+const currentDomain = window.location.hostname;
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,7 +11,14 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView,
+      component:
+        currentDomain === "santeproaudio.fr"
+          ? AuditionHomeView
+          : currentDomain === "santepromedicale.fr"
+            ? MedicaleHomeView
+            : currentDomain === "santeprodentaire.fr"
+              ? DentaireHomeView
+              : AuditionHomeView,
     },
     {
       path: '/devis',
