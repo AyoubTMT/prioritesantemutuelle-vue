@@ -219,11 +219,19 @@ const isOlderThan18 = (value) => {
   const birthDate = new Date(value);
   const today = new Date();
   const age = today.getFullYear() - birthDate.getFullYear();
-  return age > 18;
+  return age >= 18;
+};
+
+const isOlderThan100 = (value) => {
+  if (!value) return false;
+  const birthDate = new Date(value);
+  const today = new Date();
+  const age = today.getFullYear() - birthDate.getFullYear();
+  return age <= 100;
 };
 
 const rules = {
-  birthdate: { required,maxlength:maxLength(10), isOlderThan18 },
+  birthdate: { required,maxlength:maxLength(10), isOlderThan18, isOlderThan100 },
   gender: { required },
   profession: { required },
   // regime: { required },
@@ -236,6 +244,7 @@ const getBirthdateErrorMessage = computed(() => {
   if (!$v.value.birthdate.$dirty) return ""; // Don't show error until the field is touched
   if ($v.value.birthdate.required.$invalid) return "La date de naissance est requise.";
   if ($v.value.birthdate.isOlderThan18.$invalid) return "Vous devez avoir au moins 18 ans.";
+  if ($v.value.birthdate.isOlderThan100.$invalid) return "La date de naissance est invalide.";
   if ($v.value.birthdate.maxlength.$invalid) return "Format invalide (jj/mm/aaaa).";
   return "";
 });

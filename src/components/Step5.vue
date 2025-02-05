@@ -308,12 +308,13 @@ function openPdfModal(url) {
 
 // Finalize offer logic
 async function finalizeOffer() {
+    console.log('ffff');
   try {
     const formulaResponse = await axios.post(
       `${API_BASE_URL}/api/send-email-client`, 
       data
     );
-    console.log('ffff');
+    console.log('gggg');
     router.push('/devis/merci');
   } catch (err) {
     console.error("Error :", err);

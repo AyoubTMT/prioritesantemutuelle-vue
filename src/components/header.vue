@@ -2,14 +2,15 @@
     <header class="container-fluid head">
         <div id="header-bar" class="container">
             <div class="row align-items-center">
-                <div class="col-10 col-md-2 col-lg-2 col-xl-3 d-flex align-items-center">
+                <div class="col-10 col-md-2 col-lg-2 col-xl-3 d-flex align-items-center ps-4">
 <!--                     <img src="../assets/icons/back.svg" alt="retour" class="slideback me-2" @click="prevStep">
  -->                    <router-link to="/">
                         
                         <div class="text-xl font-bold">
                             <a href="/"
                                 class="mb-6 text-lg font-bold text-primary text-xl">
-                                <span class="">Santé&nbsp;</span><span class="text-secondary">Pro Audio</span>
+                                <!-- <span class="">Santé&nbsp;</span><span class="text-secondary">Pro Audio</span> -->
+                                 <img src="../assets/media/logo.png" width="100" height="35" alt="Santé Pro" class="img-fluid">
                             </a>
                         </div>
                         <!-- <div class="d-none d-lg-block"><img src="../assets/logo.png" width="300" height="35" alt="decennale-express" class="img-fluid"></div>

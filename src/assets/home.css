@@ -27558,6 +27558,13 @@
       unicode-range: u+21, u+23-25, u+2b, u+3f, u+1021-1025, u+102b, u+103f, u+e010, u+e017, u+e01b, u+e01f-e021, u+e024, u+e02f, u+e03a, u+e042, u+e045-e046, u+e060, u+e068, u+e06e, u+e074, u+e076, u+f001, u+f004-f008, u+f00c, u+f011-f012, u+f015-f01c, u+f023-f025, u+f02a, u+f02c-f031, u+f03a, u+f03d-f03e, u+f041, u+f04a-f04e, u+f05b, u+f060-f065, u+f067-f068, u+f06b-f06e, u+f072, u+f075, u+f077-f078, u+f07b, u+f084, u+f086, u+f091-f093, u+f095, u+f09c-f09d, u+f0a3, u+f128, u+f12a, u+f155, u+f292, u+f295, u+f332, u+f541, u+f80a, u+f80c, u+10e010, u+10e017, u+10e01b, u+10e01f-10e021, u+10e024, u+10e02f, u+10e03a, u+10e042, u+10e045-10e046, u+10e060, u+10e068, u+10e06e, u+10e074, u+10e076, u+10f001, u+10f004-10f008, u+10f00c, u+10f011-10f012, u+10f015-10f01c, u+10f023-10f025, u+10f02a, u+10f02c-10f031, u+10f03a, u+10f03d-10f03e, u+10f041, u+10f04a-10f04e, u+10f05b, u+10f060-10f065, u+10f067-10f068, u+10f06b-10f06e, u+10f072, u+10f075, u+10f077-10f078, u+10f07b, u+10f084, u+10f086, u+10f091-10f093, u+10f095, u+10f09c-10f09d, u+10f0a3, u+10f128, u+10f12a, u+10f155, u+10f292, u+10f295, u+10f332, u+10f541, u+10f80a, u+10f80c
     }
 
+    .text-popins {
+      font-family: var(--font-family-heading) !important;
+    }
+    p, div {
+      font-family: var(--font-family-heading) !important;
+      
+    }
     .fa-sharp-duotone.fa-light,
     .fasdl {
       position: relative;

@@ -35,7 +35,7 @@ onMounted(() => {
                 <div class="text-xl font-bold">
                   <a href="/"
                     class="primary-color-text text-xl text-[var(--primary-color)] [font-family:var(--font-family-heading)] lg:text-3xl">
-                    <span class="">Santé Pro Audio</span>
+                    <img src="../assets/media/logo.png" width="100" height="35" alt="Santé Pro" class="img-fluid">
                   </a>
                 </div>
                 <!-- <div class="flex lg:hidden">
@@ -510,7 +510,7 @@ onMounted(() => {
                   </div>
                 </div>
               </div>
-              <p class="relative z-10 mt-24 text-center text-lg text-[var(--gray-text-color)]">© Santé Pro Audio 2024
+              <p class="relative z-10 mt-24 text-center text-lg text-[var(--gray-text-color)]">© Santé Pro Audio 2025
               </p>
             </div>
           </footer>
