@@ -18,7 +18,7 @@ const router = createRouter({
             ? MedicaleHomeView
             : currentDomain === "santeprodentaire.fr"
               ? DentaireHomeView
-              : DentaireHomeView,
+              : AuditionHomeView,
     },
     {
       path: '/devis',

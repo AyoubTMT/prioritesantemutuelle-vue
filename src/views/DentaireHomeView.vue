@@ -65,7 +65,7 @@ onMounted(() => {
                 <div class="text-xl font-bold">
                   <a href="/"
                     class="primary-color-text text-xl text-[var(--primary-color)] [font-family:var(--font-family-heading)] lg:text-3xl">
-                    <img src="../assets/media/logo.png" width="100" height="35" alt="Santé Pro" class="img-fluid">
+                    <img src="../assets/media/logoDentaire.png" width="100" height="35" alt="Santé Pro" class="img-fluid">
                   </a>
                 </div>
                 <!-- <div class="flex lg:hidden">
