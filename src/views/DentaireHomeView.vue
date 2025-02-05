@@ -1,9 +1,38 @@
 <script setup>
 import { ref, onMounted } from "vue";
+import axios from "axios";
 
-const clearLocalStorage = () => {
-  localStorage.clear();
-  console.log("LocalStorage cleared, starting a new devis.");
+const form = ref({
+  prenom: "",
+  nom: "",
+  email: "",
+  telephone: "",
+  message: "",
+});
+
+const successMessage = ref("");
+const loading = ref(false);
+const errorMessages = ref([]);
+const API_BASE_URL = import.meta.env.VITE_BASE_URL || "http://back.santeproaudio.fr";
+
+const submitForm = async () => {
+  loading.value = true;
+  successMessage.value = "";
+  errorMessages.value = [];
+
+  try {
+    const response = await axios.post(`${API_BASE_URL}/api/contact`, form.value);
+    successMessage.value = response.data.message;
+    form.value = { firstName: "", lastName: "", email: "", phone: "", message: "" }; // Reset form
+  } catch (error) {
+    if (error.response && error.response.data.errors) {
+      errorMessages.value = Object.values(error.response.data.errors).flat();
+    } else {
+      errorMessages.value = ["Une erreur est survenue. Veuillez réessayer."];
+    }
+  } finally {
+    loading.value = false;
+  }
 };
 
 onMounted(() => {
@@ -15,6 +44,7 @@ onMounted(() => {
     document.head.appendChild(script);
   }
 });
+
 </script>
 
 <style>
@@ -104,7 +134,7 @@ onMounted(() => {
                 <div class="mt-12 w-full lg:mt-24 lg:w-[55%] lg:pr-14">
                   <h1 class="mb-6 text-center text-3xl font-bold lg:text-left xl:text-4xl 2xl:text-5xl">
                     <div class="[font-family:var(--font-family-heading)] 2xl:text-4xl">Assurance santé <br>​Spéciale
-                      Dentistes</div>
+                      Audioprothésistes</div>
                     <div class="text-[var(--primary-color)] [font-family:var(--font-family-heading)] 2xl:text-3xl">
                       Sécurisez Votre Pratique</div>
                   </h1>
@@ -336,8 +366,8 @@ onMounted(() => {
                     dévoués à vous fournir des solutions qui non seulement assurent votre pratique, mais favorisent
                     aussi la croissance de votre activité au service de vos patients.</p>
                   <div class="mb-12 text-center lg:text-left"><a href="/devis"
-                      class="items-center rounded-[var(--button-rounded-radius)] bg-[var(--primary-color)] px-[var(--button-padding-x)] py-[var(--button-padding-y)] font-semibold text-[var(--primary-button-text-color)] hover:bg-[var(--primary-button-hover-bg-color)] hover:bg-[var(--primary-button-hover-text-color)]"><span
-                        class="">Découvrez Nos Offres</span></a></div>
+                      class="items-center rounded bg-[var(--primary-button-bg-color)] px-5 py-3 font-semibold text-[var(--primary-button-text-color)] hover:bg-[var(--primary-button-hover-bg-color)] hover:text-[var(--primary-button-hover-text-color)]"><span
+                      >Découvrez Nos Offres</span></a></div>
                 </div>
                 <div class="relative mt-12 hidden w-full overflow-visible lg:block lg:w-[45%] lg:p-6">
                   <div
@@ -399,50 +429,50 @@ onMounted(() => {
                     </div>
                   </div>
                   <div class="w-full p-6" id="contact">
-                    <form >
+                    <form @submit.prevent="submitForm">
                       <div class="flex flex-col space-y-4 md:space-y-12">
                         <div class="flex flex-col space-y-4 md:flex-row md:space-x-8 md:space-y-0">
                           <div class="w-full">
-                            <div class=""><label for="first-name"
-                                class="font-medium text-[var(--dark-text-color)]">Prénom</label></div>
-                            <div><input name="first-name" type="text"
-                                class="w-full border border-[#ffffff] border-b-[var(--gray-text-color)] p-2"
-                                required=""></div>
+                            <label class="font-medium text-[var(--dark-text-color)]">Prénom</label>
+                            <input v-model="form.prenom" type="text" class="w-full border p-2" required />
                           </div>
                           <div class="w-full">
-                            <div class=""><label for="last-name"
-                                class="font-medium text-[var(--dark-text-color)]">Nom</label></div>
-                            <div><input name="last-name" type="text"
-                                class="w-full border border-[#ffffff] border-b-[var(--gray-text-color)] p-2"
-                                required=""></div>
+                            <label class="font-medium text-[var(--dark-text-color)]">Nom</label>
+                            <input v-model="form.nom" type="text" class="w-full border p-2"  />
                           </div>
                         </div>
+
                         <div class="flex flex-col space-y-4 md:flex-row md:space-x-8 md:space-y-0">
                           <div class="w-full">
-                            <div class=""><label for="email"
-                                class="font-medium text-[var(--dark-text-color)]">Email</label></div>
-                            <div><input type="email" name="email"
-                                class="w-full border border-[#ffffff] border-b-[var(--gray-text-color)] p-2"
-                                required=""></div>
+                            <label class="font-medium text-[var(--dark-text-color)]">Email</label>
+                            <input v-model="form.email" type="email" class="w-full border p-2"  />
                           </div>
                           <div class="w-full">
-                            <div class=""><label for="phone" class="font-medium text-[var(--dark-text-color)]">Numéro de
-                                Téléphone</label></div>
-                            <div><input type="tel" name="phone"
-                                class="w-full border border-[#ffffff] border-b-[var(--gray-text-color)] p-2"
-                                required=""></div>
+                            <label class="font-medium text-[var(--dark-text-color)]">Numéro de Téléphone</label>
+                            <input v-model="form.telephone" type="tel" class="w-full border p-2"  />
                           </div>
                         </div>
+
                         <div class="w-full">
-                          <div class=""><label for="message"
-                              class="font-medium text-[var(--dark-text-color)]">Message</label></div>
-                          <div class=""><textarea name="message" rows="4"
-                              class="w-full border border-[#ffffff] border-b-[var(--gray-text-color)] p-2"
-                              required=""></textarea></div>
+                          <label class="font-medium text-[var(--dark-text-color)]">Message</label>
+                          <textarea v-model="form.message" rows="4" class="w-full border p-2" ></textarea>
                         </div>
-                        <div class=""><button type="submit"
-                            class="items-center rounded-[var(--button-rounded-radius)] bg-[var(--primary-color)] px-[var(--button-padding-x)] py-[var(--button-padding-y)] text-sm font-semibold uppercase text-[var(--primary-button-text-color)] hover:bg-[var(--primary-button-hover-bg-color)] hover:text-[var(--primary-button-hover-text-color)]">Soumettre
-                            Votre Message</button></div>
+
+                        <div>
+                          <button
+                            type="submit"
+                            :disabled="loading"
+                            class="rounded bg-[var(--primary-color)] px-4 py-2 text-white hover:bg-opacity-80"
+                          >
+                            <span v-if="loading" class="animate-spin">⏳</span>
+                            <span v-else>Soumettre Votre Message</span>
+                          </button>
+                        </div>
+                        
+                        <p v-if="successMessage" class="text-green-500">{{ successMessage }}</p>
+                        <ul v-if="errorMessages.length" class="text-red-500">
+                          <li v-for="(error, index) in errorMessages" :key="index">{{ error }}</li>
+                        </ul>
                       </div>
                     </form>
                   </div>
