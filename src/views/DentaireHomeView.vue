@@ -134,14 +134,11 @@ onMounted(() => {
                 <div class="mt-12 w-full lg:mt-24 lg:w-[55%] lg:pr-14">
                   <h1 class="mb-6 text-center text-3xl font-bold lg:text-left xl:text-4xl 2xl:text-5xl">
                     <div class="[font-family:var(--font-family-heading)] 2xl:text-4xl">Assurance santé <br>​Spéciale
-                      Audioprothésistes</div>
+                      Dentistes</div>
                     <div class="text-[var(--primary-color)] [font-family:var(--font-family-heading)] 2xl:text-3xl">
-                      Sécurisez Votre Pratique</div>
+                      Protégez Votre Cabinet</div>
                   </h1>
-                  <p class="mb-6 text-center text-sm text-[var(--gray-text-color)] lg:text-left">Santé Pro Audio propose
-                    des solutions d'assurance conçues exclusivement pour les audioprothésistes. Notre couverture sur
-                    mesure vous offre la tranquillité d'esprit nécessaire pour vous concentrer sur vos patients, tout en
-                    sachant que votre pratique est protégée contre les imprévus.</p>
+                  <p class="mb-6 text-center text-sm text-[var(--gray-text-color)] lg:text-left">Santé Pro Dentaire propose des solutions d'assurance spécialement conçues pour les chirurgiens-dentistes. Notre couverture complète protège votre pratique contre les risques spécifiques : responsabilité professionnelle, équipements dentaires haut de gamme, et protection juridique. Exercez sereinement à partir de seulement 150$/mois avec une assurance qui comprend vos besoins uniques.</p>
                   <div class="mb-12 text-center lg:text-left"><a href="/devis"
                       class="items-center rounded bg-[var(--primary-button-bg-color)] px-5 py-3 font-semibold text-[var(--primary-button-text-color)] hover:bg-[var(--primary-button-hover-bg-color)] hover:text-[var(--primary-button-hover-text-color)]"><span
                         class="">Découvrez Nos Offres</span></a></div>
@@ -154,7 +151,7 @@ onMounted(() => {
                   <div
                     class="absolute -right-9 top-16 h-[120px] w-[160px] bg-[radial-gradient(#cacccc_3px,transparent_3px)] [background-size:14px_14px]">
                   </div><img
-                    src="https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/7f9bf9e0-075c-4329-2faf-0fc45176ad00/public"
+                    src="https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/a9fac8d6-3d90-447e-8096-813602770500/public"
                     alt="Hero" class="relative mt-8 aspect-[4/3] w-full rounded-2xl object-cover lg:mt-0"
                     data-landingsite-gallery-type="image" data-seo-image=""
                     data-media="{&quot;id&quot;:&quot;1325611798&quot;,&quot;src&quot;:&quot;iStock&quot;,&quot;type&quot;:&quot;image&quot;}">
@@ -167,31 +164,28 @@ onMounted(() => {
               <div class="flex flex-col space-y-6 md:space-y-8">
                 <h3
                   class="text-center text-sm font-medium uppercase tracking-widest text-[var(--primary-color)] md:text-left">
-                  Découvrez Santé Pro Audio</h3>
+                  Découvrez Santé Pro Dentaires</h3>
                 <div class="flex flex-col space-y-6 md:flex-row md:space-y-0 md:space-x-8">
                   <div
                     class="flex-1 text-balance text-2xl sm:text-3xl font-semibold [font-family:var(--font-family-heading)] text-center md:text-left 2xl:text-2xl">
-                    Solutions d'Assurance Spécialisées pour les Audioprothésistes</div>
-                  <div class="flex-1 text-center text-base sm:text-lg md:text-left 2xl:text-base">Avec un engagement
-                    inébranlable envers le soutien des professionnels de la santé, Santé Pro Audio propose des solutions
-                    d'assurance adaptées aux besoins uniques de chaque audioprothésiste.</div>
+                    Solutions d'Assurance Sur Mesure pour les Chirurgiens-Dentistes</div>
+                  <div class="flex-1 text-center text-base sm:text-lg md:text-left 2xl:text-base">Avec une expertise approfondie dans le domaine dentaire, nous proposons des solutions d'assurance spécialement conçues pour protéger votre cabinet et répondre aux défis spécifiques de votre pratique dentaire.</div>
                 </div>
                 <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
                   <div
                     class="flex flex-1 flex-col border-[var(--light-border-color)] transition-all duration-300 ease-in-out hover:shadow-lg hover:scale-[1.02]">
                     <img class="h-36 object-cover lg:max-h-none dont-replace" alt=""
-                      src="https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/6a8dd3fb-19ab-415f-7772-1838d8156d00/public"
+                      src="https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/f3bd6ec5-11d1-4311-583a-ff7ce1042600/public"
                       data-landingsite-gallery-type="image"
                       data-media="{&quot;id&quot;:&quot;iumvwnj&quot;,&quot;src&quot;:&quot;upload&quot;,&quot;type&quot;:&quot;image&quot;}"
                       oncontextmenu="return false;">
-                    <div class="py-3 text-center text-xl font-semibold 2xl:text-base">Couverture Personnalisée</div>
-                    <div class="px-6 pb-3 text-center text-sm">Obtenez une couverture sur mesure qui répond parfaitement
-                      aux besoins de votre pratique d'audioprothésiste.</div>
+                    <div class="py-3 text-center text-xl font-semibold 2xl:text-base">Protection Équipement</div>
+                    <div class="px-6 pb-3 text-center text-sm">Couverture complète pour vos équipements dentaires de haute technologie et votre matériel spécialisé.</div>
                   </div>
                   <div
                     class="flex flex-1 flex-col border-[var(--light-border-color)] transition-all duration-300 ease-in-out hover:shadow-lg hover:scale-[1.02]">
                     <img class="h-36 object-cover lg:max-h-none dont-replace" alt=""
-                      src="https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/4f5309bb-e340-4d1a-8d3e-8730ec755e00/publicContain"
+                      src="https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/2ad3525c-aad0-486a-466b-51803e67fa00/publicContain"
                       data-landingsite-gallery-type="image"
                       data-media="{&quot;id&quot;:&quot;iio5irl&quot;,&quot;src&quot;:&quot;upload&quot;,&quot;type&quot;:&quot;image&quot;}"
                       oncontextmenu="return false;">
@@ -202,7 +196,7 @@ onMounted(() => {
                   <div
                     class="flex flex-1 flex-col border-[var(--light-border-color)] transition-all duration-300 ease-in-out hover:shadow-lg hover:scale-[1.02]">
                     <img class="h-36 object-cover lg:max-h-none" alt=""
-                      src="https://media.gettyimages.com/id/2080366444/photo/female-audiologist-doing-consultation-for-grey-haired-senior-man-patient-with-hear-problems.jpg?b=1&amp;s=612x612&amp;w=0&amp;k=20&amp;c=80pw8eHBsjcM1cD3ciH1y86Phy5loOXrfZUhhCkil00="
+                      src="https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/9854c358-bd66-4458-aaf0-1f5bb0c24d00/public"
                       data-landingsite-gallery-type="image"
                       data-media="{&quot;id&quot;:&quot;2080366444&quot;,&quot;src&quot;:&quot;iStock&quot;,&quot;type&quot;:&quot;image&quot;}">
                     <div class="py-3 text-center text-xl font-semibold 2xl:text-base">Optimisation Locale</div>
@@ -212,7 +206,7 @@ onMounted(() => {
                   <div
                     class="flex flex-1 flex-col border-[var(--light-border-color)] transition-all duration-300 ease-in-out hover:shadow-lg hover:scale-[1.02]">
                     <img class="h-36 object-cover lg:max-h-none dont-replace" alt=""
-                      src="https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/0b38327c-a10b-4740-9327-94adfb776300/public"
+                      src="https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/d7dff460-e23d-4a4e-4e19-d9c3ba27af00/public"
                       data-landingsite-gallery-type="image"
                       data-media="{&quot;id&quot;:&quot;ivf063l&quot;,&quot;src&quot;:&quot;upload&quot;,&quot;type&quot;:&quot;image&quot;}"
                       oncontextmenu="return false;">
@@ -236,12 +230,11 @@ onMounted(() => {
                         class="absolute -left-16 -top-16 h-[300px] w-[300px] rounded-full border-[50px] border-[var(--medium-background-color)]">
                       </div>
                       <div class="relative z-10 text-center md:text-left">
-                        <div class="mb-3 text-xs 2xl:text-sm">Optimisez votre assurance professionnelle</div>
+                        <div class="mb-3 text-xs 2xl:text-sm">Sécurisez votre cabinet dentaire</div>
                         <div
                           class="mb-3 text-2xl font-bold [font-family:var(--font-family-heading)] lg:text-3xl xl:text-4xl 2xl:text-3xl">
-                          Protection Spécialisée pour Audioprothésistes</div>
-                        <div class="mb-8 text-sm 2xl:text-base">Concentrez-vous sur le bien-être de vos patients, tandis
-                          que nous veillons à la sécurité de votre pratique avec des solutions d'assurance sur mesure.
+                          Protection Sur Mesure pour Dentistes</div>
+                        <div class="mb-8 text-sm 2xl:text-base">Protégez votre pratique dentaire avec une assurance complète : équipements haute technologie, responsabilité professionnelle spécifique aux soins dentaires, et protection de votre cabinet. Une couverture adaptée aux risques uniques de votre profession.
                         </div>
                         <a href="/devis"
                           class="primary-color-text items-center rounded bg-[var(--secondary-button-bg-color)] px-8 py-[var(--button-padding-y)] text-sm font-semibold text-[var(--secondary-button-text-color)] hover:bg-[var(--secondary-button-hover-bg-color)] hover:text-[var(--secondary-button-hover-text-color)]">
@@ -282,54 +275,50 @@ onMounted(() => {
             <div class="mx-auto px-4 pb-32 lg:container sm:px-12 xl:px-32" id="services">
               <div class="relative">
                 <div class="pt-24">
-                  <div class="mb-2 text-center text-[10px] text-[var(--primary-color)] lg:text-left">Nos Réalisations
+                  <div class="mb-2 text-center text-[10px] text-[var(--primary-color)] lg:text-left">Nos services
                   </div>
                   <h1
                     class="mb-4 text-center text-xl font-bold [font-family:var(--font-family-heading)] lg:text-left lg:text-2xl xl:text-3xl">
-                    Assurance Spécialisée pour les Audioprothésistes</h1>
-                  <p class="mb-4 text-center text-sm font-thin text-[var(--gray-text-color)] lg:text-left">Découvrez nos
-                    solutions d'assurance sur mesure, conçues pour vous permettre de vous concentrer sur votre pratique
-                    tout en garantissant la sécurité de vos patients.</p>
+                    Assurance Spécialisée pour les Dentistes</h1>
+                  <p class="mb-4 text-center text-sm font-thin text-[var(--gray-text-color)] lg:text-left">Des solutions d'assurance sur mesure conçues spécifiquement pour les dentistes, protégeant votre cabinet, vos équipements sophistiqués et votre pratique professionnelle pour exercer en toute sérénité.</p>
                 </div>
               </div>
               <div class="relative grid grid-cols-1 gap-6 pt-8 md:grid-cols-3">
                 <div class="flex flex-col rounded-3xl shadow-lg">
                   <div class="relative aspect-square h-[200px] overflow-hidden rounded-t-3xl"><img
                       class="h-full w-full object-cover dont-replace"
-                      src="https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/6b8d3436-5a05-4eb8-4d74-5c7c597e7000/public"
+                      src="https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/a7480342-89b3-4fac-e35f-0d84b77c2500/public"
                       alt="Consultation Audioprothésiste" data-landingsite-gallery-type="image"
                       data-media="{&quot;id&quot;:&quot;ics7rgp&quot;,&quot;src&quot;:&quot;upload&quot;,&quot;type&quot;:&quot;image&quot;}"
                       oncontextmenu="return false;"></div>
                   <div class="rounded-b-3xl bg-[#ffffff] p-4">
-                    <div class="text-xl font-bold 2xl:text-lg">Assurance Personnalisée</div>
-                    <div class="text-lg font-thin text-[var(--gray-text-color)] 2xl:text-base">Couverture adaptée pour
-                      les audioprothésistes, vous permettant de travailler en toute tranquillité.<br>​<br></div>
+                    <div class="text-xl font-bold 2xl:text-lg">Protection Équipements Dentaires</div>
+                    <div class="text-lg font-thin text-[var(--gray-text-color)] 2xl:text-base">Couverture complète de vos équipements dentaires haut de gamme : fauteuils, units, radiologie, CFAO, contre les pannes, le vol et les dommages accidentels.<br>​<br></div>
                   </div>
                 </div>
                 <div class="flex flex-col rounded-3xl shadow-lg">
                   <div class="relative aspect-square h-[200px] overflow-hidden rounded-t-3xl"><img
                       class="h-full w-full object-cover dont-replace"
-                      src="https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/d66f0dc4-769d-4fd7-c00e-3a0e2e5bb400/public"
+                      src="https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/2ad3525c-aad0-486a-466b-51803e67fa00/publicContain"
                       alt="Technologie Audioprothésiste" data-landingsite-gallery-type="image"
                       data-media="{&quot;id&quot;:&quot;1279371001&quot;,&quot;src&quot;:&quot;iStock&quot;,&quot;type&quot;:&quot;image&quot;}"
                       oncontextmenu="return false;"></div>
                   <div class="rounded-b-3xl bg-[#ffffff] p-4">
                     <div class="text-xl font-bold 2xl:text-lg">Assistance Technique 24/7</div>
                     <div class="text-lg font-thin text-[var(--gray-text-color)] 2xl:text-base">Accès à un support
-                      technique constant pour toute question liée à votre couverture.<br>​<br></div>
+                      technique constant pour toute question liée à votre couverture.<br>​<br>​<br>​<br></div>
                   </div>
                 </div>
                 <div class="flex flex-col rounded-3xl shadow-lg">
                   <div class="relative aspect-square h-[200px] overflow-hidden rounded-t-3xl"><img
                       class="h-full w-full object-cover dont-replace"
-                      src="https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/7c71d124-69d9-46aa-fa3a-a8c469850500/publicContain"
+                      src="https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/8a1ab7e5-f412-44c4-b084-3656aa09b400/public"
                       alt="Soins Audiologiques" data-landingsite-gallery-type="image"
                       data-media="{&quot;id&quot;:&quot;i9qteew&quot;,&quot;src&quot;:&quot;upload&quot;,&quot;type&quot;:&quot;image&quot;}"
                       oncontextmenu="return false;"></div>
                   <div class="rounded-b-3xl bg-[#ffffff] p-4">
-                    <div class="text-xl font-bold 2xl:text-lg">Couverture Locale Optimale</div>
-                    <div class="text-lg font-thin text-[var(--gray-text-color)] 2xl:text-base">Bénéficiez d'une
-                      protection renforcée dans les communautés où vous exercez.<br>​</div>
+                    <div class="text-xl font-bold 2xl:text-lg">Responsabilité Civile Professionnelle</div>
+                    <div class="text-lg font-thin text-[var(--gray-text-color)] 2xl:text-base">Protection complète contre les risques spécifiques aux soins dentaires, incluant la garantie des actes prothétiques et implantaires.<br>​<br>​</div>
                   </div>
                 </div>
               </div>
@@ -341,30 +330,20 @@ onMounted(() => {
                 <div class="mt-12 w-full lg:mt-24 lg:w-[55%] lg:pr-14">
                   <h1
                     class="mb-6 text-center text-3xl font-bold [font-family:var(--font-family-heading)] lg:text-left xl:text-4xl 2xl:text-5xl">
-                    <div class="2xl:text-3xl">Assurance Spécialisée pour les Audioprothésistes</div>
+                    <div class="2xl:text-3xl">Assurance Spécialisée pour les Dentistes</div>
                   </h1>
-                  <p class="mb-6 text-center text-sm text-[var(--gray-text-color)] lg:text-left 2xl:text-sm">Santé Pro
-                    Audio offre une couverture d'assurance adaptée aux professionnels de la santé, spécifiquement conçue
-                    pour les audioprothésistes, afin de garantir votre tranquillité d'esprit pendant que vous vous
-                    concentrez sur vos patients.</p>
+                  <p class="mb-6 text-center text-sm text-[var(--gray-text-color)] lg:text-left 2xl:text-sm">Santé Pro Dentaires offre une couverture d'assurance sur mesure pour les chirurgiens-dentistes, spécifiquement conçue pour protéger votre cabinet dentaire et votre activité, vous permettant de vous concentrer sereinement sur vos patients.</p>
                   <div class="mb-8 pl-8 text-center text-[var(--gray-text-color)] lg:text-left">
                     <ul class="">
                       <li class="mb-4 flex flex-row"><i class="fa fa-check mr-4 mt-1 text-green-500"
-                          aria-hidden="true"></i><span class="2xl:text-sm">Protection sur Mesure - Bénéficiez d'une
-                          couverture qui répond précisément aux défis uniques de votre pratique
-                          d'audioprothésiste.</span></li>
+                          aria-hidden="true"></i><span class="2xl:text-sm">Responsabilité Civile Professionnelle - Protection spécifique pour les actes dentaires, implantologie, orthodontie et chirurgie dentaire.</span></li>
                       <li class="mb-4 flex flex-row"><i class="fa fa-check mr-4 mt-1 text-green-500"
-                          aria-hidden="true"></i><span class="2xl:text-sm">Soutien Disponible 24/7 - Notre équipe est à
-                          votre écoute en permanence pour toute question ou besoin d'assistance concernant votre
-                          assurance.</span></li>
+                          aria-hidden="true"></i><span class="2xl:text-sm">Protection Équipement Premium - Couverture complète de vos équipements dentaires coûteux : fauteuils, radiologie, instruments spécialisés.</span></li>
                       <li class="mb-4 flex flex-row"><i class="fa fa-check mr-4 mt-1 text-green-500"
-                          aria-hidden="true"></i><span class="2xl:text-sm">Transparence Totale - Pas de coûts cachés,
-                          juste une communication claire tout au long de votre parcours avec nous.</span></li>
+                          aria-hidden="true"></i><span class="2xl:text-sm">Garantie Tous Risques Cabinet - Protection contre le vol, les dégâts des eaux, et pertes d'exploitation avec continuité des revenus.</span></li>
                     </ul>
                   </div>
-                  <p class="mb-12 text-center text-[var(--gray-text-color)] lg:text-left 2xl:text-sm">Nous sommes
-                    dévoués à vous fournir des solutions qui non seulement assurent votre pratique, mais favorisent
-                    aussi la croissance de votre activité au service de vos patients.</p>
+                  <p class="mb-12 text-center text-[var(--gray-text-color)] lg:text-left 2xl:text-sm">Notre expertise du secteur dentaire nous permet de vous proposer des solutions d'assurance complètes, protégeant à la fois votre activité, vos équipements de haute technologie et votre responsabilité professionnelle.</p>
                   <div class="mb-12 text-center lg:text-left"><a href="/devis"
                       class="items-center rounded bg-[var(--primary-button-bg-color)] px-5 py-3 font-semibold text-[var(--primary-button-text-color)] hover:bg-[var(--primary-button-hover-bg-color)] hover:text-[var(--primary-button-hover-text-color)]"><span
                       >Découvrez Nos Offres</span></a></div>
@@ -376,12 +355,12 @@ onMounted(() => {
                   <div
                     class="absolute -right-9 top-16 h-[145px] w-[190px] bg-[radial-gradient(#cbcacc_3px,transparent_3px)] [background-size:16px_16px]">
                   </div><img
-                    src="https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/48a51aea-c9d5-4348-09d6-8e03b15c9f00/public"
+                    src="https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/69fa7767-9c6d-40d7-065b-16f7935d0a00/public"
                     alt="Hero" class="relative mt-8 aspect-square w-full rounded-2xl object-cover lg:mt-0"
                     data-landingsite-gallery-type="image"
                     data-media="{&quot;id&quot;:&quot;1126790906&quot;,&quot;src&quot;:&quot;iStock&quot;,&quot;type&quot;:&quot;image&quot;}">
                   <div class="absolute bottom-0 right-0 z-10 aspect-square w-[45%] rounded-2xl bg-[#ffffff] p-6"><img
-                      src="https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/b860bd41-fec6-471f-895f-8d84ab4dea00/public"
+                      src="https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/b82d1528-188f-4aaf-30a8-877763a71800/public"
                       alt="Hero" class="relative mt-8 h-full object-cover lg:mt-0 dont-replace"
                       data-landingsite-gallery-type="image"
                       data-media="{&quot;id&quot;:&quot;io4286&quot;,&quot;src&quot;:&quot;upload&quot;,&quot;type&quot;:&quot;image&quot;}"
