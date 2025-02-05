@@ -22,7 +22,7 @@ const router = createRouter({
     },
     {
       path: '/mentions-legales',
-      name: 'merci',
+      name: 'mentions-legales',
       component: () => import('../views/mentions-legales.vue'),
     },
     {
@@ -30,6 +30,6 @@ const router = createRouter({
       redirect: '/', // Redirect undefined routes to home 
     },
   ],
-})
+});
 
 export default router

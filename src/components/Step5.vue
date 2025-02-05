@@ -268,7 +268,6 @@ async function fetchFormula() {
       `${API_BASE_URL}/api/suggest-formula`, 
       data.step1
     );
-    console.log(formulaResponse.data.details);
     formula.value = formulaResponse.data.formula;
     details.value = formulaResponse.data.details;
 
@@ -308,13 +307,11 @@ function openPdfModal(url) {
 
 // Finalize offer logic
 async function finalizeOffer() {
-    console.log('ffff');
   try {
     const formulaResponse = await axios.post(
       `${API_BASE_URL}/api/send-email-client`, 
       data
     );
-    console.log('gggg');
     router.push('/devis/merci');
   } catch (err) {
     console.error("Error :", err);
