@@ -96,7 +96,7 @@ onMounted(() => {
                             <a class="block cursor-pointer border-b border-solid px-3 py-1.5 hover:bg-[#1900410a] lg:py-3 lg:font-medium"
                               href="/services">Services</a>
                             <a class="block cursor-pointer px-3 py-1.5 hover:bg-[#1900410a] lg:py-3 lg:font-medium"
-                              href="/assurance-audioprothesistes">Assurance pour Audioprothésistes</a>
+                              href="/assurance-audioprothesistes">Assurance pour médecins</a>
                           </div>
                         </div>
                       </div>
@@ -139,7 +139,7 @@ onMounted(() => {
                       Sécurisez Votre Pratique</div>
                   </h1>
                   <p class="mb-6 text-center text-sm text-[var(--gray-text-color)] lg:text-left">Santé Pro Audio propose
-                    des solutions d'assurance conçues exclusivement pour les audioprothésistes. Notre couverture sur
+                    des solutions d'assurance conçues exclusivement pour les médecins. Notre couverture sur
                     mesure vous offre la tranquillité d'esprit nécessaire pour vous concentrer sur vos patients, tout en
                     sachant que votre pratique est protégée contre les imprévus.</p>
                   <div class="mb-12 text-center lg:text-left"><a href="/devis"
@@ -481,7 +481,7 @@ onMounted(() => {
                 <div class="mb-8 flex flex-col space-y-4"><a href="/"
                     class="mb-8 text-xl font-bold text-[var(--primary-color)] [font-family:var(--font-family-heading)] lg:text-3xl"><span
                       class="">Santé </span><span class="text-gray-800">Pro Audio</span></a>
-                  <div class="text-gray-700 2xl:pr-[30%]">Une assurance pour les audioprothésistes.</div>
+                  <div class="text-gray-700 2xl:pr-[30%]">Une assurance pour les médecins.</div>
                 </div>
                 <div class="mb-8 flex flex-col space-y-4 text-[var(--dark-text-color)]">
                   <div class="mb-8 text-2xl font-semibold">Menu</div>
@@ -495,7 +495,7 @@ onMounted(() => {
                   <div class="mb-8 text-2xl font-semibold">Nos Services</div>
                   <div class="flex flex-col space-y-4 text-[var(--dark-text-color)]">
                     <div class="">Assurance santé personnalisée</div>
-                    <div class="">Formules adaptées aux audioprothésistes</div>
+                    <div class="">Formules adaptées aux médecins</div>
                     <div class="">Conseil en Protection Sociale</div>
                     <div class="">Indemnisation Rapide</div>
                     <div class="">Couverture complète et avantages</div>
