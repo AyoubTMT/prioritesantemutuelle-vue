@@ -4,7 +4,7 @@ import DentaireHomeView from "../views/DentaireHomeView.vue";
 import MedicaleHomeView from "../views/MedicaleHomeView.vue";
 
 const currentDomain = window.location.hostname.replace(/^www\./, ''); 
-
+console.log(currentDomain);
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -18,7 +18,7 @@ const router = createRouter({
             ? MedicaleHomeView
             : currentDomain === "santeprodentaire.fr"
               ? DentaireHomeView
-              : AuditionHomeView,
+              : DentaireHomeView,
     },
     {
       path: '/devis',

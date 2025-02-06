@@ -87,9 +87,12 @@ const props = defineProps(["step"]);
 // Dynamic logo based on domain
 const logo = computed(() => {
     const domainLogos = {
-        "santeproaudio.fr": logoImage,
         "santepromedicale.fr": logoMedicale,
-        "santeprodentaire.fr": logoDentaire
+        "santeproaudio.fr": logoImage,
+        "santeprodentaire.fr": logoDentaire,
+        "www.santeproaudio.fr": logoImage,
+        "www.santepromedicale.fr": logoMedicale,
+        "www.santeprodentaire.fr": logoDentaire
     };
     return domainLogos[window.location.hostname] || logoDentaire;
 });

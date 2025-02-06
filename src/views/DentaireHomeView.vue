@@ -136,9 +136,9 @@ onMounted(() => {
                     <div class="[font-family:var(--font-family-heading)] 2xl:text-4xl">Assurance santé <br>​Spéciale
                       Dentistes</div>
                     <div class="text-[var(--primary-color)] [font-family:var(--font-family-heading)] 2xl:text-3xl">
-                      Protégez Votre Cabinet</div>
+                      Protégez Votre santé</div>
                   </h1>
-                  <p class="mb-6 text-center text-sm text-[var(--gray-text-color)] lg:text-left">Santé Pro Dentaire propose des solutions d'assurance spécialement conçues pour les chirurgiens-dentistes. Notre couverture complète protège votre pratique contre les risques spécifiques : responsabilité professionnelle, équipements dentaires haut de gamme, et protection juridique. Exercez sereinement à partir de seulement 150$/mois avec une assurance qui comprend vos besoins uniques.</p>
+                  <p class="mb-6 text-center text-sm text-[var(--gray-text-color)] lg:text-left">Santé Pro Dentaire propose des solutions d'assurance spécialement conçues pour les chirurgiens-dentistes.</p>
                   <div class="mb-12 text-center lg:text-left"><a href="/devis"
                       class="items-center rounded bg-[var(--primary-button-bg-color)] px-5 py-3 font-semibold text-[var(--primary-button-text-color)] hover:bg-[var(--primary-button-hover-bg-color)] hover:text-[var(--primary-button-hover-text-color)]"><span
                         class="">Découvrez Nos Offres</span></a></div>
@@ -288,7 +288,7 @@ onMounted(() => {
                   <div class="relative aspect-square h-[200px] overflow-hidden rounded-t-3xl"><img
                       class="h-full w-full object-cover dont-replace"
                       src="https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/a7480342-89b3-4fac-e35f-0d84b77c2500/public"
-                      alt="Consultation Audioprothésiste" data-landingsite-gallery-type="image"
+                      alt="Consultation dentistes" data-landingsite-gallery-type="image"
                       data-media="{&quot;id&quot;:&quot;ics7rgp&quot;,&quot;src&quot;:&quot;upload&quot;,&quot;type&quot;:&quot;image&quot;}"
                       oncontextmenu="return false;"></div>
                   <div class="rounded-b-3xl bg-[#ffffff] p-4">
@@ -300,7 +300,7 @@ onMounted(() => {
                   <div class="relative aspect-square h-[200px] overflow-hidden rounded-t-3xl"><img
                       class="h-full w-full object-cover dont-replace"
                       src="https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/2ad3525c-aad0-486a-466b-51803e67fa00/publicContain"
-                      alt="Technologie Audioprothésiste" data-landingsite-gallery-type="image"
+                      alt="Technologie dentistes" data-landingsite-gallery-type="image"
                       data-media="{&quot;id&quot;:&quot;1279371001&quot;,&quot;src&quot;:&quot;iStock&quot;,&quot;type&quot;:&quot;image&quot;}"
                       oncontextmenu="return false;"></div>
                   <div class="rounded-b-3xl bg-[#ffffff] p-4">
@@ -473,7 +473,7 @@ onMounted(() => {
               <div class="relative z-10 grid grid-cols-1 gap-x-2 sm:grid-cols-2 md:grid-cols-4">
                 <div class="mb-8 flex flex-col space-y-4"><a href="/"
                     class="mb-8 text-xl font-bold text-[var(--primary-color)] [font-family:var(--font-family-heading)] lg:text-3xl"><span
-                      class="">Santé </span><span class="text-gray-800">Pro Audio</span></a>
+                      class="">Santé </span><span class="text-gray-800">Pro Dentaire</span></a>
                   <div class="text-gray-700 2xl:pr-[30%]">Une assurance pour les dentistes.</div>
                 </div>
                 <div class="mb-8 flex flex-col space-y-4 text-[var(--dark-text-color)]">

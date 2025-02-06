@@ -96,7 +96,7 @@ onMounted(() => {
                             <a class="block cursor-pointer border-b border-solid px-3 py-1.5 hover:bg-[#1900410a] lg:py-3 lg:font-medium"
                               href="/services">Services</a>
                             <a class="block cursor-pointer px-3 py-1.5 hover:bg-[#1900410a] lg:py-3 lg:font-medium"
-                              href="/assurance-audioprothesistes">Assurance pour médecins</a>
+                              href="/assurance">Assurance pour médecins</a>
                           </div>
                         </div>
                       </div>
@@ -138,7 +138,7 @@ onMounted(() => {
                     <div class="text-[var(--primary-color)] [font-family:var(--font-family-heading)] 2xl:text-3xl">
                       Sécurisez Votre Pratique</div>
                   </h1>
-                  <p class="mb-6 text-center text-sm text-[var(--gray-text-color)] lg:text-left">Santé Pro Audio propose
+                  <p class="mb-6 text-center text-sm text-[var(--gray-text-color)] lg:text-left">Santé Pro Médicale propose
                     des solutions d'assurance conçues exclusivement pour les médecins. Notre couverture sur
                     mesure vous offre la tranquillité d'esprit nécessaire pour vous concentrer sur vos patients, tout en
                     sachant que votre pratique est protégée contre les imprévus.</p>
@@ -184,7 +184,7 @@ onMounted(() => {
                       oncontextmenu="return false;">
                     <div class="py-3 text-center text-xl font-semibold 2xl:text-base">Couverture Personnalisée</div>
                     <div class="px-6 pb-3 text-center text-sm">Obtenez une couverture sur mesure qui répond parfaitement
-                      aux besoins de votre pratique d'audioprothésiste.</div>
+                      aux besoins de votre pratique d'Médecins.</div>
                   </div>
                   <div
                     class="flex flex-1 flex-col border-[var(--light-border-color)] transition-all duration-300 ease-in-out hover:shadow-lg hover:scale-[1.02]">
@@ -294,7 +294,7 @@ onMounted(() => {
                   <div class="relative aspect-square h-[200px] overflow-hidden rounded-t-3xl"><img
                       class="h-full w-full object-cover dont-replace"
                       src="https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/d7dff460-e23d-4a4e-4e19-d9c3ba27af00/public"
-                      alt="Consultation Audioprothésiste" data-landingsite-gallery-type="image"
+                      alt="Consultation Médecins" data-landingsite-gallery-type="image"
                       data-media="{&quot;id&quot;:&quot;ics7rgp&quot;,&quot;src&quot;:&quot;upload&quot;,&quot;type&quot;:&quot;image&quot;}"
                       oncontextmenu="return false;"></div>
                   <div class="rounded-b-3xl bg-[#ffffff] p-4">
@@ -306,7 +306,7 @@ onMounted(() => {
                   <div class="relative aspect-square h-[200px] overflow-hidden rounded-t-3xl"><img
                       class="h-full w-full object-cover dont-replace"
                       src="https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/2ad3525c-aad0-486a-466b-51803e67fa00/publicContain"
-                      alt="Technologie Audioprothésiste" data-landingsite-gallery-type="image"
+                      alt="Technologie Médecins" data-landingsite-gallery-type="image"
                       data-media="{&quot;id&quot;:&quot;1279371001&quot;,&quot;src&quot;:&quot;iStock&quot;,&quot;type&quot;:&quot;image&quot;}"
                       oncontextmenu="return false;"></div>
                   <div class="rounded-b-3xl bg-[#ffffff] p-4">
@@ -480,7 +480,7 @@ onMounted(() => {
               <div class="relative z-10 grid grid-cols-1 gap-x-2 sm:grid-cols-2 md:grid-cols-4">
                 <div class="mb-8 flex flex-col space-y-4"><a href="/"
                     class="mb-8 text-xl font-bold text-[var(--primary-color)] [font-family:var(--font-family-heading)] lg:text-3xl"><span
-                      class="">Santé </span><span class="text-gray-800">Pro Audio</span></a>
+                      class="">Santé </span><span class="text-gray-800">Pro Médicale</span></a>
                   <div class="text-gray-700 2xl:pr-[30%]">Une assurance pour les médecins.</div>
                 </div>
                 <div class="mb-8 flex flex-col space-y-4 text-[var(--dark-text-color)]">
