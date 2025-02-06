@@ -3,7 +3,7 @@ import AuditionHomeView from '../views/HomeView.vue';
 import DentaireHomeView from "../views/DentaireHomeView.vue";
 import MedicaleHomeView from "../views/MedicaleHomeView.vue";
 
-const currentDomain = window.location.hostname;
+const currentDomain = window.location.hostname.replace(/^www\./, ''); 
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

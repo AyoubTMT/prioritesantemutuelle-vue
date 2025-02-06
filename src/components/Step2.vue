@@ -221,7 +221,7 @@ const professionsByDomain = {
 };
 
 // Get current domain
-const currentDomain = window.location.hostname;
+const currentDomain = window.location.hostname.replace(/^www\./, ''); 
 
 // Filter professions based on the current domain
 const filteredProfessions = computed(() => {
