@@ -10,7 +10,7 @@
                             <a href="/"
                                 class="mb-6 text-lg font-bold text-primary text-xl">
                                 <!-- <span class="">Santé&nbsp;</span><span class="text-secondary">Pro Audio</span> -->
-                                 <img src="../assets/media/logo.png" width="100" height="35" alt="Santé Pro" class="img-fluid">
+                                 <img :src="logo" width="100" height="35" alt="Santé Pro" class="img-fluid">
                             </a>
                         </div>
                         <!-- <div class="d-none d-lg-block"><img src="../assets/logo.png" width="300" height="35" alt="decennale-express" class="img-fluid"></div>
@@ -108,6 +108,18 @@
         }
     });
 
+    const logo = computed(() => {
+      const currentDomain = window.location.hostname;
+
+      const logos = {
+        "santeproaudio.fr": "../assets/media/logo.png",
+        "santepromedicale.fr": "../assets/logoMedicale.png",
+        "santeprodentaire.fr": "../assets/logoDentaire.png",
+      };
+
+      return logos[currentDomain] || "../assets/media/logo.png";
+    });
+    
     function prevStep() { 
         formStore.prevStep(router);
         if(props.step =="tarification"){
