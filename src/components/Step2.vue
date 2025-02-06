@@ -70,7 +70,6 @@
           </small>
         </div>
 
-        <!-- Profession -->
         <div class="mb-4">
           <label for="profession" class="form-label fw-semibold">Spécialité :</label>
           <select
@@ -79,50 +78,10 @@
             class="form-select rounded-pill shadow-sm"
             @blur="$v.profession.$touch()"
           >
-          <option selected disabled value="">Choisissez une option</option>
-          <option>Audioprothésiste Indépendant</option>
-          <option>Salarié dans un centre d'audition</option>
-          <option>Audioprothésiste gérant du centre d'audition</option>
-          <!--   <optgroup label="Médecins">
-                    <option>Médecin généraliste</option>
-                    <option>Chirurgien</option>
-                    <option>Cardiologue</option>
-                    <option>Dermatologue</option>
-                    <option>Gynécologue</option>
-                    <option>Pédiatre</option>
-                    <option>Psychiatre</option>
-                    <option>Radiologue</option>
-                    <option>Ophtalmologue</option>
-                    <option>Pharmacien</option>
-                    <option>Orthopédiste</option>
-                    <option>Neurologue</option>
-                    <option>Oncologue</option>
-                    <option>Urologue</option>
-                    <option>ORL (Oto-Rhino-Laryngologiste)</option>
-                    <option>Dentiste</option>
-                    <option>Rhumatologue</option>
-                    <option>Endocrinologue</option>
-                    <option>Néphrologue</option>
-                    <option>Anesthésiste</option>
-                    <option>Gastro-entérologue</option>
-                    <option>Hématologue</option>
-            </optgroup>
-
-            <optgroup label="Infirmiers">
-              <option>Infirmier généraliste</option>
-              <option>Infirmier anesthésiste</option>
-              <option>Infirmier de bloc opératoire</option>
-              <option>Infirmier spécialisé en pédiatrie</option>
-              <option>Infirmier en gériatrie</option>
-            </optgroup>
-
-            <optgroup label="Sages-Femmes">
-              <option>Sage-femme généraliste</option>
-              <option>Sage-femme échographiste</option>
-              <option>Sage-femme libérale</option>
-            </optgroup>
-
-              <option>Autres</option> -->
+            <option selected disabled value="">Choisissez une option</option>
+            <option v-for="option in filteredProfessions" :key="option">
+              {{ option }}
+            </option>
           </select>
           <small v-if="$v.profession.$error" class="text-danger">
             Veuillez sélectionner une option.
@@ -212,6 +171,61 @@ const formData = reactive({
   profession: formStore.formData.step2.profession || "",
   regime: formStore.formData.step2.regime || "",
   complementaire: formStore.formData.step2.complementaire || "",
+});
+
+// Define available professions by domain
+const professionsByDomain = {
+  "santeproaudio.fr": [
+    "Audioprothésiste Indépendant",
+    "Salarié dans un centre d'audition",
+    "Audioprothésiste gérant du centre d'audition",
+  ],
+  "santepromedicale.fr": [
+    "Médecin généraliste",
+    "Chirurgien",
+    "Cardiologue",
+    "Dermatologue",
+    "Gynécologue",
+    "Pédiatre",
+    "Psychiatre",
+    "Radiologue",
+    "Ophtalmologue",
+    "Pharmacien",
+    "Orthopédiste",
+    "Neurologue",
+    "Oncologue",
+    "Urologue",
+    "ORL (Oto-Rhino-Laryngologiste)",
+    "Dentiste",
+    "Rhumatologue",
+    "Endocrinologue",
+    "Néphrologue",
+    "Anesthésiste",
+    "Gastro-entérologue",
+    "Hématologue",
+    "Infirmier généraliste",
+    "Infirmier anesthésiste",
+    "Infirmier de bloc opératoire",
+    "Infirmier spécialisé en pédiatrie",
+    "Infirmier en gériatrie",
+    "Sage-femme généraliste",
+    "Sage-femme échographiste",
+    "Sage-femme libérale",
+  ],
+  "santeprodentaire.fr": [
+    "Dentiste",
+    "Orthodontiste",
+    "Chirurgien-dentiste",
+    "Assistant dentaire",
+  ],
+};
+
+// Get current domain
+const currentDomain = window.location.hostname;
+
+// Filter professions based on the current domain
+const filteredProfessions = computed(() => {
+  return professionsByDomain[currentDomain] || professionsByDomain["santeproaudio.fr"];
 });
 
 const isOlderThan18 = (value) => {
